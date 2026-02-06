@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/widgets/custom_selection_row.dart';
@@ -43,6 +44,7 @@ class _CustomExpandableSelectionState extends State<CustomExpandableSelection> {
               Icon(
                 isDropdownOpen ? Icons.arrow_drop_up : Icons.arrow_drop_down,
                 color: AppColors.primaryColor,
+                size: 25.sp,
               ),
             ],
           ),

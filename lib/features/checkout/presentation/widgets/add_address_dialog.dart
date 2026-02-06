@@ -60,7 +60,9 @@ class _AddAddressDialogState extends State<AddAddressDialog> {
           CustomButtonWidget(title: 'Add Address', onPressed: widget.onTapAdd),
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("Cancel", style: TextStyle(color: Colors.grey)),
+            child: Text(
+              "Cancel", style: AppStyles.font16RegularDarkGreyColor
+            ),
           ),
         ],
       ),

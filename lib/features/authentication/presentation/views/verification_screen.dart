@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/features/authentication/presentation/widgets/auth_navigator_text.dart';
 import 'package:go_router/go_router.dart';
@@ -23,15 +24,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        surfaceTintColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => context.pop(),
-        ),
-      ),
+      appBar: CustomAppBar(title: '', isLeading: true,),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

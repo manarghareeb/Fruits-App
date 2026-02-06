@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 class CustomPhoneField extends StatelessWidget {
@@ -60,6 +61,12 @@ class CustomPhoneField extends StatelessWidget {
             ),
             initialCountryCode: 'EG',
             dropdownIconPosition: IconPosition.leading,
+            dropdownTextStyle: AppStyles.font14RegularBlackColor,
+            pickerDialogStyle: PickerDialogStyle(
+              backgroundColor: Colors.white,
+              countryCodeStyle: AppStyles.font14RegularBlackColor,
+              countryNameStyle: AppStyles.font14RegularBlackColor,
+            ),
             dropdownIcon: Icon(
               Icons.keyboard_arrow_down,
               color: AppColors.greyColor,

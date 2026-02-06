@@ -24,6 +24,8 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 21.h),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             RichText(
               text: TextSpan(

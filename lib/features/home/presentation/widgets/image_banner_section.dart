@@ -10,7 +10,13 @@ class ImageBannerSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset(AppImages.productBanner),
+        ClipRRect(
+          child: Image.asset(
+            width: 388.w,
+            AppImages.productBanner, 
+            fit: BoxFit.cover,
+          )
+        ),
         Positioned(
           top: 12,
           right: 12,

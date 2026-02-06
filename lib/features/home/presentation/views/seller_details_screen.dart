@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/features/home/presentation/widgets/category_list.dart';
 import 'package:fruits_app/features/home/presentation/widgets/product_card_item.dart';
 import 'package:fruits_app/features/home/presentation/widgets/seller_card_item.dart';
@@ -28,18 +29,12 @@ class _SellerDetailsScreenState extends State<SellerDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => context.pop(),
-        ),
-        backgroundColor: Colors.white,
-        surfaceTintColor: Colors.white,
-        title: Text('Fruit Market', style: AppStyles.font24BoldPrinaryColor),
-        centerTitle: true,
+      appBar: CustomAppBar(
+        title: 'Fruit Market',
+        isLeading: true,
         actions: [
           IconButton(
-            icon: Icon(FontAwesomeIcons.search, color: Colors.black, size: 25.sp,),
+            icon: Icon(FontAwesomeIcons.search, color: Colors.black, size: 20.sp,),
             onPressed: () {},
           ),
         ],
@@ -62,7 +57,7 @@ class _SellerDetailsScreenState extends State<SellerDetailsScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Products', style: AppStyles.font18BoldBlackColor),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.filter_list)),
+                  IconButton(onPressed: () {}, icon: Icon(Icons.filter_list, size: 20.sp,)),
                 ],
               ),
               ListView.separated(

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 
 class CustomButtonWidget extends StatelessWidget {
   const CustomButtonWidget({
@@ -32,6 +33,21 @@ class CustomButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isTablet = AppResponsive.isTablet(context);
+    final isLandscape = AppResponsive.isLandscape(context);
+    final buttonWidth = width ?? 
+    (isTablet
+        ? 0.5.sw
+        : isLandscape
+            ? 0.4.sw
+            : 0.7.sw);
+    final buttonHeight = height ??
+    (isTablet
+        ? 55.h
+        : isLandscape
+            ? 40.h
+            : 45.h);
+    
     return Container(
       decoration: BoxDecoration(
         color: backgroundColor ?? AppColors.primaryColor,
@@ -45,8 +61,8 @@ class CustomButtonWidget extends StatelessWidget {
           ),
         ],
       ),
-      width: width ?? 347.w,
-      height: height ?? 51.h,
+      width: buttonWidth,
+      height: buttonHeight,
       child: TextButton(
         onPressed: onPressed,
         child: Row(
@@ -55,14 +71,16 @@ class CustomButtonWidget extends StatelessWidget {
             if (svgPath != null)
               SvgPicture.asset(svgPath!, width: 25.w, height: 25.h)
             else if (icon != null)
-              Icon(icon, color: textColor ?? Colors.white, size: 25.sp),
+              Icon(icon, color: textColor ?? Colors.white, size: 20.sp),
             SizedBox(width: (icon != null || svgPath != null) ? 10 : 0),
             Text(
               title,
-              style:
+              style: isLandscape ?
                   textStyle ??
                   AppStyles.font18BoldWhiteColor.copyWith(
                     color: textColor ?? Colors.white,
+                  ) :textStyle ?? AppStyles.font14RegularBlackColor.copyWith(
+                    color: Colors.white
                   ),
             ),
           ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruits_app/core/theme/styles.dart';
 
 class CountContainer extends StatefulWidget {
   const CountContainer({super.key, this.padding, this.onQuantityChanged});
@@ -62,7 +63,7 @@ class _CountContainerState extends State<CountContainer> {
             child: Text(
               quantity.toString(),
               textAlign: TextAlign.center,
-              //style: TextStyles.font13BlackW500.copyWith(fontSize: 15.sp),
+              style: AppStyles.font16RegularDarkGreyColor,
             ),
           ),
 
