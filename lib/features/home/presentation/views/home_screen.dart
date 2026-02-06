@@ -45,11 +45,11 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: false,
         actions: [
           IconButton(
-            icon: Icon(FontAwesomeIcons.search, color: Colors.black, size: 25.sp),
+            icon: Icon(FontAwesomeIcons.search, color: Colors.black, size: 20.sp),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(FontAwesomeIcons.sliders, color: Colors.black, size: 25.sp),
+            icon: Icon(FontAwesomeIcons.sliders, color: Colors.black, size: 20.sp),
             onPressed: () => showDialog(
               context: context,
               builder: (context) => const FilterWidget(),

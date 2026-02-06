@@ -118,9 +118,10 @@ class ProductCardItem extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: AppColors.primaryColor,
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.add_shopping_cart,
                     color: Colors.white,
+                    size: 23.sp,
                   ),
                 ),
             ],

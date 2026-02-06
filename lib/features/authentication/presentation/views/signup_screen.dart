@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/core/widgets/custom_text_form_field.dart';
 import 'package:fruits_app/features/authentication/presentation/widgets/auth_navigator_text.dart';
@@ -32,15 +33,7 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        surfaceTintColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => context.pop(),
-        ),
-      ),
+      appBar: CustomAppBar(title: '', isLeading: true,),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

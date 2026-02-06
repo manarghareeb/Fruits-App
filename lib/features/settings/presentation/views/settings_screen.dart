@@ -115,14 +115,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   final item = list[index];
                   return ListTile(
                     onTap: item['onTap'],
-                    leading: Icon(item['icon'], color: AppColors.primaryColor),
+                    leading: Icon(
+                      item['icon'], 
+                      color: AppColors.primaryColor, 
+                      size: 15.sp,
+                    ),
                     title: Text(
                       item['title'],
                       style: AppStyles.font14RegularBlackColor,
                     ),
                     trailing: Icon(
                       Icons.arrow_forward_ios,
-                      size: 20.sp,
+                      size: 15.sp,
                       color: AppColors.greyColor,
                     ),
                   );

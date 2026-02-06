@@ -33,7 +33,7 @@ class CustomDropdownWidget extends StatelessWidget {
         child: DropdownButton<String>(
           value: selectedValue,
           isExpanded: true,
-          icon: const Icon(Icons.arrow_drop_down),
+          icon: Icon(Icons.arrow_drop_down, size: 20.sp,),
           style: AppStyles.font14RegularBlackColor,
           dropdownColor: Colors.white,
           borderRadius: BorderRadius.circular(12.r),

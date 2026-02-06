@@ -39,8 +39,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         title: 'Product Name',
         actions: [
           IconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.favorite_border_outlined,
+              size: 20.sp,
               color: Colors.black,
             ),
             onPressed: () {
@@ -48,7 +49,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             },
           ),
           IconButton(
-            icon: Icon(FontAwesomeIcons.shareFromSquare, color: Colors.black, size: 25.sp,),
+            icon: Icon(FontAwesomeIcons.shareFromSquare, color: Colors.black, size: 20.sp,),
             onPressed: () {},
           ),
         ],

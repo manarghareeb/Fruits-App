@@ -15,7 +15,7 @@ class _DeliveryTimeStepState extends State<DeliveryTimeStep> {
   bool isNowSelected = true;
   DateTime selectedDate = DateTime.now();
 
-  Future<void> _pickDate() async {
+  Future<void> pickDate() async {
     final picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
@@ -65,7 +65,7 @@ class _DeliveryTimeStepState extends State<DeliveryTimeStep> {
                     Text('Select Date', style: AppStyles.font14RegularGreyColor),
                     SizedBox(height: 8.h),
                     GestureDetector(
-                      onTap: _pickDate,
+                      onTap: pickDate,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -73,7 +73,7 @@ class _DeliveryTimeStepState extends State<DeliveryTimeStep> {
                             '${selectedDate.day.toString().padLeft(2,'0')} - ${selectedDate.month.toString().padLeft(2,'0')} - ${selectedDate.year}',
                             style: AppStyles.font16BoldPrimaryColor,
                           ),
-                          const Icon(Icons.keyboard_arrow_down),
+                          Icon(Icons.keyboard_arrow_down, size: 20.sp,),
                         ],
                       ),
                     ),

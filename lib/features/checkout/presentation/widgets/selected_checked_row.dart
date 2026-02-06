@@ -75,7 +75,7 @@ class SelectedCheckedRow extends StatelessWidget {
                         : null,
                   ),
                 if (isAddress)
-                  GestureDetector(onTap: onTap, child: Icon(Icons.add)),
+                  GestureDetector(onTap: onTap, child: Icon(Icons.add, size: 20.sp,)),
               ],
             ),
             if (child != null) ...[SizedBox(height: 10.h), child!],

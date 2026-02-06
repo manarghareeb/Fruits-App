@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DottedDivider extends StatelessWidget {
   final double height;
@@ -15,21 +14,6 @@ class DottedDivider extends StatelessWidget {
     this.color = Colors.grey,
   });
 
-  /*@override
-  Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width - 30.w;
-    final dashCount = (width / (dashWidth + dashSpace)).floor();
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: List.generate(dashCount, (_) {
-        return Container(
-          width: dashWidth.w,
-          height: height,
-          color: color,
-        );
-      }),
-    );
-  }*/
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -40,7 +24,7 @@ class DottedDivider extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(dashCount, (_) {
             return Container(
-              width: dashWidth.w,
+              width: dashWidth,
               height: height,
               color: color,
             );
@@ -50,3 +34,4 @@ class DottedDivider extends StatelessWidget {
     );
   }
 }
+

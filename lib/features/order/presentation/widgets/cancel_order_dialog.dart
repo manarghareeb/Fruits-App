@@ -80,7 +80,7 @@ class _CancelOrderDialogState extends State<CancelOrderDialog> {
             ),
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text("Close", style: TextStyle(color: Colors.grey)),
+              child: Text("Close", style: AppStyles.font16RegularDarkGreyColor),
             ),
           ],
         ),

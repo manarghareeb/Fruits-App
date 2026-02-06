@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fruits_app/core/theme/colors.dart';
+import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/features/basket/presentation/views/basket_screen.dart';
 import 'package:fruits_app/features/favorite/presentation/views/favorite_screen.dart';
 import 'package:fruits_app/features/home/presentation/views/home_screen.dart';
@@ -62,30 +63,40 @@ class _ButtonNavigatorBarState extends State<ButtonNavigatorBar> {
                 selectedIndex = index;
               });
             },
-            tabs: const [
+            tabs: [
               GButton(
                 icon: FontAwesomeIcons.home,
+                iconSize: 20.sp,
                 text: 'Home',
+                textStyle: AppStyles.font16BoldPrimaryColor,
                 textColor: AppColors.primaryColor,
               ),
               GButton(
                 icon: FontAwesomeIcons.listNumeric,
+                iconSize: 20.sp,
                 text: 'Order',
+                textStyle: AppStyles.font16BoldPrimaryColor,
                 textColor: AppColors.primaryColor,
               ),
               GButton(
                 icon: FontAwesomeIcons.basketShopping,
+                iconSize: 20.sp,
                 text: 'Basket',
+                textStyle: AppStyles.font16BoldPrimaryColor,
                 textColor: AppColors.primaryColor,
               ),
               GButton(
                 icon: Icons.favorite_border_outlined,
+                iconSize: 20.sp,
                 text: 'Favorite',
+                textStyle: AppStyles.font16BoldPrimaryColor,
                 textColor: AppColors.primaryColor,
               ),
               GButton(
                 icon: FontAwesomeIcons.listUl,
+                iconSize: 20.sp,
                 text: 'More',
+                textStyle: AppStyles.font16BoldPrimaryColor,
                 textColor: AppColors.primaryColor,
               ),
             ],
