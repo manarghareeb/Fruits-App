@@ -51,9 +51,7 @@ class SellerCardItem extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(name, style: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
-                      fontWeight: FontWeight.bold
-                    ) : AppStyles.font18BoldBlackColor),
+                    Text(name, style: AppStyles.font18BoldBlackColor(context)),
                     SizedBox(width: 4.w),
                     if (distance != null)
                       Icon(
@@ -63,9 +61,10 @@ class SellerCardItem extends StatelessWidget {
                       ),
                     const Spacer(),
                     if (distance != null)
-                      Text(rating, style: isLandscape ? AppStyles.font14RegularDarkGreyColor.copyWith(
-                        fontSize: 10.sp
-                      ) : AppStyles.font14RegularDarkGreyColor),
+                      Text(
+                        rating,
+                        style: AppStyles.font14RegularDarkGreyColor(context),
+                      ),
                     if (distance == null)
                       Icon(
                         Icons.workspace_premium_outlined,
@@ -86,16 +85,17 @@ class SellerCardItem extends StatelessWidget {
                     SizedBox(width: 6.w),
                     Text(
                       deliveryInfo ?? '',
-                      style: isLandscape ? AppStyles.font14RegularDarkGreyColor.copyWith(
-                        fontSize: 10.sp
-                      ) : AppStyles.font14RegularDarkGreyColor,
+                      style: AppStyles.font14RegularDarkGreyColor(context),
                     ),
                   ],
                 ),
                 SizedBox(height: 6.h),
                 Row(
                   children: [
-                    CircleAvatar(radius: isLandscape ? 5.r : 3.r, backgroundColor: Colors.green),
+                    CircleAvatar(
+                      radius: isLandscape ? 5.r : 3.r,
+                      backgroundColor: Colors.green,
+                    ),
                     SizedBox(width: 5.w),
                     Text(
                       isOpen ? "Open" : "Closed",

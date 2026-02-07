@@ -41,11 +41,11 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('Fruit Market', style: AppStyles.font42BoldPrimaryColor),
+                Text('Fruit Market', style: AppStyles.font42BoldPrimaryColor(context)),
                 SizedBox(height: 21.h),
                 Text(
                   'Sign Up to Wikala',
-                  style: AppStyles.font28BoldBlackColor,
+                  style: AppStyles.font28BoldBlackColor(context),
                 ),
                 SizedBox(height: 30.h),
                 CustomTextFormField(

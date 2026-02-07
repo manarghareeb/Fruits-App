@@ -37,18 +37,12 @@ class _VerificationScreenState extends State<VerificationScreen> {
               children: [
                 Text(
                   'Fruit Market',
-                  style: isLandscape
-                      ? AppStyles.font42BoldPrimaryColor.copyWith(
-                          fontSize: 32.sp,
-                        )
-                      : AppStyles.font42BoldPrimaryColor,
+                  style: AppStyles.font42BoldPrimaryColor(context),
                 ),
                 SizedBox(height: 21.h),
                 Text(
                   'Enter Received OTP',
-                  style: isLandscape
-                      ? AppStyles.font28BoldBlackColor.copyWith(fontSize: 18.sp)
-                      : AppStyles.font28BoldBlackColor,
+                  style: AppStyles.font28BoldBlackColor(context),
                 ),
                 SizedBox(height: 30.h),
                 PinCodeTextField(
@@ -72,12 +66,12 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     selectedColor: AppColors.greyColor,
                     borderWidth: 1.w,
                   ),
-                  textStyle: AppStyles.font14RegularBlackColor,
+                  textStyle: AppStyles.font14RegularBlackColor(context),
                   beforeTextPaste: (text) => false,
                   onChanged: (value) => setState(() => currentCode = value),
                   onCompleted: (value) => currentCode = value,
                   hintCharacter: '·',
-                  hintStyle: AppStyles.font28BoldBlackColor.copyWith(
+                  hintStyle: AppStyles.font28BoldBlackColor(context).copyWith(
                     color: AppColors.greyColor,
                   ),
                 ),
@@ -91,9 +85,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 SizedBox(height: 40.h),
                 Text(
                   '60',
-                  style: isLandscape
-                      ? AppStyles.font28BoldBlackColor.copyWith(fontSize: 24.sp)
-                      : AppStyles.font28BoldBlackColor,
+                  style: AppStyles.font28BoldBlackColor(context),
                 ),
                 SizedBox(height: 34.h),
                 AuthNavigatorText(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/styles.dart';
-import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/features/checkout/presentation/widgets/add_address_dialog.dart';
 import 'package:fruits_app/features/checkout/presentation/widgets/selected_checked_row.dart';
 import 'package:go_router/go_router.dart';
@@ -37,13 +36,13 @@ class _DeliveryAddressStepState extends State<DeliveryAddressStep> {
 
   @override
   Widget build(BuildContext context) {
-    final isLandscape = AppResponsive.isLandscape(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Select Delivery Address', style: isLandscape ? AppStyles.font18BoldBlackColor.copyWith(
-          fontSize: 14.sp
-        ) : AppStyles.font18BoldBlackColor),
+        Text(
+          'Select Delivery Address',
+          style: AppStyles.font18BoldBlackColor(context),
+        ),
         SizedBox(height: 15.h),
         SelectedCheckedRow(
           title: 'Add New Address',
@@ -71,24 +70,16 @@ class _DeliveryAddressStepState extends State<DeliveryAddressStep> {
                         SizedBox(height: 9.h),
                         Text(
                           addr['name']!,
-                          style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
-                            fontSize: 12.sp
-                          ) : AppStyles.font16RegularDarkGreyColor,
+                          style: AppStyles.font16RegularDarkGreyColor(context),
                         ),
                         Text(
                           addr['phone']!,
-                          style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
-                            fontSize: 12.sp
-                          ) : AppStyles.font16RegularDarkGreyColor,
+                          style: AppStyles.font16RegularDarkGreyColor(context),
                         ),
                         SizedBox(height: 9.h),
                         Text(
                           addr['details']!,
-                          style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
-                            color: Colors.grey, fontSize: 12.sp
-                          ) : AppStyles.font16RegularDarkGreyColor.copyWith(
-                            color: Colors.grey,
-                          ),
+                          style: AppStyles.font16RegularDarkGreyColor(context),
                         ),
                       ],
                     )

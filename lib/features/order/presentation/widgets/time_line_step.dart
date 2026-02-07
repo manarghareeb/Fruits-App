@@ -46,12 +46,11 @@ class TimelineStep extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: isLandscape ? AppStyles.font16BoldBlackColor.copyWith(
-              fontSize: 14.sp
-            ) : AppStyles.font18BoldBlackColor),
-            Text(subtitle, style:isLandscape ? AppStyles.font18RegularDarkGreyColor.copyWith(
-                  fontSize: 10.sp
-                ) :  AppStyles.font14RegularDarkGreyColor),
+            Text(title, style: AppStyles.font18BoldBlackColor(context)),
+            Text(
+              subtitle,
+              style: AppStyles.font14RegularDarkGreyColor(context),
+            ),
           ],
         ),
       ],

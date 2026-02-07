@@ -64,9 +64,10 @@ class _DeliveryTimeStepState extends State<DeliveryTimeStep> {
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Select Date', style: isLandscape ? AppStyles.font14RegularGreyColor.copyWith(
-                      fontSize: 10.sp
-                    ) : AppStyles.font14RegularGreyColor),
+                    Text(
+                      'Select Date',
+                      style: AppStyles.font14RegularGreyColor(context),
+                    ),
                     SizedBox(height: 8.h),
                     GestureDetector(
                       onTap: pickDate,
@@ -74,12 +75,13 @@ class _DeliveryTimeStepState extends State<DeliveryTimeStep> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            '${selectedDate.day.toString().padLeft(2,'0')} - ${selectedDate.month.toString().padLeft(2,'0')} - ${selectedDate.year}',
-                            style: isLandscape ? AppStyles.font16BoldPrimaryColor.copyWith(
-                              fontSize: 12.sp
-                            ) : AppStyles.font16BoldPrimaryColor,
+                            '${selectedDate.day.toString().padLeft(2, '0')} - ${selectedDate.month.toString().padLeft(2, '0')} - ${selectedDate.year}',
+                            style: AppStyles.font16BoldPrimaryColor(context),
                           ),
-                          Icon(Icons.keyboard_arrow_down, size: isLandscape ? 15.sp : 20.sp,),
+                          Icon(
+                            Icons.keyboard_arrow_down,
+                            size: isLandscape ? 15.sp : 20.sp,
+                          ),
                         ],
                       ),
                     ),

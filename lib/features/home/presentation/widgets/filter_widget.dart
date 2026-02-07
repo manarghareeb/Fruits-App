@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
-import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_dropdown_widget.dart';
 import 'package:fruits_app/core/widgets/custom_selector_dialog.dart';
 
@@ -26,7 +25,6 @@ class _FilterWidgetState extends State<FilterWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final isLandscape = AppResponsive.isLandscape(context);
     return SingleChildScrollView(
       child: CustomSelectionDialog(
         headerWidget: Column(
@@ -35,17 +33,19 @@ class _FilterWidgetState extends State<FilterWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Filter by', style: isLandscape ? AppStyles.font18BoldBlackColor.copyWith(
-                  fontSize: 14.sp
-                ) : AppStyles.font18BoldBlackColor),
+                Text(
+                  'Filter by',
+                  style: AppStyles.font18BoldBlackColor(context),
+                ),
               ],
             ),
             SizedBox(height: 22.h),
             Row(
               children: [
-                Text('Delivered To', style: isLandscape ? AppStyles.font14RegularGreyColor.copyWith(
-                  fontSize: 10.sp
-                ) : AppStyles.font14RegularGreyColor),
+                Text(
+                  'Delivered To',
+                  style: AppStyles.font14RegularGreyColor(context),
+                ),
                 SizedBox(width: 8.w),
                 Icon(
                   Icons.delivery_dining_outlined,

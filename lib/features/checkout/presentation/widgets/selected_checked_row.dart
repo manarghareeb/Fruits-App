@@ -55,12 +55,13 @@ class SelectedCheckedRow extends StatelessWidget {
                       iconWidget!,
                       SizedBox(width: 5.w),
                     ] else if (showIcon) ...[
-                      Icon(FontAwesomeIcons.locationDot, size: isLandscape ? 15.sp : 20.sp),
+                      Icon(
+                        FontAwesomeIcons.locationDot,
+                        size: isLandscape ? 15.sp : 20.sp,
+                      ),
                       SizedBox(width: 5.w),
                     ],
-                    Text(title, style: isLandscape ? AppStyles.font16BoldBlackColor.copyWith(
-                      fontSize: 12.sp
-                    ) : AppStyles.font16BoldBlackColor),
+                    Text(title, style: AppStyles.font16BoldBlackColor(context)),
                   ],
                 ),
                 if (!isAddress)

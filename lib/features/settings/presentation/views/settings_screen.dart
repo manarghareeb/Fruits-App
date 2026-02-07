@@ -30,16 +30,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
         'title': 'Profile',
         'onTap': () => GoRouter.of(context).push(AppRoute.profileScreen),
       },
-      {
-        'icon': FontAwesomeIcons.list12,
-        'title': 'My Orders',
-        'onTap': () {},
-      },
-      {
-        'icon': Icons.favorite_outline,
-        'title': 'Favorite',
-        'onTap': () {}
-      },
+      {'icon': FontAwesomeIcons.list12, 'title': 'My Orders', 'onTap': () {}},
+      {'icon': Icons.favorite_outline, 'title': 'Favorite', 'onTap': () {}},
       {
         'icon': Icons.language,
         'title': 'Language',
@@ -100,17 +92,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               SizedBox(height: 16.h),
               Text(
                 'Welcome, Fruit Market',
-                style: isLandscape ? AppStyles.font24RegularBlackColor.copyWith(
-                  fontSize: 18.sp
-                ) : AppStyles.font24RegularBlackColor,
+                style: AppStyles.font24RegularBlackColor(context),
               ),
               SizedBox(height: 28.h),
               CustomButtonWidget(
                 height: isLandscape ? 30.sp : 40.sp,
                 title: 'Login',
-                textStyle: isLandscape ? AppStyles.font18BoldWhiteColor.copyWith(
-                  fontSize: 14.sp
-                ) : AppStyles.font18BoldWhiteColor,
+                textStyle: AppStyles.font18BoldWhiteColor(context),
                 onPressed: () {
                   GoRouter.of(context).push(AppRoute.loginScreen);
                 },
@@ -125,15 +113,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   return ListTile(
                     onTap: item['onTap'],
                     leading: Icon(
-                      item['icon'], 
-                      color: AppColors.primaryColor, 
+                      item['icon'],
+                      color: AppColors.primaryColor,
                       size: isTablet ? 10.sp : 15.sp,
                     ),
                     title: Text(
                       item['title'],
-                      style: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
-                        fontSize: 10.sp
-                      ) : AppStyles.font14RegularBlackColor,
+                      style: AppStyles.font14RegularBlackColor(context),
                     ),
                     trailing: Icon(
                       Icons.arrow_forward_ios,

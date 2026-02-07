@@ -5,7 +5,6 @@ import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
-import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:go_router/go_router.dart';
@@ -16,7 +15,6 @@ class OrderCaseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLandscape = AppResponsive.isLandscape(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(title: 'Checkout', isLeading: true),
@@ -32,22 +30,16 @@ class OrderCaseScreen extends StatelessWidget {
                 SizedBox(height: 55.h),
                 Text(
                   'YOUR ORDER IS CONFIRMED!',
-                  style: isLandscape ? AppStyles.font24BoldPrimaryColor.copyWith(
-                    fontSize: 20.sp
-                  ) : AppStyles.font24BoldPrimaryColor,
+                  style: AppStyles.font24BoldPrimaryColor(context),
                 ),
                 SizedBox(height: 10.h),
                 Text(
                   'Your order code: #243188',
-                  style: isLandscape ? AppStyles.font18RegularDarkGreyColor.copyWith(
-                    fontSize: 14.sp
-                  ) : AppStyles.font18RegularDarkGreyColor,
+                  style: AppStyles.font18RegularDarkGreyColor(context),
                 ),
                 Text(
                   'Thank you for choosing our products!',
-                  style: isLandscape ? AppStyles.font18RegularDarkGreyColor.copyWith(
-                    fontSize: 14.sp
-                  ) : AppStyles.font18RegularDarkGreyColor,
+                  style: AppStyles.font18RegularDarkGreyColor(context),
                 ),
                 SizedBox(height: 32.h),
                 CustomButtonWidget(
@@ -73,9 +65,7 @@ class OrderCaseScreen extends StatelessWidget {
                 SizedBox(height: 46.h),
                 Text(
                   'OPS',
-                  style: isLandscape ? AppStyles.font24BoldPrimaryColor.copyWith(
-                    color: AppColors.redColor, fontSize: 20.sp
-                  ) : AppStyles.font24BoldPrimaryColor.copyWith(
+                  style: AppStyles.font24BoldPrimaryColor(context).copyWith(
                     color: AppColors.redColor,
                   ),
                 ),
@@ -83,9 +73,7 @@ class OrderCaseScreen extends StatelessWidget {
                 Text(
                   'Error while confirming your payment/order',
                   textAlign: TextAlign.center,
-                  style: isLandscape ? AppStyles.font18RegularDarkGreyColor.copyWith(
-                    fontSize: 144.sp
-                  ) : AppStyles.font18RegularDarkGreyColor,
+                  style: AppStyles.font18RegularDarkGreyColor(context),
                 ),
                 SizedBox(height: 78.h),
                 CustomButtonWidget(

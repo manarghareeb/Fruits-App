@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 
 class TermsAndConditionsScreen extends StatelessWidget {
@@ -8,6 +9,7 @@ class TermsAndConditionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(
@@ -49,8 +51,8 @@ agreements. These terms are
 interchangeable, practically speaking. 
 More rarely, it may be called something like 
 an End User Services Agreement (EUSA).''',
-                style: AppStyles.font18RegularBlackColor.copyWith(
-                  fontSize: 20.sp,
+                style: AppStyles.font18RegularBlackColor(context).copyWith(
+                  fontSize: isLandscape ? 16.sp : 20.sp,
                 ),
               ),
             ],

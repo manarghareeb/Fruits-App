@@ -30,9 +30,7 @@ class _PaymentStepState extends State<PaymentStep> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Copun Code', style: isLandscape ? AppStyles.font18BoldBlackColor.copyWith(
-              fontSize: 14.sp
-            ) : AppStyles.font18BoldBlackColor),
+        Text('Copun Code', style: AppStyles.font18BoldBlackColor(context)),
         SizedBox(height: 15.h),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 14.h),
@@ -52,32 +50,28 @@ class _PaymentStepState extends State<PaymentStep> {
             children: [
               Text(
                 'Do You Have any Coupon Code?',
-                style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
-                  fontSize: 12.sp
-                ) : AppStyles.font16RegularDarkGreyColor,
+                style: AppStyles.font16RegularDarkGreyColor(context),
               ),
               CustomButtonWidget(
-                //height: 48.h,
                 width: 85.w,
                 title: 'Apply',
                 onPressed: () {},
-                textStyle: AppStyles.font12SemiBoldWhiteColor.copyWith(
-                  fontSize: isLandscape ? 12.sp : 16.sp,
+                textStyle: AppStyles.font12SemiBoldWhiteColor(context).copyWith(
+                  fontSize: AppStyles.adaptiveFontSize(
+                    context,
+                    isLandscape ? 12 : 16,
+                  ),
                 ),
               ),
             ],
           ),
         ),
         SizedBox(height: 15.h),
-        Text('Order Details', style: isLandscape ? AppStyles.font18BoldBlackColor.copyWith(
-              fontSize: 14.sp
-            ) : AppStyles.font18BoldBlackColor),
+        Text('Order Details', style: AppStyles.font18BoldBlackColor(context)),
         SizedBox(height: 15.h),
-        OrderDetails(orderDetails: orderDetails, isOrder: true,),
-        SizedBox(height: 22.h,),
-        Text('Payment', style: isLandscape ? AppStyles.font18BoldBlackColor.copyWith(
-              fontSize: 14.sp
-            ) : AppStyles.font18BoldBlackColor),
+        OrderDetails(orderDetails: orderDetails, isOrder: true),
+        SizedBox(height: 22.h),
+        Text('Payment', style: AppStyles.font18BoldBlackColor(context)),
         SizedBox(height: 15.h),
         SelectedCheckedRow(
           title: 'Credit Card/Debit card',
@@ -116,4 +110,3 @@ class _PaymentStepState extends State<PaymentStep> {
     );
   }
 }
-

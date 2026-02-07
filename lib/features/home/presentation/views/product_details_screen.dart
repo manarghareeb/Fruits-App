@@ -75,16 +75,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               const ProductHeaderSection(),
               Text(
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
-                  fontSize: 12.sp
-                ) : AppStyles.font16RegularDarkGreyColor,
+                style: AppStyles.font16RegularDarkGreyColor(context),
               ),
               SizedBox(height: 14.h),
               Text(
                 'Sell Per : Kartoon',
-                style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
-                  fontSize: 12.sp
-                ) : AppStyles.font16RegularDarkGreyColor,
+                style: AppStyles.font16RegularDarkGreyColor(context),
               ),
               SizedBox(height: 22.h),
               CustomExpandableSelection(
@@ -114,10 +110,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 children: [
                   CustomButtonWidget(
                     width: 164.w,
-                    height: isLandscape ? isTablet ? 90.h : 60.h : 37.h,
+                    height: isLandscape ? isTablet ? 90.h : 60.h : 45.h,
                     icon: FontAwesomeIcons.basketShopping,
                     title: 'Add to Cart',
-                    textStyle: AppStyles.font12SemiBoldWhiteColor.copyWith(
+                    textStyle: AppStyles.font12SemiBoldWhiteColor(context).copyWith(
                       fontSize: isLandscape ? 12.sp : 16.sp,
                     ),
                     onPressed: () {

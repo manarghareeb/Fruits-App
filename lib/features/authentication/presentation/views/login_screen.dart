@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/theme/styles.dart';
-import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/core/widgets/custom_text_form_field.dart';
@@ -30,7 +29,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isLandscape = AppResponsive.isLandscape(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(title: '', isLeading: true),
@@ -43,16 +41,13 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Text(
                   'Fruit Market',
-                  style: isLandscape
-                      ? AppStyles.font42BoldPrimaryColor.copyWith(
-                          fontSize: 32.sp,
-                        )
-                      : AppStyles.font42BoldPrimaryColor,
+                  style: AppStyles.font42BoldPrimaryColor(context),
                 ),
                 SizedBox(height: 21.h),
-                Text('Login to Wikala', style: isLandscape
-                      ? AppStyles.font28BoldBlackColor.copyWith(fontSize: 18.sp)
-                      : AppStyles.font28BoldBlackColor,),
+                Text(
+                  'Login to Wikala',
+                  style: AppStyles.font28BoldBlackColor(context),
+                ),
                 SizedBox(height: 30.h),
                 const CustomPhoneField(),
                 SizedBox(height: 20.h),
@@ -83,8 +78,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: Text(
                         'Forgot Password?',
-                        style: AppStyles.font18RegularBlueColorUnderline.copyWith(
-                          fontSize: isLandscape ? 12.sp : 16.sp
+                        style: AppStyles.font16RegularBlueColorUnderline(
+                          context,
                         ),
                       ),
                     ),

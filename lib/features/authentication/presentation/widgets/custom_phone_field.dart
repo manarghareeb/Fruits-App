@@ -18,9 +18,7 @@ class CustomPhoneField extends StatelessWidget {
         RichText(
           text: TextSpan(
             text: 'Phone Number',
-            style: isLandscape ? AppStyles.font14RegularGreyColor.copyWith(
-              fontSize: 10.sp
-            ) : AppStyles.font14RegularGreyColor,
+            style: AppStyles.font14RegularGreyColor(context),
             children: [
               TextSpan(
                 text: ' *',
@@ -45,9 +43,7 @@ class CustomPhoneField extends StatelessWidget {
           child: IntlPhoneField(
             decoration: InputDecoration(
               hintText: 'Mobile Number',
-              hintStyle: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
-                fontSize: 10.sp
-              ) : AppStyles.font14RegularBlackColor,
+              hintStyle: AppStyles.font14RegularBlackColor(context),
               contentPadding: EdgeInsets.symmetric(
                 vertical: 14.h,
                 horizontal: 16.w,
@@ -67,17 +63,11 @@ class CustomPhoneField extends StatelessWidget {
             ),
             initialCountryCode: 'EG',
             dropdownIconPosition: IconPosition.leading,
-            dropdownTextStyle: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
-                fontSize: 10.sp
-              ) : AppStyles.font14RegularBlackColor,
+            dropdownTextStyle: AppStyles.font14RegularBlackColor(context),
             pickerDialogStyle: PickerDialogStyle(
               backgroundColor: Colors.white,
-              countryCodeStyle: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
-                fontSize: 10.sp
-              ) : AppStyles.font14RegularBlackColor,
-              countryNameStyle: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
-                fontSize: 10.sp
-              ) : AppStyles.font14RegularBlackColor,
+              countryCodeStyle: AppStyles.font14RegularBlackColor(context),
+              countryNameStyle: AppStyles.font14RegularBlackColor(context),
             ),
             dropdownIcon: Icon(
               Icons.keyboard_arrow_down,
@@ -93,4 +83,3 @@ class CustomPhoneField extends StatelessWidget {
     );
   }
 }
-

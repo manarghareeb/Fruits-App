@@ -47,18 +47,14 @@ class _CancelOrderDialogState extends State<CancelOrderDialog> {
             children: [
               Text(
                 "Cancel Order",
-                style: isLandscape
-                    ? AppStyles.font18BoldBlackColor.copyWith(fontSize: 14.sp)
-                    : AppStyles.font18BoldBlackColor,
+                style: AppStyles.font18BoldBlackColor(context),
               ),
               SizedBox(height: 20.h),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Reason",
-                  style: isLandscape
-                      ? AppStyles.font14RegularGreyColor.copyWith(fontSize: 10.sp)
-                      : AppStyles.font14RegularGreyColor,
+                  style: AppStyles.font14RegularGreyColor(context),
                 ),
               ),
               SizedBox(height: 8.h),
@@ -88,17 +84,24 @@ class _CancelOrderDialogState extends State<CancelOrderDialog> {
               SizedBox(height: 25.h),
               CustomButtonWidget(
                 title: 'Confirm Cancelation',
-                height: isLandscape ? isTablet ? 100.h : 60.h : 44.h,
+                height: isLandscape
+                    ? isTablet
+                          ? 100.h
+                          : 60.h
+                    : 44.h,
                 onPressed: () {
                   context.pop();
-                  GoRouter.of(context).go(AppRoute.buttonNavigatorBar, extra: 1);
+                  GoRouter.of(
+                    context,
+                  ).go(AppRoute.buttonNavigatorBar, extra: 1);
                 },
               ),
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: Text("Close", style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
-                  fontSize: 12.sp
-                ) : AppStyles.font16RegularDarkGreyColor),
+                child: Text(
+                  "Close",
+                  style: AppStyles.font16RegularDarkGreyColor(context),
+                ),
               ),
             ],
           ),
