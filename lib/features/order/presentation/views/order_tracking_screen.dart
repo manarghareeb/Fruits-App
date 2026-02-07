@@ -33,15 +33,11 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
             RichText(
               text: TextSpan(
                 text: 'Your Order Code: ',
-                style: isLandscape ? AppStyles.font18RegularDarkGreyColor.copyWith(
-                  fontSize: 14.sp
-                ) : AppStyles.font18RegularDarkGreyColor,
+                style: AppStyles.font18RegularDarkGreyColor(context),
                 children: [
                   TextSpan(
                     text: '#882610',
-                    style: isLandscape ? AppStyles.font18RegularDarkGreyColor.copyWith(
-                  fontSize: 14.sp, fontWeight: FontWeight.bold,
-                ) : AppStyles.font18RegularDarkGreyColor.copyWith(
+                    style: AppStyles.font18RegularDarkGreyColor(context).copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -50,15 +46,11 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
             ),
             Text(
               "3 items - 37.50 KD",
-              style: isLandscape ? AppStyles.font18RegularDarkGreyColor.copyWith(
-                  fontSize: 14.sp
-                ) : AppStyles.font18RegularDarkGreyColor,
+              style: AppStyles.font18RegularDarkGreyColor(context),
             ),
             Text(
               "Payment Method : Cash",
-              style: isLandscape ? AppStyles.font18RegularDarkGreyColor.copyWith(
-                  fontSize: 14.sp
-                ) : AppStyles.font18RegularDarkGreyColor,
+              style: AppStyles.font18RegularDarkGreyColor(context),
             ),
             SizedBox(height: 30.h),
             TimelineStep(

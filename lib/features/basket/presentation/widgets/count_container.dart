@@ -64,9 +64,7 @@ class _CountContainerState extends State<CountContainer> {
             child: Text(
               quantity.toString(),
               textAlign: TextAlign.center,
-              style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
-                fontSize: 11.sp
-              ) : AppStyles.font16RegularDarkGreyColor,
+              style: AppStyles.font16RegularDarkGreyColor(context),
             ),
           ),
 

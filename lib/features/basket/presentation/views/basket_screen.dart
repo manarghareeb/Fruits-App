@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
-import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/features/basket/presentation/widgets/dotted_divider.dart';
@@ -16,7 +15,6 @@ class BasketScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLandscape = AppResponsive.isLandscape(context);
     final List<Map<String, String>> price = [
       {'title': 'Subtotal', 'value': '36.00 KD'},
       {'title': 'Shipping Charges', 'value': '1.50 KD'},
@@ -76,17 +74,13 @@ class BasketScreen extends StatelessWidget {
                 children: [
                   Text(
                     '4 items in cart',
-                    style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
-                      fontSize: 12.sp
-                    ) : AppStyles.font16RegularDarkGreyColor,
+                    style: AppStyles.font16RegularDarkGreyColor(context),
                   ),
                   Text(
                     '37.50 KD',
-                    style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
-                      fontWeight: FontWeight.w500, fontSize: 12.sp
-                    ) : AppStyles.font16RegularDarkGreyColor.copyWith(
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: AppStyles.font16RegularDarkGreyColor(
+                      context,
+                    ).copyWith(fontWeight: FontWeight.w500),
                   ),
                 ],
               ),
@@ -94,12 +88,11 @@ class BasketScreen extends StatelessWidget {
             Expanded(
               child: CustomButtonWidget(
                 title: 'Procced To Checkout',
-                onPressed: () => GoRouter.of(context).push(AppRoute.checkoutScreen),
-                textStyle: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
-                  color: Colors.white, fontSize: 12.sp
-                ) : AppStyles.font16RegularDarkGreyColor.copyWith(
-                  color: Colors.white,
-                ),
+                onPressed: () =>
+                    GoRouter.of(context).push(AppRoute.checkoutScreen),
+                textStyle: AppStyles.font16RegularDarkGreyColor(
+                  context,
+                ).copyWith(color: Colors.white),
               ),
             ),
           ],

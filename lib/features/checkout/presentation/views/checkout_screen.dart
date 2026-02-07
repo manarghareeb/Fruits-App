@@ -33,7 +33,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           Expanded(
             child: SingleChildScrollView(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: _buildCurrentStepContent(),
+              child: buildCurrentStepContent(),
             ),
           ),
           Padding(
@@ -54,7 +54,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     );
   }
 
-  Widget _buildCurrentStepContent() {
+  Widget buildCurrentStepContent() {
     switch (currentStep) {
       case 0:
         return const DeliveryTimeStep();

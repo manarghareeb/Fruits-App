@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/styles.dart';
-import 'package:fruits_app/core/utils/app_responsive.dart';
 
 class CustomDropdownWidget extends StatelessWidget {
   final String? selectedValue;
@@ -17,7 +16,6 @@ class CustomDropdownWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLandscape = AppResponsive.isLandscape(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       decoration: BoxDecoration(
@@ -36,9 +34,7 @@ class CustomDropdownWidget extends StatelessWidget {
           value: selectedValue,
           isExpanded: true,
           icon: Icon(Icons.arrow_drop_down, size: 20.sp),
-          style: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
-            fontSize: 10.sp
-          ) : AppStyles.font14RegularBlackColor,
+          style: AppStyles.font14RegularBlackColor(context),
           dropdownColor: Colors.white,
           borderRadius: BorderRadius.circular(12.r),
           onChanged: onChanged,

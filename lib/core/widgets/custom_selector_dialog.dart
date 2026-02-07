@@ -67,9 +67,10 @@ class _CustomSelectionDialogState extends State<CustomSelectionDialog> {
           SizedBox(height: 8.h),
           TextButton(
             onPressed: () => context.pop(),
-            child: Text('Close', style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
-              fontSize: 12.sp
-            ) : AppStyles.font16RegularDarkGreyColor),
+            child: Text(
+              'Close',
+              style: AppStyles.font16RegularDarkGreyColor(context),
+            ),
           ),
         ],
       ),

@@ -65,9 +65,7 @@ class CustomSelectionRow extends StatelessWidget {
               ),
             ],
             SizedBox(width: 12.w),
-            Text(title, style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
-              fontSize: 12.sp
-            ) : AppStyles.font16RegularDarkGreyColor),
+            Text(title, style: AppStyles.font16RegularDarkGreyColor(context)),
           ],
         ),
       ),

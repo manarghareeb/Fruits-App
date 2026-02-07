@@ -80,33 +80,26 @@ class OrderStatusCard extends StatelessWidget {
               children: [
                 Text(
                   "#$orderId - $price KD",
-                  style: isLandscape ? AppStyles.font16BoldBlackColor.copyWith(
-                    fontSize: 14.sp
-                  ) : AppStyles.font18BoldBlackColor,
+                  style: AppStyles.font18BoldBlackColor(context),
                 ),
                 SizedBox(height: 4.h),
                 Text(
                   "$date  •  $itemCount items",
-                  style: isLandscape ? AppStyles.font14RegularDarkGreyColor.copyWith(
-                    fontSize: 12.sp
-                  ) : AppStyles.font16RegularDarkGreyColor,
+                  style: AppStyles.font16RegularDarkGreyColor(context),
                 ),
                 SizedBox(height: 4.h),
                 RichText(
                   text: TextSpan(
                     text: "Status : ",
-                    style: isLandscape ? AppStyles.font14RegularDarkGreyColor.copyWith(
-                    fontSize: 12.sp
-                  ) : AppStyles.font16RegularDarkGreyColor,
+                    style: AppStyles.font16RegularDarkGreyColor(context),
                     children: [
                       TextSpan(
                         text: status,
-                        style: isLandscape ? AppStyles.font14RegularDarkGreyColor.copyWith(
-                    fontSize: 12.sp, color: mainColor, fontWeight: FontWeight.w600,
-                  ) : AppStyles.font16RegularDarkGreyColor.copyWith(
-                          color: mainColor,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: AppStyles.font16RegularDarkGreyColor(context)
+                            .copyWith(
+                              color: mainColor,
+                              fontWeight: FontWeight.w600,
+                            ),
                       ),
                     ],
                   ),

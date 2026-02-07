@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/styles.dart';
-import 'package:fruits_app/core/utils/app_responsive.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -22,16 +21,13 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLandScape = AppResponsive.isLandscape(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         RichText(
           text: TextSpan(
             text: labelText,
-            style: isLandScape ? AppStyles.font14RegularGreyColor.copyWith(
-              fontSize: 10.sp
-            ) : AppStyles.font14RegularGreyColor,
+            style: AppStyles.font14RegularGreyColor(context),
             children: [
               TextSpan(
                 text: ' *',
@@ -56,16 +52,12 @@ class CustomTextFormField extends StatelessWidget {
           child: TextFormField(
             maxLines: maxline,
             controller: controller,
-            style: isLandScape ? AppStyles.font14RegularBlackColor.copyWith(
-              fontSize: 10.sp
-            ) : AppStyles.font14RegularBlackColor,
+            style: AppStyles.font14RegularGreyColor(context),
             validator: validator,
             keyboardType: textInputType,
             decoration: InputDecoration(
               hintText: hintText,
-              hintStyle: isLandScape ? AppStyles.font14RegularBlackColor.copyWith(
-              fontSize: 10.sp
-            ) : AppStyles.font14RegularBlackColor,
+              hintStyle: AppStyles.font14RegularBlackColor(context),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(25.r),
                 borderSide: BorderSide.none,

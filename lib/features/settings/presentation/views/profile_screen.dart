@@ -34,10 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final isLandscape = AppResponsive.isLandscape(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const CustomAppBar(
-        isLeading: true,
-        title: 'Profile',
-      ),
+      appBar: const CustomAppBar(isLeading: true, title: 'Profile'),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 48.h),
@@ -51,49 +48,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     right: 0,
                     bottom: 0,
                     child: Icon(
-                      FontAwesomeIcons.camera, 
+                      FontAwesomeIcons.camera,
                       size: isLandscape ? 20.sp : 25.sp,
-                    )
+                    ),
                   ),
                 ],
               ),
-              SizedBox(height: 18.h,),
-              Text('Welcome, Ahmed', style: isLandscape ? AppStyles.font24RegularBlackColor.copyWith(
-                  fontSize: 18.sp
-                ) : AppStyles.font24RegularBlackColor),
-              SizedBox(height: 38.h,),
+              SizedBox(height: 18.h),
+              Text(
+                'Welcome, Ahmed',
+                style: AppStyles.font24RegularBlackColor(context),
+              ),
+              SizedBox(height: 38.h),
               CustomTextFormField(
-                  hintText: 'Enter your full name',
-                  labelText: 'Full Name',
-                  controller: nameController,
-                  textInputType: TextInputType.name,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your full name';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 14.h),
-                const CustomPhoneField(),
-                SizedBox(height: 14.h),
-                CustomTextFormField(
-                  hintText: 'Enter your password',
-                  labelText: 'Password',
-                  controller: passwordController,
-                  textInputType: TextInputType.visiblePassword,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    if (value.length < 6) {
-                      return 'Password must be at least 6 characters long';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 40.h,),
-                CustomButtonWidget(title: 'Update', onPressed: (){})
+                hintText: 'Enter your full name',
+                labelText: 'Full Name',
+                controller: nameController,
+                textInputType: TextInputType.name,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your full name';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 14.h),
+              const CustomPhoneField(),
+              SizedBox(height: 14.h),
+              CustomTextFormField(
+                hintText: 'Enter your password',
+                labelText: 'Password',
+                controller: passwordController,
+                textInputType: TextInputType.visiblePassword,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  if (value.length < 6) {
+                    return 'Password must be at least 6 characters long';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 40.h),
+              CustomButtonWidget(title: 'Update', onPressed: () {}),
             ],
           ),
         ),

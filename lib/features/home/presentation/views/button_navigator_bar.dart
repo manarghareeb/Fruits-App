@@ -70,45 +70,35 @@ class _ButtonNavigatorBarState extends State<ButtonNavigatorBar> {
                 icon: FontAwesomeIcons.home,
                 iconSize: isLanscape ? 15.sp : 20.sp,
                 text: 'Home',
-                textStyle: isLanscape ? AppStyles.font12SemiBoldWhiteColor.copyWith(
-                  color: AppColors.primaryColor
-                ) : AppStyles.font16BoldPrimaryColor,
+                textStyle: AppStyles.font16BoldPrimaryColor(context),
                 textColor: AppColors.primaryColor,
               ),
               GButton(
                 icon: FontAwesomeIcons.listNumeric,
                 iconSize: isLanscape ? 15.sp : 20.sp,
                 text: 'Order',
-                textStyle: isLanscape ? AppStyles.font12SemiBoldWhiteColor.copyWith(
-                  color: AppColors.primaryColor
-                ) : AppStyles.font16BoldPrimaryColor,
+                textStyle: AppStyles.font16BoldPrimaryColor(context),
                 textColor: AppColors.primaryColor,
               ),
               GButton(
                 icon: FontAwesomeIcons.basketShopping,
                 iconSize: isLanscape ? 15.sp : 20.sp,
                 text: 'Basket',
-                textStyle: isLanscape ? AppStyles.font12SemiBoldWhiteColor.copyWith(
-                  color: AppColors.primaryColor
-                ) : AppStyles.font16BoldPrimaryColor,
+                textStyle: AppStyles.font16BoldPrimaryColor(context),
                 textColor: AppColors.primaryColor,
               ),
               GButton(
                 icon: Icons.favorite_border_outlined,
                 iconSize: isLanscape ? 15.sp : 20.sp,
                 text: 'Favorite',
-                textStyle: isLanscape ? AppStyles.font12SemiBoldWhiteColor.copyWith(
-                  color: AppColors.primaryColor
-                ) : AppStyles.font16BoldPrimaryColor,
+                textStyle: AppStyles.font16BoldPrimaryColor(context),
                 textColor: AppColors.primaryColor,
               ),
               GButton(
                 icon: FontAwesomeIcons.listUl,
                 iconSize: isLanscape ? 15.sp : 20.sp,
                 text: 'More',
-                textStyle: isLanscape ? AppStyles.font12SemiBoldWhiteColor.copyWith(
-                  color: AppColors.primaryColor
-                ) : AppStyles.font16BoldPrimaryColor,
+                textStyle: AppStyles.font16BoldPrimaryColor(context),
                 textColor: AppColors.primaryColor,
               ),
             ],

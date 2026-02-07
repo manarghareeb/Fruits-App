@@ -105,14 +105,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Sellers',
-                    style: isLandscape ? AppStyles.font14RegularBlackColor : AppStyles.font18RegularBlackColor),
+                    style: AppStyles.font18RegularBlackColor(context)),
                   TextButton(
                     onPressed: () {},
                     child: Text(
                       'Show All',
-                      style: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
-                        color: AppColors.blueColor
-                      ) : AppStyles.font18RegularBlackColor.copyWith(
+                      style: AppStyles.font18RegularBlackColor(context).copyWith(
                         color: AppColors.blueColor,
                       ),
                     ),

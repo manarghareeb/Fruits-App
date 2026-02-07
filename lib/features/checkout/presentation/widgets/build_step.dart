@@ -25,8 +25,16 @@ class BuildStep extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: isLandscape ? isTablet ? 15.w : 30.w : 24.w,
-          height: isLandscape ? isTablet ? 15.w : 30.h : 24.h,
+          width: isLandscape
+              ? isTablet
+                    ? 15.w
+                    : 30.w
+              : 24.w,
+          height: isLandscape
+              ? isTablet
+                    ? 15.w
+                    : 30.h
+              : 24.h,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
@@ -56,16 +64,20 @@ class BuildStep extends StatelessWidget {
         Text(
           title,
           textAlign: TextAlign.center,
-          style: isLandscape ? (isActive || isCompleted)
-              ? AppStyles.font14RegularGreyColor.copyWith(
-                  color: AppColors.primaryColor, fontSize: 10.sp
-                )
-              : AppStyles.font14RegularGreyColor.copyWith(fontSize: 10.sp)
-           : (isActive || isCompleted)
-              ? AppStyles.font14RegularGreyColor.copyWith(
-                  color: AppColors.primaryColor,
-                )
-              : AppStyles.font14RegularGreyColor
+          style: isLandscape
+              ? (isActive || isCompleted)
+                    ? AppStyles.font14RegularGreyColor(context).copyWith(
+                        color: AppColors.primaryColor,
+                        fontSize: AppStyles.adaptiveFontSize(context, 10),
+                      )
+                    : AppStyles.font14RegularGreyColor(context).copyWith(
+                        fontSize: AppStyles.adaptiveFontSize(context, 10),
+                      )
+              : (isActive || isCompleted)
+              ? AppStyles.font14RegularGreyColor(
+                  context,
+                ).copyWith(color: AppColors.primaryColor)
+              : AppStyles.font14RegularGreyColor(context),
         ),
       ],
     );

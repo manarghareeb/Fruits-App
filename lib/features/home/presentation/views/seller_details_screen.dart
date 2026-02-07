@@ -56,17 +56,19 @@ class _SellerDetailsScreenState extends State<SellerDetailsScreen> {
                 name: 'Seller name',
                 deliveryInfo: 'Delivery : 40 to 60 Min',
               ),
-              Text('Categories', style: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
-                fontWeight: FontWeight.bold
-              ) : AppStyles.font18BoldBlackColor),
+              Text(
+                'Categories',
+                style: AppStyles.font18BoldBlackColor(context),
+              ),
               SizedBox(height: 7.5.h),
               CategoryList(categoryImages: categoryImages),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Products', style: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
-                fontWeight: FontWeight.bold
-              ) : AppStyles.font18BoldBlackColor),
+                  Text(
+                    'Products',
+                    style: AppStyles.font18BoldBlackColor(context),
+                  ),
                   IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.filter_list, size: 20.sp),

@@ -17,7 +17,7 @@ class CustomButtonWidget extends StatelessWidget {
     this.icon,
     this.svgPath,
     this.textStyle,
-    this.height
+    this.height,
   });
 
   final String title;
@@ -35,19 +35,14 @@ class CustomButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final isTablet = AppResponsive.isTablet(context);
     final isLandscape = AppResponsive.isLandscape(context);
-    final buttonWidth = width ?? 
-    (isTablet
-        ? 0.5.sw
-        : isLandscape
+    final buttonWidth =
+        width ??
+        (isTablet
+            ? 0.5.sw
+            : isLandscape
             ? 0.4.sw
             : 0.7.sw);
-    final buttonHeight = height ??
-    (isTablet
-        ? 85.h
-        : isLandscape
-            ? 60.h
-            : 45.h);
-    
+
     return Container(
       decoration: BoxDecoration(
         color: backgroundColor ?? AppColors.primaryColor,
@@ -62,7 +57,7 @@ class CustomButtonWidget extends StatelessWidget {
         ],
       ),
       width: buttonWidth,
-      height: buttonHeight,
+      height: height ?? (isLandscape ? (isTablet ? 75.h : 60.h) : 50.h),
       child: TextButton(
         onPressed: onPressed,
         child: Row(
@@ -71,17 +66,24 @@ class CustomButtonWidget extends StatelessWidget {
             if (svgPath != null)
               SvgPicture.asset(svgPath!, width: 25.w, height: 25.h)
             else if (icon != null)
-              Icon(icon, color: textColor ?? Colors.white, size: isLandscape ? 15.sp : 20.sp),
+              Icon(
+                icon,
+                color: textColor ?? Colors.white,
+                size: isLandscape ? 15.sp : 20.sp,
+              ),
             SizedBox(width: (icon != null || svgPath != null) ? 10 : 0),
             Text(
               title,
-              style: (isLandscape && isTablet) ?
-                  textStyle ??
-                  AppStyles.font14RegularBlackColor.copyWith(
-                    color: textColor ?? Colors.white, fontSize: 12.sp
-                  ) :textStyle ?? AppStyles.font14RegularBlackColor.copyWith(
-                    color: Colors.white
-                  ),
+              style: (isLandscape && isTablet)
+                  ? textStyle ??
+                        AppStyles.font14RegularBlackColor(context).copyWith(
+                          color: textColor ?? Colors.white,
+                          fontSize: 12.sp,
+                        )
+                  : textStyle ??
+                        AppStyles.font14RegularBlackColor(
+                          context,
+                        ).copyWith(color: Colors.white),
             ),
           ],
         ),

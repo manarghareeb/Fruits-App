@@ -61,9 +61,7 @@ class ProductCardItem extends StatelessWidget {
                         children: [
                           Text(
                             'Product name',
-                            style: AppStyles.font18BoldBlackColor.copyWith(
-                              fontSize: isLandscape ? 12.sp : 16.sp,
-                            ),
+                            style: AppStyles.font16BoldBlackColor(context),
                           ),
                           SizedBox(height: 5.h),
                           const PriceAfterAndBeforeDiscount(
@@ -83,19 +81,17 @@ class ProductCardItem extends StatelessWidget {
                               ),
                               child: Text(
                                 'Up to 10% Off',
-                                style: isLandscape ? AppStyles.font12SemiBoldWhiteColor.copyWith(
-                                  fontSize: 8.sp
-                                ) : AppStyles.font12SemiBoldWhiteColor,
+                                style: AppStyles.font12SemiBoldWhiteColor(
+                                  context,
+                                ),
                               ),
                             ),
                           ] else
                             Text(
                               'Store Name : Store 1',
-                              style: isLandscape ? AppStyles.font16RegularDarkGreyColor
-                                  .copyWith(fontWeight: FontWeight.bold, fontSize: 14.sp) : AppStyles.font16RegularDarkGreyColor
-                                  .copyWith(fontWeight: FontWeight.bold),
-                              /*style: AppStyles.font16RegularDarkGreyColor
-                                  .copyWith(fontWeight: FontWeight.bold),*/
+                              style: AppStyles.font16RegularDarkGreyColor(
+                                context,
+                              ).copyWith(fontWeight: FontWeight.bold),
                             ),
                         ],
                       ),
@@ -141,8 +137,8 @@ class ProductCardItem extends StatelessWidget {
             child: GestureDetector(
               onTap: () {},
               child: Container(
-                width: isLandscape? 20.w : 30.w,
-                height: isLandscape? 20.w : 30.h,
+                width: isLandscape ? 20.w : 30.w,
+                height: isLandscape ? 20.w : 30.h,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.circle,

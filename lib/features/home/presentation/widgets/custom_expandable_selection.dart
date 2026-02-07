@@ -42,9 +42,7 @@ class _CustomExpandableSelectionState extends State<CustomExpandableSelection> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(widget.title, style: isLandscape ? AppStyles.font16BoldBlackColor.copyWith(
-                fontSize: 14.sp
-              ) : AppStyles.font18BoldBlackColor),
+              Text(widget.title, style: AppStyles.font18BoldBlackColor(context)),
               Icon(
                 isDropdownOpen ? Icons.arrow_drop_up : Icons.arrow_drop_down,
                 color: AppColors.primaryColor,
