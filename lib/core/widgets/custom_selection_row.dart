@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 
 class CustomSelectionRow extends StatelessWidget {
   const CustomSelectionRow({
@@ -24,6 +25,7 @@ class CustomSelectionRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return InkWell(
       onTap: onTap,
       splashColor: Colors.transparent,
@@ -33,8 +35,8 @@ class CustomSelectionRow extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              width: 24.w,
-              height: 24.w,
+              width: isLandscape ? 18.w : 24.w,
+              height: isLandscape ? 18.w : 24.w,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
@@ -57,13 +59,15 @@ class CustomSelectionRow extends StatelessWidget {
               SizedBox(width: 12.w),
               SvgPicture.asset(
                 iconPath!,
-                width: 28.w,
-                height: 20.h,
+                width: isLandscape ? 12.sp : 28.w,
+                height: isLandscape ? 12.sp : 20.h,
                 fit: BoxFit.cover,
               ),
             ],
             SizedBox(width: 12.w),
-            Text(title, style: AppStyles.font16RegularDarkGreyColor),
+            Text(title, style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
+              fontSize: 12.sp
+            ) : AppStyles.font16RegularDarkGreyColor),
           ],
         ),
       ),

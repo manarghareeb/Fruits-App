@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 
 class OrderDetails extends StatelessWidget {
   const OrderDetails({super.key, required this.orderDetails, this.isOrder = false});
@@ -10,6 +11,7 @@ class OrderDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return Column(
       children: [
         ...orderDetails.asMap().entries.map((entry) {
@@ -25,14 +27,22 @@ class OrderDetails extends StatelessWidget {
                     Text(
                       item['title'] ?? '',
                       style: isBagTotal
-                          ? AppStyles.font16BoldPrimaryColor
-                          : AppStyles.font16RegularDarkGreyColor,
+                          ? isLandscape ? AppStyles.font16BoldPrimaryColor.copyWith(
+                            fontSize: 12.sp
+                          ) : AppStyles.font16BoldPrimaryColor
+                          : isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
+                            fontSize: 12.sp
+                          ) : AppStyles.font16RegularDarkGreyColor,
                     ),
                     Text(
                       item['value'] ?? '',
                       style: isBagTotal
-                          ? AppStyles.font16BoldPrimaryColor
-                          : AppStyles.font16RegularDarkGreyColor,
+                          ? isLandscape ? AppStyles.font16BoldPrimaryColor.copyWith(
+                            fontSize: 12.sp
+                          ) : AppStyles.font16BoldPrimaryColor
+                          : isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
+                            fontSize: 12.sp
+                          ) : AppStyles.font16RegularDarkGreyColor,
                     ),
                   ],
                 ),

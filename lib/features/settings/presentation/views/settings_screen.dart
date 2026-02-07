@@ -5,6 +5,7 @@ import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/core/widgets/custom_selector_dialog.dart';
@@ -80,6 +81,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       },
     ];
 
+    final isLandscape = AppResponsive.isLandscape(context);
+    final isTablet = AppResponsive.isTablet(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(),
@@ -97,11 +100,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
               SizedBox(height: 16.h),
               Text(
                 'Welcome, Fruit Market',
-                style: AppStyles.font24RegularBlackColor,
+                style: isLandscape ? AppStyles.font24RegularBlackColor.copyWith(
+                  fontSize: 18.sp
+                ) : AppStyles.font24RegularBlackColor,
               ),
               SizedBox(height: 28.h),
               CustomButtonWidget(
+                height: isLandscape ? 30.sp : 40.sp,
                 title: 'Login',
+                textStyle: isLandscape ? AppStyles.font18BoldWhiteColor.copyWith(
+                  fontSize: 14.sp
+                ) : AppStyles.font18BoldWhiteColor,
                 onPressed: () {
                   GoRouter.of(context).push(AppRoute.loginScreen);
                 },
@@ -118,15 +127,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     leading: Icon(
                       item['icon'], 
                       color: AppColors.primaryColor, 
-                      size: 15.sp,
+                      size: isTablet ? 10.sp : 15.sp,
                     ),
                     title: Text(
                       item['title'],
-                      style: AppStyles.font14RegularBlackColor,
+                      style: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
+                        fontSize: 10.sp
+                      ) : AppStyles.font14RegularBlackColor,
                     ),
                     trailing: Icon(
                       Icons.arrow_forward_ios,
-                      size: 15.sp,
+                      size: isLandscape ? 10.sp : 15.sp,
                       color: AppColors.greyColor,
                     ),
                   );

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/features/home/presentation/widgets/custom_expandable_selection.dart';
@@ -32,6 +33,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
+    final isTablet = AppResponsive.isTablet(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
@@ -41,7 +44,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           IconButton(
             icon: Icon(
               Icons.favorite_border_outlined,
-              size: 20.sp,
+              size: isLandscape ? 15.sp : 20.sp,
               color: Colors.black,
             ),
             onPressed: () {
@@ -49,14 +52,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             },
           ),
           IconButton(
-            icon: Icon(FontAwesomeIcons.shareFromSquare, color: Colors.black, size: 20.sp,),
+            icon: Icon(
+              FontAwesomeIcons.shareFromSquare,
+              color: Colors.black,
+              size: isLandscape ? 15.sp : 20.sp,
+            ),
             onPressed: () {},
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 21.w, vertical: 17.h),
+          padding: EdgeInsets.symmetric(
+            horizontal: isLandscape ? 25.w : 21.w, 
+            vertical: isLandscape ? 20.h : 17.h
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -65,12 +75,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               const ProductHeaderSection(),
               Text(
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                style: AppStyles.font16RegularDarkGreyColor,
+                style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
+                  fontSize: 12.sp
+                ) : AppStyles.font16RegularDarkGreyColor,
               ),
               SizedBox(height: 14.h),
               Text(
                 'Sell Per : Kartoon',
-                style: AppStyles.font16RegularDarkGreyColor,
+                style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
+                  fontSize: 12.sp
+                ) : AppStyles.font16RegularDarkGreyColor,
               ),
               SizedBox(height: 22.h),
               CustomExpandableSelection(
@@ -100,17 +114,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 children: [
                   CustomButtonWidget(
                     width: 164.w,
+                    height: isLandscape ? isTablet ? 90.h : 60.h : 37.h,
                     icon: FontAwesomeIcons.basketShopping,
                     title: 'Add to Cart',
                     textStyle: AppStyles.font12SemiBoldWhiteColor.copyWith(
-                      fontSize: 16.sp,
+                      fontSize: isLandscape ? 12.sp : 16.sp,
                     ),
                     onPressed: () {
-                      GoRouter.of(context).push(AppRoute.buttonNavigatorBar, extra: 2,);
+                      GoRouter.of(
+                        context,
+                      ).push(AppRoute.buttonNavigatorBar, extra: 2);
                     },
                   ),
                 ],
               ),
+              SizedBox(height: 25.h),
             ],
           ),
         ),

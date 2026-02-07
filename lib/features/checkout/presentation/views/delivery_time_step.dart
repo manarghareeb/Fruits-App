@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/features/checkout/presentation/widgets/selected_checked_row.dart';
 
 class DeliveryTimeStep extends StatefulWidget {
@@ -45,6 +46,7 @@ class _DeliveryTimeStepState extends State<DeliveryTimeStep> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -62,7 +64,9 @@ class _DeliveryTimeStepState extends State<DeliveryTimeStep> {
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Select Date', style: AppStyles.font14RegularGreyColor),
+                    Text('Select Date', style: isLandscape ? AppStyles.font14RegularGreyColor.copyWith(
+                      fontSize: 10.sp
+                    ) : AppStyles.font14RegularGreyColor),
                     SizedBox(height: 8.h),
                     GestureDetector(
                       onTap: pickDate,
@@ -71,9 +75,11 @@ class _DeliveryTimeStepState extends State<DeliveryTimeStep> {
                         children: [
                           Text(
                             '${selectedDate.day.toString().padLeft(2,'0')} - ${selectedDate.month.toString().padLeft(2,'0')} - ${selectedDate.year}',
-                            style: AppStyles.font16BoldPrimaryColor,
+                            style: isLandscape ? AppStyles.font16BoldPrimaryColor.copyWith(
+                              fontSize: 12.sp
+                            ) : AppStyles.font16BoldPrimaryColor,
                           ),
-                          Icon(Icons.keyboard_arrow_down, size: 20.sp,),
+                          Icon(Icons.keyboard_arrow_down, size: isLandscape ? 15.sp : 20.sp,),
                         ],
                       ),
                     ),

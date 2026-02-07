@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 
 class SelectedCheckedRow extends StatelessWidget {
   const SelectedCheckedRow({
@@ -26,6 +27,7 @@ class SelectedCheckedRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -53,16 +55,18 @@ class SelectedCheckedRow extends StatelessWidget {
                       iconWidget!,
                       SizedBox(width: 5.w),
                     ] else if (showIcon) ...[
-                      Icon(FontAwesomeIcons.locationDot, size: 20.sp,),
+                      Icon(FontAwesomeIcons.locationDot, size: isLandscape ? 15.sp : 20.sp),
                       SizedBox(width: 5.w),
                     ],
-                    Text(title, style: AppStyles.font16BoldBlackColor),
+                    Text(title, style: isLandscape ? AppStyles.font16BoldBlackColor.copyWith(
+                      fontSize: 12.sp
+                    ) : AppStyles.font16BoldBlackColor),
                   ],
                 ),
                 if (!isAddress)
                   Container(
-                    width: 25.w,
-                    height: 25.h,
+                    width: isLandscape ? 15.w : 25.w,
+                    height: isLandscape ? 15.w : 25.h,
                     decoration: BoxDecoration(
                       border: Border.all(color: AppColors.primaryColor),
                       shape: BoxShape.circle,
@@ -75,7 +79,10 @@ class SelectedCheckedRow extends StatelessWidget {
                         : null,
                   ),
                 if (isAddress)
-                  GestureDetector(onTap: onTap, child: Icon(Icons.add, size: 20.sp,)),
+                  GestureDetector(
+                    onTap: onTap,
+                    child: Icon(Icons.add, size: isLandscape ? 15.sp : 20.sp),
+                  ),
               ],
             ),
             if (child != null) ...[SizedBox(height: 10.h), child!],

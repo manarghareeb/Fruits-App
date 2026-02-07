@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/features/authentication/presentation/widgets/auth_navigator_text.dart';
@@ -22,9 +23,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
+    final isTablet = AppResponsive.isTablet(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(title: '', isLeading: true,),
+      appBar: CustomAppBar(title: '', isLeading: true),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -32,11 +35,20 @@ class _VerificationScreenState extends State<VerificationScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('Fruit Market', style: AppStyles.font42BoldPrimaryColor),
-                SizedBox(height: 21),
+                Text(
+                  'Fruit Market',
+                  style: isLandscape
+                      ? AppStyles.font42BoldPrimaryColor.copyWith(
+                          fontSize: 32.sp,
+                        )
+                      : AppStyles.font42BoldPrimaryColor,
+                ),
+                SizedBox(height: 21.h),
                 Text(
                   'Enter Received OTP',
-                  style: AppStyles.font28BoldBlackColor,
+                  style: isLandscape
+                      ? AppStyles.font28BoldBlackColor.copyWith(fontSize: 18.sp)
+                      : AppStyles.font28BoldBlackColor,
                 ),
                 SizedBox(height: 30.h),
                 PinCodeTextField(
@@ -50,15 +62,15 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   cursorColor: AppColors.greyColor,
                   pinTheme: PinTheme(
                     shape: PinCodeFieldShape.circle,
-                    fieldHeight: 48.h,
-                    fieldWidth: 48.w,
+                    fieldHeight: isLandscape ? isTablet ? 30.w : 65.h : 48.h,
+                    fieldWidth: isLandscape ? isTablet ? 30.w : 65.h : 48.w,
                     inactiveFillColor: AppColors.greyColor.withOpacity(0.1),
                     activeFillColor: AppColors.greyColor.withOpacity(0.1),
                     selectedFillColor: AppColors.greyColor.withOpacity(0.1),
                     inactiveColor: AppColors.greyColor,
                     activeColor: AppColors.greyColor,
                     selectedColor: AppColors.greyColor,
-                    borderWidth: 1,
+                    borderWidth: 1.w,
                   ),
                   textStyle: AppStyles.font14RegularBlackColor,
                   beforeTextPaste: (text) => false,
@@ -70,13 +82,25 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   ),
                 ),
                 SizedBox(height: 52.h),
-                CustomButtonWidget(title: 'Confirm', onPressed: () {
-                  GoRouter.of(context).go(AppRoute.loginScreen);
-                }),
+                CustomButtonWidget(
+                  title: 'Confirm',
+                  onPressed: () {
+                    GoRouter.of(context).go(AppRoute.loginScreen);
+                  },
+                ),
                 SizedBox(height: 40.h),
-                Text('60', style: AppStyles.font28BoldBlackColor,),
+                Text(
+                  '60',
+                  style: isLandscape
+                      ? AppStyles.font28BoldBlackColor.copyWith(fontSize: 24.sp)
+                      : AppStyles.font28BoldBlackColor,
+                ),
                 SizedBox(height: 34.h),
-                AuthNavigatorText(text: 'Not received? ', textButton: 'Send Again', onTap: (){})
+                AuthNavigatorText(
+                  text: 'Not received? ',
+                  textButton: 'Send Again',
+                  onTap: () {},
+                ),
               ],
             ),
           ),

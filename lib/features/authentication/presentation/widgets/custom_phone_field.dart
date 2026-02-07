@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
@@ -10,13 +11,16 @@ class CustomPhoneField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         RichText(
           text: TextSpan(
             text: 'Phone Number',
-            style: AppStyles.font14RegularGreyColor,
+            style: isLandscape ? AppStyles.font14RegularGreyColor.copyWith(
+              fontSize: 10.sp
+            ) : AppStyles.font14RegularGreyColor,
             children: [
               TextSpan(
                 text: ' *',
@@ -41,7 +45,9 @@ class CustomPhoneField extends StatelessWidget {
           child: IntlPhoneField(
             decoration: InputDecoration(
               hintText: 'Mobile Number',
-              hintStyle: AppStyles.font14RegularBlackColor,
+              hintStyle: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
+                fontSize: 10.sp
+              ) : AppStyles.font14RegularBlackColor,
               contentPadding: EdgeInsets.symmetric(
                 vertical: 14.h,
                 horizontal: 16.w,
@@ -61,16 +67,22 @@ class CustomPhoneField extends StatelessWidget {
             ),
             initialCountryCode: 'EG',
             dropdownIconPosition: IconPosition.leading,
-            dropdownTextStyle: AppStyles.font14RegularBlackColor,
+            dropdownTextStyle: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
+                fontSize: 10.sp
+              ) : AppStyles.font14RegularBlackColor,
             pickerDialogStyle: PickerDialogStyle(
               backgroundColor: Colors.white,
-              countryCodeStyle: AppStyles.font14RegularBlackColor,
-              countryNameStyle: AppStyles.font14RegularBlackColor,
+              countryCodeStyle: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
+                fontSize: 10.sp
+              ) : AppStyles.font14RegularBlackColor,
+              countryNameStyle: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
+                fontSize: 10.sp
+              ) : AppStyles.font14RegularBlackColor,
             ),
             dropdownIcon: Icon(
               Icons.keyboard_arrow_down,
               color: AppColors.greyColor,
-              size: 30.sp,
+              size: isLandscape ? 20.sp : 30.sp,
             ),
             flagsButtonPadding: EdgeInsets.only(left: 8.w),
             disableLengthCheck: true,

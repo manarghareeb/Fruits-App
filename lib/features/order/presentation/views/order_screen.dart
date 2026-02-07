@@ -22,29 +22,27 @@ class OrderScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(title: 'My Orders'),
-      body: Padding(
+      body: ListView.separated(
         padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
-        child: ListView.separated(
-          itemCount: statuses.length,
-          separatorBuilder: (context, index) => SizedBox(height: 4.h),
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-              child: GestureDetector(
-                onTap: () {
-                  GoRouter.of(context).push(AppRoute.orderTrackingScreen);
-                },
-                child: OrderStatusCard(
-                  orderId: "24318${index + 8}",
-                  price: "37",
-                  date: "9 Sep",
-                  itemCount: "4",
-                  status: statuses[index],
-                ),
+        itemCount: statuses.length,
+        separatorBuilder: (context, index) => SizedBox(height: 4.h),
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+            child: GestureDetector(
+              onTap: () {
+                GoRouter.of(context).push(AppRoute.orderTrackingScreen);
+              },
+              child: OrderStatusCard(
+                orderId: "24318${index + 8}",
+                price: "37",
+                date: "9 Sep",
+                itemCount: "4",
+                status: statuses[index],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

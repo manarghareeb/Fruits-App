@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -10,7 +11,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.validator,
     required this.hintText,
     required this.textInputType,
-    this.maxline
+    this.maxline,
   });
   final String labelText;
   final TextEditingController controller;
@@ -21,13 +22,16 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandScape = AppResponsive.isLandscape(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         RichText(
           text: TextSpan(
             text: labelText,
-            style: AppStyles.font14RegularGreyColor,
+            style: isLandScape ? AppStyles.font14RegularGreyColor.copyWith(
+              fontSize: 10.sp
+            ) : AppStyles.font14RegularGreyColor,
             children: [
               TextSpan(
                 text: ' *',
@@ -52,12 +56,16 @@ class CustomTextFormField extends StatelessWidget {
           child: TextFormField(
             maxLines: maxline,
             controller: controller,
-            style: AppStyles.font14RegularBlackColor,
+            style: isLandScape ? AppStyles.font14RegularBlackColor.copyWith(
+              fontSize: 10.sp
+            ) : AppStyles.font14RegularBlackColor,
             validator: validator,
             keyboardType: textInputType,
             decoration: InputDecoration(
               hintText: hintText,
-              hintStyle: AppStyles.font14RegularBlackColor,
+              hintStyle: isLandScape ? AppStyles.font14RegularBlackColor.copyWith(
+              fontSize: 10.sp
+            ) : AppStyles.font14RegularBlackColor,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(25.r),
                 borderSide: BorderSide.none,
