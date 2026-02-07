@@ -13,32 +13,25 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(
-        title: 'Favorite',
-      ),
+      appBar: CustomAppBar(title: 'Favorite'),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 13.h, horizontal: 15.w),
-        child: Column(
-          children: [
-            ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 3,
-                  separatorBuilder: (context, index) => SizedBox(height: 7.h),
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        GoRouter.of(context).push(AppRoute.productDetailsScreen);
-                      },
-                      child: const ProductCardItem(
-                        imagePath: AppImages.fruitsImage,
-                        isCart: true,
-                        isFavorite: true,
-                      ),
-                    );
-                  },
-                )
-          ],
+        child: ListView.separated(
+          padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w),
+          itemCount: 3,
+          separatorBuilder: (context, index) => SizedBox(height: 7.h),
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                GoRouter.of(context).push(AppRoute.productDetailsScreen);
+              },
+              child: const ProductCardItem(
+                imagePath: AppImages.fruitsImage,
+                isCart: true,
+                isFavorite: true,
+              ),
+            );
+          },
         ),
       ),
     );

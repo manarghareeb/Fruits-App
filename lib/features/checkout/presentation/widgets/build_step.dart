@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 
 class BuildStep extends StatelessWidget {
   const BuildStep({
@@ -16,14 +17,16 @@ class BuildStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
+    final isTablet = AppResponsive.isTablet(context);
     bool isCompleted = currentStep > stepIndex;
     bool isActive = currentStep == stepIndex;
 
     return Column(
       children: [
         Container(
-          width: 24.w,
-          height: 24.h,
+          width: isLandscape ? isTablet ? 15.w : 30.w : 24.w,
+          height: isLandscape ? isTablet ? 15.w : 30.h : 24.h,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
@@ -53,11 +56,16 @@ class BuildStep extends StatelessWidget {
         Text(
           title,
           textAlign: TextAlign.center,
-          style: (isActive || isCompleted)
+          style: isLandscape ? (isActive || isCompleted)
+              ? AppStyles.font14RegularGreyColor.copyWith(
+                  color: AppColors.primaryColor, fontSize: 10.sp
+                )
+              : AppStyles.font14RegularGreyColor.copyWith(fontSize: 10.sp)
+           : (isActive || isCompleted)
               ? AppStyles.font14RegularGreyColor.copyWith(
                   color: AppColors.primaryColor,
                 )
-              : AppStyles.font14RegularGreyColor,
+              : AppStyles.font14RegularGreyColor
         ),
       ],
     );

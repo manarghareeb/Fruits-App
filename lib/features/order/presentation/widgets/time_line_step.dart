@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 
 class TimelineStep extends StatelessWidget {
   const TimelineStep({
@@ -19,14 +20,15 @@ class TimelineStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Column(
           children: [
             Container(
-              width: 32.w,
-              height: 32.h,
+              width: isLandscape ? 20.w : 32.w,
+              height: isLandscape ? 20.w : 32.h,
               decoration: BoxDecoration(
                 color: isCompleted ? AppColors.greenColor : Colors.white,
                 shape: BoxShape.circle,
@@ -44,8 +46,12 @@ class TimelineStep extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: AppStyles.font18BoldBlackColor),
-            Text(subtitle, style: AppStyles.font14RegularDarkGreyColor),
+            Text(title, style: isLandscape ? AppStyles.font16BoldBlackColor.copyWith(
+              fontSize: 14.sp
+            ) : AppStyles.font18BoldBlackColor),
+            Text(subtitle, style:isLandscape ? AppStyles.font18RegularDarkGreyColor.copyWith(
+                  fontSize: 10.sp
+                ) :  AppStyles.font14RegularDarkGreyColor),
           ],
         ),
       ],

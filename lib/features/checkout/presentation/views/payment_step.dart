@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/features/checkout/presentation/widgets/order_details.dart';
 import 'package:fruits_app/features/checkout/presentation/widgets/selected_checked_row.dart';
@@ -25,10 +26,13 @@ class _PaymentStepState extends State<PaymentStep> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Copun Code', style: AppStyles.font18BoldBlackColor),
+        Text('Copun Code', style: isLandscape ? AppStyles.font18BoldBlackColor.copyWith(
+              fontSize: 14.sp
+            ) : AppStyles.font18BoldBlackColor),
         SizedBox(height: 15.h),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 14.h),
@@ -48,26 +52,32 @@ class _PaymentStepState extends State<PaymentStep> {
             children: [
               Text(
                 'Do You Have any Coupon Code?',
-                style: AppStyles.font16RegularDarkGreyColor,
+                style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
+                  fontSize: 12.sp
+                ) : AppStyles.font16RegularDarkGreyColor,
               ),
               CustomButtonWidget(
-                height: 48.h,
+                //height: 48.h,
                 width: 85.w,
                 title: 'Apply',
                 onPressed: () {},
                 textStyle: AppStyles.font12SemiBoldWhiteColor.copyWith(
-                  fontSize: 16.sp,
+                  fontSize: isLandscape ? 12.sp : 16.sp,
                 ),
               ),
             ],
           ),
         ),
         SizedBox(height: 15.h),
-        Text('Order Details', style: AppStyles.font18BoldBlackColor),
+        Text('Order Details', style: isLandscape ? AppStyles.font18BoldBlackColor.copyWith(
+              fontSize: 14.sp
+            ) : AppStyles.font18BoldBlackColor),
         SizedBox(height: 15.h),
         OrderDetails(orderDetails: orderDetails, isOrder: true,),
         SizedBox(height: 22.h,),
-        Text('Payment', style: AppStyles.font18BoldBlackColor),
+        Text('Payment', style: isLandscape ? AppStyles.font18BoldBlackColor.copyWith(
+              fontSize: 14.sp
+            ) : AppStyles.font18BoldBlackColor),
         SizedBox(height: 15.h),
         SelectedCheckedRow(
           title: 'Credit Card/Debit card',

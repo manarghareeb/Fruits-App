@@ -43,9 +43,9 @@ class CustomButtonWidget extends StatelessWidget {
             : 0.7.sw);
     final buttonHeight = height ??
     (isTablet
-        ? 55.h
+        ? 85.h
         : isLandscape
-            ? 40.h
+            ? 60.h
             : 45.h);
     
     return Container(
@@ -71,14 +71,14 @@ class CustomButtonWidget extends StatelessWidget {
             if (svgPath != null)
               SvgPicture.asset(svgPath!, width: 25.w, height: 25.h)
             else if (icon != null)
-              Icon(icon, color: textColor ?? Colors.white, size: 20.sp),
+              Icon(icon, color: textColor ?? Colors.white, size: isLandscape ? 15.sp : 20.sp),
             SizedBox(width: (icon != null || svgPath != null) ? 10 : 0),
             Text(
               title,
-              style: isLandscape ?
+              style: (isLandscape && isTablet) ?
                   textStyle ??
-                  AppStyles.font18BoldWhiteColor.copyWith(
-                    color: textColor ?? Colors.white,
+                  AppStyles.font14RegularBlackColor.copyWith(
+                    color: textColor ?? Colors.white, fontSize: 12.sp
                   ) :textStyle ?? AppStyles.font14RegularBlackColor.copyWith(
                     color: Colors.white
                   ),

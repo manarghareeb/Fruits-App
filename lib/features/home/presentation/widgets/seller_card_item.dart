@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_image_card.dart';
 
 class SellerCardItem extends StatelessWidget {
@@ -26,6 +27,7 @@ class SellerCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return Container(
       padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
@@ -49,7 +51,9 @@ class SellerCardItem extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(name, style: AppStyles.font18BoldBlackColor),
+                    Text(name, style: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
+                      fontWeight: FontWeight.bold
+                    ) : AppStyles.font18BoldBlackColor),
                     SizedBox(width: 4.w),
                     if (distance != null)
                       Icon(
@@ -59,7 +63,9 @@ class SellerCardItem extends StatelessWidget {
                       ),
                     const Spacer(),
                     if (distance != null)
-                      Text(rating, style: AppStyles.font14RegularDarkGreyColor),
+                      Text(rating, style: isLandscape ? AppStyles.font14RegularDarkGreyColor.copyWith(
+                        fontSize: 10.sp
+                      ) : AppStyles.font14RegularDarkGreyColor),
                     if (distance == null)
                       Icon(
                         Icons.workspace_premium_outlined,
@@ -80,26 +86,28 @@ class SellerCardItem extends StatelessWidget {
                     SizedBox(width: 6.w),
                     Text(
                       deliveryInfo ?? '',
-                      style: AppStyles.font14RegularDarkGreyColor,
+                      style: isLandscape ? AppStyles.font14RegularDarkGreyColor.copyWith(
+                        fontSize: 10.sp
+                      ) : AppStyles.font14RegularDarkGreyColor,
                     ),
                   ],
                 ),
                 SizedBox(height: 6.h),
                 Row(
                   children: [
-                    CircleAvatar(radius: 3.r, backgroundColor: Colors.green),
+                    CircleAvatar(radius: isLandscape ? 5.r : 3.r, backgroundColor: Colors.green),
                     SizedBox(width: 5.w),
                     Text(
                       isOpen ? "Open" : "Closed",
                       style: TextStyle(
                         color: Colors.green,
-                        fontSize: 13.sp,
+                        fontSize: isLandscape ? 9.sp : 13.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     SizedBox(width: 10.w),
                     CircleAvatar(
-                      radius: 3.r,
+                      radius: isLandscape ? 5.r : 3.r,
                       backgroundColor: Colors.grey[300],
                     ),
                     SizedBox(width: 5.w),
@@ -107,7 +115,7 @@ class SellerCardItem extends StatelessWidget {
                       distance != null ? category : rating,
                       style: TextStyle(
                         color: const Color(0xFF51949F),
-                        fontSize: 13.sp,
+                        fontSize: isLandscape ? 9.sp : 13.sp,
                       ),
                     ),
                     const Spacer(),
@@ -116,14 +124,14 @@ class SellerCardItem extends StatelessWidget {
                         distance!,
                         style: TextStyle(
                           color: AppColors.primaryColor,
-                          fontSize: 12.sp,
+                          fontSize: isLandscape ? 8.sp : 12.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(width: 2.w),
                       Icon(
                         Icons.location_on_outlined,
-                        size: 14.sp,
+                        size: isLandscape ? 8.sp : 14.sp,
                         color: AppColors.primaryColor,
                       ),
                     ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/core/widgets/custom_text_form_field.dart';
@@ -30,6 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(
@@ -48,12 +50,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Positioned(
                     right: 0,
                     bottom: 0,
-                    child: Icon(FontAwesomeIcons.camera)
+                    child: Icon(
+                      FontAwesomeIcons.camera, 
+                      size: isLandscape ? 20.sp : 25.sp,
+                    )
                   ),
                 ],
               ),
               SizedBox(height: 18.h,),
-              Text('Welcome, Ahmed', style: AppStyles.font24RegularBlackColor),
+              Text('Welcome, Ahmed', style: isLandscape ? AppStyles.font24RegularBlackColor.copyWith(
+                  fontSize: 18.sp
+                ) : AppStyles.font24RegularBlackColor),
               SizedBox(height: 38.h,),
               CustomTextFormField(
                   hintText: 'Enter your full name',

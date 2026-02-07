@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/core/widgets/custom_selection_row.dart';
 import 'package:go_router/go_router.dart';
@@ -34,6 +35,7 @@ class _CustomSelectionDialogState extends State<CustomSelectionDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return AlertDialog(
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
@@ -55,6 +57,7 @@ class _CustomSelectionDialogState extends State<CustomSelectionDialog> {
           ),
           SizedBox(height: 32.h),
           CustomButtonWidget(
+            height: isLandscape ? 30.sp : 40.sp,
             title: 'Apply',
             onPressed: () {
               widget.onApply(selectedValue);
@@ -64,7 +67,9 @@ class _CustomSelectionDialogState extends State<CustomSelectionDialog> {
           SizedBox(height: 8.h),
           TextButton(
             onPressed: () => context.pop(),
-            child: Text('Close', style: AppStyles.font16RegularDarkGreyColor),
+            child: Text('Close', style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
+              fontSize: 12.sp
+            ) : AppStyles.font16RegularDarkGreyColor),
           ),
         ],
       ),

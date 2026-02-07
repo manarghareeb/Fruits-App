@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_selection_row.dart';
 
 class CustomExpandableSelection extends StatefulWidget {
@@ -28,6 +29,7 @@ class _CustomExpandableSelectionState extends State<CustomExpandableSelection> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,11 +42,13 @@ class _CustomExpandableSelectionState extends State<CustomExpandableSelection> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(widget.title, style: AppStyles.font18BoldBlackColor),
+              Text(widget.title, style: isLandscape ? AppStyles.font16BoldBlackColor.copyWith(
+                fontSize: 14.sp
+              ) : AppStyles.font18BoldBlackColor),
               Icon(
                 isDropdownOpen ? Icons.arrow_drop_up : Icons.arrow_drop_down,
                 color: AppColors.primaryColor,
-                size: 25.sp,
+                size: isLandscape ? 20.sp : 25.sp,
               ),
             ],
           ),

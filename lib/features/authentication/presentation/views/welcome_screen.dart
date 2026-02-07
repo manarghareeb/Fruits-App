@@ -14,6 +14,7 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     final screenWidth = AppResponsive.screenWidth(context);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -39,11 +40,20 @@ class WelcomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('Fruit Market', style: AppStyles.font42BoldPrimaryColor),
+                Text(
+                  'Fruit Market',
+                  style: isLandscape
+                      ? AppStyles.font42BoldPrimaryColor.copyWith(
+                          fontSize: 32.sp,
+                        )
+                      : AppStyles.font42BoldPrimaryColor,
+                ),
                 SizedBox(height: 21.h),
                 Text(
                   'Welcome to Our app',
-                  style: AppStyles.font28BoldBlackColor,
+                  style: isLandscape
+                      ? AppStyles.font28BoldBlackColor.copyWith(fontSize: 18.sp)
+                      : AppStyles.font28BoldBlackColor,
                 ),
                 SizedBox(height: 52.h),
                 CustomButtonWidget(
@@ -54,7 +64,11 @@ class WelcomeScreen extends StatelessWidget {
                   bordercolor: Colors.transparent,
                   textColor: AppColors.lightBlackColor,
                   icon: Icons.phone,
-                  textStyle: AppStyles.font14RegularDarkGreyColor,
+                  textStyle: isLandscape
+                      ? AppStyles.font14RegularDarkGreyColor.copyWith(
+                          fontSize: 10.sp,
+                        )
+                      : AppStyles.font14RegularDarkGreyColor,
                 ),
                 SizedBox(height: 21.h),
                 CustomButtonWidget(
@@ -65,7 +79,11 @@ class WelcomeScreen extends StatelessWidget {
                   bordercolor: Colors.transparent,
                   textColor: AppColors.lightBlackColor,
                   svgPath: AppImages.googleLogo,
-                  textStyle: AppStyles.font14RegularDarkGreyColor,
+                  textStyle: isLandscape
+                      ? AppStyles.font14RegularDarkGreyColor.copyWith(
+                          fontSize: 10.sp,
+                        )
+                      : AppStyles.font14RegularDarkGreyColor,
                 ),
                 SizedBox(height: 21.h),
                 CustomButtonWidget(
@@ -75,9 +93,14 @@ class WelcomeScreen extends StatelessWidget {
                   backgroundColor: AppColors.blueColor,
                   bordercolor: Colors.transparent,
                   icon: Icons.facebook,
-                  textStyle: AppStyles.font14RegularDarkGreyColor.copyWith(
-                    color: Colors.white,
-                  ),
+                  textStyle: isLandscape
+                      ? AppStyles.font14RegularDarkGreyColor.copyWith(
+                          color: Colors.white,
+                          fontSize: 10.sp,
+                        )
+                      : AppStyles.font14RegularDarkGreyColor.copyWith(
+                          color: Colors.white,
+                        ),
                 ),
                 SizedBox(height: 79.h),
                 AuthNavigatorText(
@@ -92,19 +115,25 @@ class WelcomeScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                   text: TextSpan(
                     text: 'By continue you agree to our ',
-                    style: AppStyles.font18RegularGreyColor,
+                    style: AppStyles.font18RegularGreyColor.copyWith(
+                      fontSize: isLandscape ? 12.sp : 16.sp,
+                    ),
                     children: [
                       TextSpan(
                         text: 'Terms of service ',
-                        style: AppStyles.font18RegularBlueColorUnderline,
+                        style: AppStyles.font18RegularBlueColorUnderline
+                            .copyWith(fontSize: isLandscape ? 12.sp : 16.sp),
                       ),
                       TextSpan(
                         text: 'and our ',
-                        style: AppStyles.font18RegularGreyColor,
+                        style: AppStyles.font18RegularGreyColor.copyWith(
+                          fontSize: isLandscape ? 12.sp : 16.sp,
+                        ),
                       ),
                       TextSpan(
                         text: 'Privacy Policy',
-                        style: AppStyles.font18RegularBlueColorUnderline,
+                        style: AppStyles.font18RegularBlueColorUnderline
+                            .copyWith(fontSize: isLandscape ? 12.sp : 16.sp),
                       ),
                     ],
                   ),

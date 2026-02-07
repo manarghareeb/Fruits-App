@@ -5,6 +5,7 @@ import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/widgets/custom_smooth_page_indicator.dart';
 import 'package:fruits_app/features/home/presentation/widgets/category_list.dart';
@@ -39,17 +40,27 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
+    final isTablet = AppResponsive.isTablet(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
         centerTitle: false,
         actions: [
           IconButton(
-            icon: Icon(FontAwesomeIcons.search, color: Colors.black, size: 20.sp),
+            icon: Icon(
+              FontAwesomeIcons.search,
+              color: Colors.black,
+              size: isLandscape ? 15.sp : 20.sp,
+            ),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(FontAwesomeIcons.sliders, color: Colors.black, size: 20.sp),
+            icon: Icon(
+              FontAwesomeIcons.sliders,
+              color: Colors.black,
+              size: isLandscape ? 15.sp : 20.sp,
+            ),
             onPressed: () => showDialog(
               context: context,
               builder: (context) => const FilterWidget(),
@@ -63,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               SizedBox(
-                height: 200.h,
+                height: isTablet ? 350.h : 200.h,
                 child: PageView.builder(
                   controller: controller,
                   itemCount: banners.length,
@@ -93,12 +104,15 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Sellers', style: AppStyles.font18RegularBlackColor),
+                  Text('Sellers',
+                    style: isLandscape ? AppStyles.font14RegularBlackColor : AppStyles.font18RegularBlackColor),
                   TextButton(
                     onPressed: () {},
                     child: Text(
                       'Show All',
-                      style: AppStyles.font18RegularBlackColor.copyWith(
+                      style: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
+                        color: AppColors.blueColor
+                      ) : AppStyles.font18RegularBlackColor.copyWith(
                         color: AppColors.blueColor,
                       ),
                     ),

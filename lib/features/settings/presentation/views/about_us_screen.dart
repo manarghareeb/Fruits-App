@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits_app/core/theme/images.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/core/widgets/custom_text_form_field.dart';
@@ -34,6 +35,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(title: 'Contact Us', isLeading: true),
@@ -71,7 +73,9 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                 },
               ),
               SizedBox(height: 21.h),
-              CustomButtonWidget(title: 'Submit', onPressed: () {}),
+              CustomButtonWidget(
+                title: 'Submit', onPressed: () {}
+              ),
               SizedBox(height: 27.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -83,16 +87,17 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                           vertical: 8.h,
                         ),
                         child: Container(
-                          width: 48.w,
-                          height: 48.h,
+                          width: isLandscape ? 30.w : 48.w,
+                          height: isLandscape ? 30.w :  48.h,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            border: Border.all(
-                              color: Colors.black
-                            ),
-                            shape: BoxShape.circle
+                            border: Border.all(color: Colors.black),
+                            shape: BoxShape.circle,
                           ),
-                          padding: EdgeInsets.symmetric(horizontal: 11.w, vertical: 11.h),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 11.w,
+                            vertical: 11.h,
+                          ),
                           child: SvgPicture.asset(path, fit: BoxFit.contain),
                         ),
                       ),

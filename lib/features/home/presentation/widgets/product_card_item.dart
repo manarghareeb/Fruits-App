@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_image_card.dart';
 import 'package:fruits_app/features/basket/presentation/widgets/count_container.dart';
 import 'package:fruits_app/features/home/presentation/widgets/price_after_and_before_discount.dart';
@@ -20,6 +21,7 @@ class ProductCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return Stack(
       children: [
         Container(
@@ -60,7 +62,7 @@ class ProductCardItem extends StatelessWidget {
                           Text(
                             'Product name',
                             style: AppStyles.font18BoldBlackColor.copyWith(
-                              fontSize: 16.sp,
+                              fontSize: isLandscape ? 12.sp : 16.sp,
                             ),
                           ),
                           SizedBox(height: 5.h),
@@ -81,14 +83,19 @@ class ProductCardItem extends StatelessWidget {
                               ),
                               child: Text(
                                 'Up to 10% Off',
-                                style: AppStyles.font12SemiBoldWhiteColor,
+                                style: isLandscape ? AppStyles.font12SemiBoldWhiteColor.copyWith(
+                                  fontSize: 8.sp
+                                ) : AppStyles.font12SemiBoldWhiteColor,
                               ),
                             ),
                           ] else
                             Text(
                               'Store Name : Store 1',
-                              style: AppStyles.font16RegularDarkGreyColor
+                              style: isLandscape ? AppStyles.font16RegularDarkGreyColor
+                                  .copyWith(fontWeight: FontWeight.bold, fontSize: 14.sp) : AppStyles.font16RegularDarkGreyColor
                                   .copyWith(fontWeight: FontWeight.bold),
+                              /*style: AppStyles.font16RegularDarkGreyColor
+                                  .copyWith(fontWeight: FontWeight.bold),*/
                             ),
                         ],
                       ),
@@ -104,7 +111,7 @@ class ProductCardItem extends StatelessWidget {
                     Icon(
                       Icons.delete_forever,
                       color: AppColors.primaryColor,
-                      size: 28.sp,
+                      size: isLandscape ? 20.sp : 28.sp,
                     ),
                     SizedBox(height: 25.h),
                     const CountContainer(),
@@ -112,8 +119,8 @@ class ProductCardItem extends StatelessWidget {
                 )
               else if (!isCart)
                 Container(
-                  width: 55.w,
-                  height: 50.h,
+                  width: isLandscape ? 30.w : 55.w,
+                  height: isLandscape ? 30.w : 50.h,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColors.primaryColor,
@@ -121,7 +128,7 @@ class ProductCardItem extends StatelessWidget {
                   child: Icon(
                     Icons.add_shopping_cart,
                     color: Colors.white,
-                    size: 23.sp,
+                    size: isLandscape ? 18.sp : 23.sp,
                   ),
                 ),
             ],
@@ -134,8 +141,8 @@ class ProductCardItem extends StatelessWidget {
             child: GestureDetector(
               onTap: () {},
               child: Container(
-                width: 30.w,
-                height: 30.h,
+                width: isLandscape? 20.w : 30.w,
+                height: isLandscape? 20.w : 30.h,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.circle,

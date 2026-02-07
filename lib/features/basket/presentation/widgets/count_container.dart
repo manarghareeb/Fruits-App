@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 
 class CountContainer extends StatefulWidget {
   const CountContainer({super.key, this.padding, this.onQuantityChanged});
@@ -23,9 +24,9 @@ class _CountContainerState extends State<CountContainer> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return Container(
       padding:
           widget.padding ??
@@ -37,9 +38,9 @@ class _CountContainerState extends State<CountContainer> {
           BoxShadow(
             offset: Offset(0, 1),
             blurRadius: 4,
-            color: Colors.black.withOpacity(0.25)
-          )
-        ]
+            color: Colors.black.withOpacity(0.25),
+          ),
+        ],
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -50,9 +51,9 @@ class _CountContainerState extends State<CountContainer> {
               if (quantity > 1) updateQuantity(quantity - 1);
             },
             child: SizedBox(
-              width: 24.w,
-              height: 24.w,
-              child: Icon(Icons.remove, size: 18.sp),
+              width: isLandscape ? 20.sp : 24.w,
+              height: isLandscape ? 20.sp : 24.w,
+              child: Icon(Icons.remove, size: isLandscape ? 12.sp : 18.sp),
             ),
           ),
 
@@ -63,7 +64,9 @@ class _CountContainerState extends State<CountContainer> {
             child: Text(
               quantity.toString(),
               textAlign: TextAlign.center,
-              style: AppStyles.font16RegularDarkGreyColor,
+              style: isLandscape ? AppStyles.font16RegularDarkGreyColor.copyWith(
+                fontSize: 11.sp
+              ) : AppStyles.font16RegularDarkGreyColor,
             ),
           ),
 
@@ -73,9 +76,9 @@ class _CountContainerState extends State<CountContainer> {
             borderRadius: BorderRadius.circular(6.r),
             onTap: () => updateQuantity(quantity + 1),
             child: SizedBox(
-              width: 24.w,
-              height: 24.w,
-              child: Icon(Icons.add, size: 18.sp),
+              width: isLandscape ? 20.sp : 24.w,
+              height: isLandscape ? 20.sp : 24.w,
+              child: Icon(Icons.add, size: isLandscape ? 12.sp : 18.sp),
             ),
           ),
         ],

@@ -114,7 +114,7 @@ class AppStyles {
     fontFamily: 'Arial',
   );
 
-  static TextStyle font24BoldPrinaryColor = TextStyle(
+  static TextStyle font24BoldPrimaryColor = TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeight.bold,
     color: AppColors.primaryColor,

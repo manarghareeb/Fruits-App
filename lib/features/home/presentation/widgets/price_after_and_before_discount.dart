@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 
 class PriceAfterAndBeforeDiscount extends StatelessWidget {
   const PriceAfterAndBeforeDiscount({
@@ -14,18 +16,21 @@ class PriceAfterAndBeforeDiscount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return RichText(
       text: TextSpan(
         text: '$priceBeforeDiscount    ',
         style: details
-            ? AppStyles.font18BoldBlackColor
-            : AppStyles.font14RegularDarkGreyColor,
+            ? isLandscape ? AppStyles.font14RegularBlackColor : AppStyles.font18BoldBlackColor
+            : isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
+              fontSize: 10.sp
+            ) : AppStyles.font14RegularDarkGreyColor,
         children: [
           TextSpan(
             text: priceAfterDiscount,
             style: details
-                ? AppStyles.font18RegularLightRedColorLineThrough
-                : AppStyles.font14RegularGreyColorLineThrough,
+                ? isLandscape ? AppStyles.font18RegularLightRedColorLineThrough.copyWith(fontSize: 14.sp) : AppStyles.font18RegularLightRedColorLineThrough
+                : isLandscape ? AppStyles.font14RegularGreyColorLineThrough.copyWith(fontSize: 10.sp) : AppStyles.font14RegularGreyColorLineThrough,
           ),
         ],
       ),

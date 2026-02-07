@@ -214,7 +214,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       },
                       child: Text(
                         'Skip',
-                        style: AppStyles.font14RegularDarkGreyColor.copyWith(
+                        style: isLandscape ? AppStyles.font14RegularDarkGreyColor.copyWith(
+                          decoration: TextDecoration.underline,
+                          decorationColor: AppColors.lightBlackColor,
+                          fontSize: 10.sp
+                        ) : AppStyles.font14RegularDarkGreyColor.copyWith(
                           decoration: TextDecoration.underline,
                           decorationColor: AppColors.lightBlackColor,
                         ),
@@ -223,7 +227,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: isLandscape ? 10.h : 20.h),
+              SizedBox(height: isLandscape ? isTable ? 10.h : 0.h : 20.h),
 
               // PageView
               Expanded(
@@ -245,10 +249,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           SizedBox(height: isLandscape ? 20.h : 60.h),
                           // Image
                           SizedBox(
-                            width: isTable ? 335.w : 285.w,
-                            height: 273.h,
-                            //width: isLandscape ? screenWidth * 0.5 : 285.w,
-                            //height: isLandscape ? screenHeight * 0.5 : 273.h,
+                            width: isTable ? 370.w : 275.w,
+                            height: isLandscape ? isTable ? 370.h : 170.h : 273.h,
                             child: Image.asset(
                               AppImages.onboarding,
                               fit: BoxFit.contain,
@@ -260,13 +262,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           Text(
                             page['title']!,
                             textAlign: TextAlign.center,
-                            style: AppStyles.font28BoldBlackColor,
+                            style: isLandscape ? AppStyles.font28BoldBlackColor.copyWith(
+                              fontSize: isTable ? 20.sp : 13.sp
+                            ) : AppStyles.font28BoldBlackColor,
                           ),
                           SizedBox(height: isLandscape ? 12.h : 17.h),
                           Text(
                             page['subtitle']!,
                             textAlign: TextAlign.center,
-                            style: AppStyles.font14RegularGreyColor,
+                            style: isLandscape ? AppStyles.font14RegularGreyColor.copyWith(
+                              fontSize: isTable ? 10.sp : 8.sp
+                            ) : AppStyles.font14RegularGreyColor,
                           ),
                         ],
                       ),
@@ -285,7 +291,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
               // Button
               CustomButtonWidget(
-                height: isLandscape ? (isTable ? 90.h : 60.h) : 50.h,
+                width: isLandscape ? 100.w : 177.w,
+                height: isLandscape ? (isTable ? 75.h : 50.h) : 50.h,
                 title: pages[index]['button']!,
                 onPressed: () {
                   if (pages[index]['button'] == 'Get Started') {
@@ -298,7 +305,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   }
                 },
                 textStyle: isLandscape
-                    ? AppStyles.font18BoldWhiteColor.copyWith(fontSize: 14.sp)
+                    ? AppStyles.font18BoldWhiteColor.copyWith(fontSize: 10.sp)
                     : AppStyles.font18BoldBlackColor.copyWith(
                         color: Colors.white,
                       ),

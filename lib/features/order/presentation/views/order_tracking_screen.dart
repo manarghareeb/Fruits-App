@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/features/order/presentation/widgets/cancel_order_dialog.dart';
@@ -18,6 +19,8 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
   final TextEditingController noteController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
+    final isTablet = AppResponsive.isTablet(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(title: 'Order Tracking', isLeading: true),
@@ -30,11 +33,15 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
             RichText(
               text: TextSpan(
                 text: 'Your Order Code: ',
-                style: AppStyles.font18RegularDarkGreyColor,
+                style: isLandscape ? AppStyles.font18RegularDarkGreyColor.copyWith(
+                  fontSize: 14.sp
+                ) : AppStyles.font18RegularDarkGreyColor,
                 children: [
                   TextSpan(
                     text: '#882610',
-                    style: AppStyles.font18RegularDarkGreyColor.copyWith(
+                    style: isLandscape ? AppStyles.font18RegularDarkGreyColor.copyWith(
+                  fontSize: 14.sp, fontWeight: FontWeight.bold,
+                ) : AppStyles.font18RegularDarkGreyColor.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -43,11 +50,15 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
             ),
             Text(
               "3 items - 37.50 KD",
-              style: AppStyles.font18RegularDarkGreyColor,
+              style: isLandscape ? AppStyles.font18RegularDarkGreyColor.copyWith(
+                  fontSize: 14.sp
+                ) : AppStyles.font18RegularDarkGreyColor,
             ),
             Text(
               "Payment Method : Cash",
-              style: AppStyles.font18RegularDarkGreyColor,
+              style: isLandscape ? AppStyles.font18RegularDarkGreyColor.copyWith(
+                  fontSize: 14.sp
+                ) : AppStyles.font18RegularDarkGreyColor,
             ),
             SizedBox(height: 30.h),
             TimelineStep(
@@ -81,10 +92,13 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
               isLast: true,
             ),
             SizedBox(height: 50.h),
-            CustomButtonWidget(title: 'Confirm', onPressed: () {}),
+            CustomButtonWidget(
+              title: 'Confirm', onPressed: () {}, 
+              height: isLandscape ? isTablet ? 85.h : 60.h : 51.h,),
             SizedBox(height: 15.h),
             CustomButtonWidget(
               title: 'Cancel Order',
+              height: isLandscape ? isTablet ? 80.h : 60.h : 51.h,
               onPressed: () => showDialog(
                 context: context,
                 builder: (context) => CancelOrderDialog(),

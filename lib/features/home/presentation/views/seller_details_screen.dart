@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/features/home/presentation/widgets/category_list.dart';
 import 'package:fruits_app/features/home/presentation/widgets/product_card_item.dart';
@@ -27,6 +28,7 @@ class _SellerDetailsScreenState extends State<SellerDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
@@ -34,7 +36,11 @@ class _SellerDetailsScreenState extends State<SellerDetailsScreen> {
         isLeading: true,
         actions: [
           IconButton(
-            icon: Icon(FontAwesomeIcons.search, color: Colors.black, size: 20.sp,),
+            icon: Icon(
+              FontAwesomeIcons.search,
+              color: Colors.black,
+              size: isLandscape ? 15.sp : 20.sp,
+            ),
             onPressed: () {},
           ),
         ],
@@ -50,14 +56,21 @@ class _SellerDetailsScreenState extends State<SellerDetailsScreen> {
                 name: 'Seller name',
                 deliveryInfo: 'Delivery : 40 to 60 Min',
               ),
-              Text('Categories', style: AppStyles.font18BoldBlackColor),
+              Text('Categories', style: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
+                fontWeight: FontWeight.bold
+              ) : AppStyles.font18BoldBlackColor),
               SizedBox(height: 7.5.h),
               CategoryList(categoryImages: categoryImages),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Products', style: AppStyles.font18BoldBlackColor),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.filter_list, size: 20.sp,)),
+                  Text('Products', style: isLandscape ? AppStyles.font14RegularBlackColor.copyWith(
+                fontWeight: FontWeight.bold
+              ) : AppStyles.font18BoldBlackColor),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.filter_list, size: 20.sp),
+                  ),
                 ],
               ),
               ListView.separated(
