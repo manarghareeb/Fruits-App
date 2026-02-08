@@ -30,7 +30,8 @@ class _CountContainerState extends State<CountContainer> {
     return Container(
       padding:
           widget.padding ??
-          EdgeInsets.symmetric(horizontal: 17.5.w, vertical: 4.h),
+          EdgeInsets.symmetric(horizontal: isLandscape ? 8.w : 17.5.w,
+           vertical: isLandscape ? 2.h : 4.h),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15.r),
@@ -64,7 +65,9 @@ class _CountContainerState extends State<CountContainer> {
             child: Text(
               quantity.toString(),
               textAlign: TextAlign.center,
-              style: AppStyles.font16RegularDarkGreyColor(context),
+              style: AppStyles.font16RegularDarkGreyColor(context).copyWith(
+                fontSize: isLandscape ? 10.sp : 16.sp
+              ),
             ),
           ),
 
