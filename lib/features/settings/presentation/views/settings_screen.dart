@@ -30,8 +30,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
         'title': 'Profile',
         'onTap': () => GoRouter.of(context).push(AppRoute.profileScreen),
       },
-      {'icon': FontAwesomeIcons.list12, 'title': 'My Orders', 'onTap': () {}},
-      {'icon': Icons.favorite_outline, 'title': 'Favorite', 'onTap': () {}},
+      {
+        'icon': FontAwesomeIcons.list12,
+        'title': 'My Orders',
+        'onTap': () =>
+            GoRouter.of(context).push(AppRoute.buttonNavigatorBar, extra: 1),
+      },
+      {
+        'icon': Icons.favorite_outline,
+        'title': 'Favorite',
+        'onTap': () =>
+            GoRouter.of(context).push(AppRoute.buttonNavigatorBar, extra: 3),
+      },
       {
         'icon': Icons.language,
         'title': 'Language',

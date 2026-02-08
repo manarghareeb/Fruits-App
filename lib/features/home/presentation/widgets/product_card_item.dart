@@ -61,7 +61,9 @@ class ProductCardItem extends StatelessWidget {
                         children: [
                           Text(
                             'Product name',
-                            style: AppStyles.font16BoldBlackColor(context),
+                            style: AppStyles.font16BoldBlackColor(
+                              context,
+                            ).copyWith(fontSize: isLandscape ? 10.sp : 16.sp),
                           ),
                           SizedBox(height: 5.h),
                           const PriceAfterAndBeforeDiscount(
@@ -81,17 +83,24 @@ class ProductCardItem extends StatelessWidget {
                               ),
                               child: Text(
                                 'Up to 10% Off',
-                                style: AppStyles.font12SemiBoldWhiteColor(
-                                  context,
-                                ),
+                                style:
+                                    AppStyles.font12SemiBoldWhiteColor(
+                                      context,
+                                    ).copyWith(
+                                      fontSize: isLandscape ? 6.sp : 12.sp,
+                                    ),
                               ),
                             ),
                           ] else
                             Text(
                               'Store Name : Store 1',
-                              style: AppStyles.font16RegularDarkGreyColor(
-                                context,
-                              ).copyWith(fontWeight: FontWeight.bold),
+                              style:
+                                  AppStyles.font16RegularDarkGreyColor(
+                                    context,
+                                  ).copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: isLandscape ? 10.sp : 16.sp,
+                                  ),
                             ),
                         ],
                       ),
@@ -107,7 +116,7 @@ class ProductCardItem extends StatelessWidget {
                     Icon(
                       Icons.delete_forever,
                       color: AppColors.primaryColor,
-                      size: isLandscape ? 20.sp : 28.sp,
+                      size: isLandscape ? 15.sp : 28.sp,
                     ),
                     SizedBox(height: 25.h),
                     const CountContainer(),
@@ -137,8 +146,8 @@ class ProductCardItem extends StatelessWidget {
             child: GestureDetector(
               onTap: () {},
               child: Container(
-                width: isLandscape ? 20.w : 30.w,
-                height: isLandscape ? 20.w : 30.h,
+                width: isLandscape ? 15.w : 30.w,
+                height: isLandscape ? 15.w : 30.h,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.circle,
@@ -150,7 +159,7 @@ class ProductCardItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Icon(Icons.close, size: 20.sp),
+                child: Icon(Icons.close, size: isLandscape ? 15.sp : 20.sp),
               ),
             ),
           ),

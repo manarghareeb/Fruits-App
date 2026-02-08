@@ -44,7 +44,9 @@ class OrderStatusCard extends StatelessWidget {
     final isLandscape = AppResponsive.isLandscape(context);
 
     return Container(
-      padding: EdgeInsets.all(12.w),
+      padding: isLandscape ? EdgeInsets.symmetric(
+        horizontal: 2.w, vertical: 12.h
+      ) : EdgeInsets.all(12.w),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(25.r),
@@ -70,33 +72,40 @@ class OrderStatusCard extends StatelessWidget {
                   ? Icons.check_circle_outline
                   : Icons.local_shipping_outlined,
               color: mainColor,
-              size: isLandscape ? 22.sp : 28.sp,
+              size: isLandscape ? 20.sp : 28.sp,
             ),
           ),
-          SizedBox(width: 15.w),
+          SizedBox(width: isLandscape ? 2.w : 15.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "#$orderId - $price KD",
-                  style: AppStyles.font18BoldBlackColor(context),
+                  style: AppStyles.font18BoldBlackColor(context).copyWith(
+                    fontSize: isLandscape ? 10.sp : 18.sp,
+                  ),
                 ),
                 SizedBox(height: 4.h),
                 Text(
                   "$date  •  $itemCount items",
-                  style: AppStyles.font16RegularDarkGreyColor(context),
+                  style: AppStyles.font16RegularDarkGreyColor(context).copyWith(
+                    fontSize: isLandscape ? 8.sp : 16.sp,
+                  ),
                 ),
                 SizedBox(height: 4.h),
                 RichText(
                   text: TextSpan(
                     text: "Status : ",
-                    style: AppStyles.font16RegularDarkGreyColor(context),
+                    style: AppStyles.font16RegularDarkGreyColor(context).copyWith(
+                    fontSize: isLandscape ? 8.sp : 16.sp,
+                  ),
                     children: [
                       TextSpan(
                         text: status,
                         style: AppStyles.font16RegularDarkGreyColor(context)
                             .copyWith(
+                              fontSize: isLandscape ? 8.sp : 16.sp,
                               color: mainColor,
                               fontWeight: FontWeight.w600,
                             ),
@@ -108,7 +117,7 @@ class OrderStatusCard extends StatelessWidget {
             ),
           ),
           Container(
-            width: isTablet ? 30.w : 65.w,
+            width: isLandscape ? (isTablet ? 30.w : 50.w) : (isTablet ? 30.w : 65.w),
             height: isTablet ? 30.w : 65.h,
             decoration: BoxDecoration(
               color: mainColor,
@@ -121,7 +130,10 @@ class OrderStatusCard extends StatelessWidget {
                 ),
               ],
             ),
-            child: Icon(Icons.chevron_right, color: Colors.white, size: 24.sp),
+            child: Icon(
+              Icons.chevron_right, 
+              color: Colors.white, size: isLandscape ? 20.sp : 24.sp
+            ),
           ),
         ],
       ),
