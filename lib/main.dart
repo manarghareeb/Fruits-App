@@ -1,8 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
+import 'package:fruits_app/core/services/one_signal_service.dart';
+import 'package:fruits_app/core/services/local_notifications_service.dart';
+import 'package:fruits_app/core/services/push_notifications_service.dart';
+import 'package:fruits_app/firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await OneSignalService.init();
+  await LocalNotificationsService.init();
+  await PushNotificationsService.init();
   runApp(const MyApp());
 }
 
