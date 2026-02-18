@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_image_card.dart';
 
 class CategoryList extends StatelessWidget {
@@ -12,6 +13,18 @@ class CategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
+    final isTablet = AppResponsive.isTablet(context);
+    final isWidth = isLandscape
+        ? isTablet
+              ? 70.w
+              : 70.w
+        : 80.w;
+    final isHeight = isLandscape
+        ? isTablet
+              ? 70.w
+              : 70.w
+        : 80.h;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       physics: const BouncingScrollPhysics(),
@@ -23,7 +36,7 @@ class CategoryList extends StatelessWidget {
                   horizontal: 8.w,
                   vertical: 8.h,
                 ),
-                child: CustomImageCard(imagePath: path),
+                child: CustomImageCard(imagePath: path, width: isWidth, height: isHeight,),
               ),
             )
             .toList(),

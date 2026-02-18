@@ -14,6 +14,7 @@ class OneSignalService {
 
     OneSignal.Notifications.addForegroundWillDisplayListener((event) {
       log("Notification received in foreground: ${event.notification.title}");
+      event.preventDefault();
       event.notification.display();
     });
   }

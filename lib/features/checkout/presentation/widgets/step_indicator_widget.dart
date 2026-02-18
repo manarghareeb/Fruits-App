@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/colors.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/features/basket/presentation/widgets/dotted_divider.dart';
 import 'package:fruits_app/features/checkout/presentation/widgets/build_step.dart';
 
@@ -16,37 +17,93 @@ class StepIndicatorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          children: List.generate(steps.length * 2 - 1, (index) {
-            final isCircle = index.isEven;
-            final stepIndex = index ~/ 2;
+    final isLandscape = AppResponsive.isLandscape(context);
+    return isLandscape
+        ? Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment
+                .start, 
+            children: List.generate(steps.length * 2 - 1, (index) {
+              final isCircle = index.isEven;
+              final stepIndex = index ~/ 2;
 
-            if (isCircle) {
-              return BuildStep(
-                stepIndex: stepIndex,
-                title: steps[stepIndex],
-                currentStep: currentStep,
-              );
-            } else {
-              return Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: 20.h, left: 4.w, right: 4.w),
-                  child: DottedDivider(
+              if (isCircle) {
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // الدائرة
+                    BuildStep(
+                      stepIndex: stepIndex,
+                      title: '', 
+                      currentStep: currentStep,
+                    ),
+                    SizedBox(height: 10.h),
+                    Text(
+                      steps[stepIndex],
+                      style: TextStyle(
+                        fontSize: 8.sp,
+                        color: currentStep >= stepIndex
+                            ? AppColors.primaryColor
+                            : Colors.grey,
+                        fontWeight: currentStep == stepIndex
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                );
+              } else {
+                return Container(
+                  height: 40.h, 
+                  margin: EdgeInsets.only(
+                    left: 14.w,
+                  ), 
+                  child: VerticalDivider(
                     color: currentStep > stepIndex
                         ? AppColors.primaryColor
                         : Colors.grey.shade400,
-                    dashWidth: 4,
-                    dashSpace: 2,
+                    thickness: 2,
+                    width: 2,
                   ),
-                ),
-              );
-            }
-          }),
-        ),
-      ],
-    );
+                );
+              }
+            }),
+          )
+        : Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                children: List.generate(steps.length * 2 - 1, (index) {
+                  final isCircle = index.isEven;
+                  final stepIndex = index ~/ 2;
+
+                  if (isCircle) {
+                    return BuildStep(
+                      stepIndex: stepIndex,
+                      title: steps[stepIndex],
+                      currentStep: currentStep,
+                    );
+                  } else {
+                    return Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          bottom: 20.h,
+                          left: 4.w,
+                          right: 4.w,
+                        ),
+                        child: DottedDivider(
+                          color: currentStep > stepIndex
+                              ? AppColors.primaryColor
+                              : Colors.grey.shade400,
+                          dashWidth: 4,
+                          dashSpace: 2,
+                        ),
+                      ),
+                    );
+                  }
+                }),
+              ),
+            ],
+          );
   }
 }

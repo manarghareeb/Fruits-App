@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/styles.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/features/home/presentation/widgets/price_after_and_before_discount.dart';
 
 class ProductHeaderSection extends StatelessWidget {
@@ -7,6 +9,7 @@ class ProductHeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLandspace = AppResponsive.isLandscape(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -15,21 +18,20 @@ class ProductHeaderSection extends StatelessWidget {
           children: [
             Text(
               'Category Name',
-              style: AppStyles.font16BoldPrimaryColor(context)
+              style: AppStyles.font16BoldPrimaryColor(context),
             ),
             Text(
               'Product Name',
-              style: AppStyles.font24RegularBlackColor(context),
+              style: AppStyles.font24RegularBlackColor(context).copyWith(
+                fontSize: isLandspace ? 18.sp : 24.sp,
+              ),
             ),
           ],
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              'Price',
-              style: AppStyles.font14RegularDarkGreyColor(context),
-            ),
+            Text('Price', style: AppStyles.font14RegularDarkGreyColor(context)),
             const PriceAfterAndBeforeDiscount(
               details: true,
               priceAfterDiscount: 'KD12.00',

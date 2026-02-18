@@ -20,7 +20,7 @@ class OrderCaseScreen extends StatelessWidget {
       appBar: const CustomAppBar(title: 'Checkout', isLeading: true),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 42.w),
+          padding: EdgeInsets.symmetric(horizontal: 42.w, vertical: 20.h),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,9 +65,9 @@ class OrderCaseScreen extends StatelessWidget {
                 SizedBox(height: 46.h),
                 Text(
                   'OPS',
-                  style: AppStyles.font24BoldPrimaryColor(context).copyWith(
-                    color: AppColors.redColor,
-                  ),
+                  style: AppStyles.font24BoldPrimaryColor(
+                    context,
+                  ).copyWith(color: AppColors.redColor),
                 ),
                 SizedBox(height: 10.h),
                 Text(
