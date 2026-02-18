@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
+import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/features/checkout/presentation/views/delivery_address_step.dart';
@@ -21,35 +22,70 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape = AppResponsive.isLandscape(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomAppBar(title: 'Checkout', isLeading: true),
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
-            child: StepIndicatorWidget(currentStep: currentStep),
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: buildCurrentStepContent(),
+      body: isLandscape
+          ? Row(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  padding: EdgeInsets.symmetric(
+                    vertical: 20.h,
+                    horizontal: 10.w,
+                  ),
+                  child: Column(
+                    children: [
+                      StepIndicatorWidget(currentStep: currentStep),
+                      const Spacer(),
+                      buildActionButton(
+                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.all(20.w),
+                    child: buildCurrentStepContent(),
+                  ),
+                ),
+              ],
+            )
+          : Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 20.h,
+                    horizontal: 20.w,
+                  ),
+                  child: StepIndicatorWidget(currentStep: currentStep),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: buildCurrentStepContent(),
+                  ),
+                ),
+                buildActionButton(EdgeInsets.all(20.w)),
+              ],
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(20.w),
-            child: CustomButtonWidget(
-              title: currentStep == 2 ? 'Place Order' : 'Continue',
-              onPressed: () {
-                if (currentStep < 2) {
-                  setState(() => currentStep++);
-                } else {
-                  GoRouter.of(context).push(AppRoute.orderCaseScreen, extra: false);
-                }
-              },
-            ),
-          ),
-        ],
+    );
+  }
+
+  Padding buildActionButton(EdgeInsetsGeometry padding) {
+    return Padding(
+      padding: padding,
+      child: CustomButtonWidget(
+        title: currentStep == 2 ? 'Place Order' : 'Continue',
+        onPressed: () {
+          if (currentStep < 2) {
+            setState(() => currentStep++);
+          } else {
+            GoRouter.of(context).push(AppRoute.orderCaseScreen, extra: false);
+          }
+        },
       ),
     );
   }

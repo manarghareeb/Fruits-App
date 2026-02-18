@@ -7,7 +7,7 @@ import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
-import 'package:fruits_app/core/widgets/custom_smooth_page_indicator.dart';
+import 'package:fruits_app/features/home/presentation/widgets/banner_auto_scroll_section.dart';
 import 'package:fruits_app/features/home/presentation/widgets/category_list.dart';
 import 'package:fruits_app/features/home/presentation/widgets/filter_widget.dart';
 import 'package:fruits_app/features/home/presentation/widgets/seller_card_item.dart';
@@ -21,16 +21,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final PageController controller = PageController();
-  int index = 0;
-
-  final List<String> banners = [
-    AppImages.banner,
-    AppImages.banner,
-    AppImages.banner,
-    AppImages.banner,
-  ];
-
   final List<String> categoryImages = [
     AppImages.restaurant,
     AppImages.farm,
@@ -42,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final isLandscape = AppResponsive.isLandscape(context);
     final isTablet = AppResponsive.isTablet(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
@@ -73,46 +64,24 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: Column(
             children: [
-              SizedBox(
-                height: isTablet ? 350.h : 200.h,
-                child: PageView.builder(
-                  controller: controller,
-                  itemCount: banners.length,
-                  onPageChanged: (i) => setState(() => index = i),
-                  itemBuilder: (context, i) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 8.w,
-                        vertical: 8.h,
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20.r),
-                        child: Image.asset(banners[i], fit: BoxFit.fill),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              SizedBox(height: 16.h),
-              CustomSmoothPageIndicator(
-                controller: controller,
-                count: banners.length,
-              ),
+              BannerAutoScrollSection(height: isTablet ? 320 : 200),
               SizedBox(height: 16.h),
               CategoryList(categoryImages: categoryImages),
               SizedBox(height: 12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Sellers',
-                    style: AppStyles.font18RegularBlackColor(context)),
+                  Text(
+                    'Sellers',
+                    style: AppStyles.font18RegularBlackColor(context),
+                  ),
                   TextButton(
                     onPressed: () {},
                     child: Text(
                       'Show All',
-                      style: AppStyles.font18RegularBlackColor(context).copyWith(
-                        color: AppColors.blueColor,
-                      ),
+                      style: AppStyles.font18RegularBlackColor(
+                        context,
+                      ).copyWith(color: AppColors.blueColor),
                     ),
                   ),
                 ],

@@ -11,8 +11,8 @@ class ImagePhoto extends StatelessWidget {
   Widget build(BuildContext context) {
     final isLandscape = AppResponsive.isLandscape(context);
     return Container(
-      width: isLandscape ? 75.w : 100.w,
-      height: isLandscape ? 75.w : 100.h,
+      width: isLandscape ? 45.w : 100.w,
+      height: isLandscape ? 45.w : 100.h,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(color: AppColors.lightBlackColor),
@@ -20,7 +20,7 @@ class ImagePhoto extends StatelessWidget {
       child: Icon(
         FontAwesomeIcons.user,
         color: AppColors.lightBlackColor,
-        size: 40.sp,
+        size: isLandscape ? 20.sp : 40.sp,
       ),
     );
   }

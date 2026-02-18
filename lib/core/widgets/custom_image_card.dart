@@ -6,30 +6,36 @@ class CustomImageCard extends StatelessWidget {
   final String imagePath;
   final double? radius;
   final bool isCircle;
+  final double? width;
+  final double? height;
 
   const CustomImageCard({
     super.key,
     required this.imagePath,
     this.radius,
-    this.isCircle = false,
+    this.isCircle = false, 
+    this.width, 
+    this.height,
   });
 
   @override
   Widget build(BuildContext context) {
     final isLandscape = AppResponsive.isLandscape(context);
     final isTablet = AppResponsive.isTablet(context);
+    final isWidth = isLandscape
+        ? isTablet
+              ? 40.w
+              : 35.w
+        : 80.w;
+    final isHeight = isLandscape
+        ? isTablet
+              ? 40.w
+              : 35.w
+        : 80.h;
 
     return Container(
-      width: isLandscape
-          ? isTablet
-                ? 40.w
-                : 35.w
-          : 80.w,
-      height: isLandscape
-          ? isTablet
-                ? 40.w
-                : 35.w
-          : 80.h,
+      width: width ?? isWidth,
+      height: height ?? isHeight,
       decoration: BoxDecoration(
         color: Colors.white,
         shape: isCircle ? BoxShape.circle : BoxShape.rectangle,

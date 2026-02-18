@@ -17,10 +17,12 @@ class FavoriteScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: CustomAppBar(title: 'Favorite'),
       body: Padding(
-        padding: isLandscape ? EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w)
-        : EdgeInsets.symmetric(vertical: 13.h, horizontal: 15.w),
+        padding: isLandscape
+            ? EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w)
+            : EdgeInsets.symmetric(vertical: 13.h, horizontal: 15.w),
         child: isLandscape
             ? GridView.builder(
+                itemCount: 6,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 4.h,
@@ -30,7 +32,9 @@ class FavoriteScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: GestureDetector(
                       onTap: () {
-                        GoRouter.of(context).push(AppRoute.productDetailsScreen);
+                        GoRouter.of(
+                          context,
+                        ).push(AppRoute.productDetailsScreen);
                       },
                       child: const ProductCardItem(
                         imagePath: AppImages.fruitsImage,

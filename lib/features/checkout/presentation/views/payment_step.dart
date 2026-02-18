@@ -50,10 +50,12 @@ class _PaymentStepState extends State<PaymentStep> {
             children: [
               Text(
                 'Do You Have any Coupon Code?',
-                style: AppStyles.font16RegularDarkGreyColor(context),
+                style: AppStyles.font16RegularDarkGreyColor(
+                  context,
+                ).copyWith(fontSize: isLandscape ? 10.sp : 16.sp),
               ),
               CustomButtonWidget(
-                width: 85.w,
+                width: isLandscape ? 70.w : 85.w,
                 title: 'Apply',
                 onPressed: () {},
                 textStyle: AppStyles.font12SemiBoldWhiteColor(context).copyWith(

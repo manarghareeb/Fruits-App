@@ -49,7 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     bottom: 0,
                     child: Icon(
                       FontAwesomeIcons.camera,
-                      size: isLandscape ? 20.sp : 25.sp,
+                      size: isLandscape ? 15.sp : 25.sp,
                     ),
                   ),
                 ],
