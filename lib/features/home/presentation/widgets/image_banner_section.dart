@@ -21,8 +21,8 @@ class ImageBannerSection extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: isLandscape ? isTablet ? 26 : 17 : 12,
-          right: isLandscape ? isTablet ? 26 : 17 : 12,
+          top: isLandscape ? (isTablet ? 26 : 8) : 12,
+          right: isLandscape ? (isTablet ? 26 : 8) : 12,
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 13.5.w, vertical: 6.5.h),
             decoration: BoxDecoration(
@@ -31,7 +31,9 @@ class ImageBannerSection extends StatelessWidget {
             ),
             child: Text(
               '10% Off Discount',
-              style: AppStyles.font16RegularDarkGreyColor(context),
+              style: AppStyles.font16RegularDarkGreyColor(context).copyWith(
+                fontSize: isLandscape ? 6.sp : 16.sp
+              ),
             ),
           ),
         ),

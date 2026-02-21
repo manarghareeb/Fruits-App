@@ -21,7 +21,6 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   String? selectedWeight;
   String? selectedAddons;
-  bool isDropdownOpen = false;
 
   final List<String> weight = [
     '50 Gram - 4.00 KD',
@@ -35,6 +34,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   Widget build(BuildContext context) {
     final isLandscape = AppResponsive.isLandscape(context);
     final isTablet = AppResponsive.isTablet(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
@@ -64,69 +64,121 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: isLandscape ? 25.w : 21.w, 
-            vertical: isLandscape ? 20.h : 17.h
+            horizontal: isLandscape ? 25.w : 21.w,
+            vertical: isLandscape ? 10.h : 17.h,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const ImageBannerSection(),
-              SizedBox(height: 10.h),
-              const ProductHeaderSection(),
-              Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                style: AppStyles.font16RegularDarkGreyColor(context),
-              ),
-              SizedBox(height: 14.h),
-              Text(
-                'Sell Per : Kartoon',
-                style: AppStyles.font16RegularDarkGreyColor(context),
-              ),
-              SizedBox(height: 22.h),
-              CustomExpandableSelection(
-                title: 'Select Weight',
-                list: weight,
-                selectedItem: selectedWeight,
-                onSelect: (value) {
-                  setState(() {
-                    selectedWeight = value;
-                  });
-                },
-              ),
-              SizedBox(height: 20.h),
-              CustomExpandableSelection(
-                title: 'Select Addons',
-                list: addons,
-                selectedItem: selectedAddons,
-                onSelect: (value) {
-                  setState(() {
-                    selectedAddons = value;
-                  });
-                },
-              ),
-              SizedBox(height: 25.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  CustomButtonWidget(
-                    width: 164.w,
-                    height: isLandscape ? isTablet ? 90.h : 60.h : 45.h,
-                    icon: FontAwesomeIcons.basketShopping,
-                    title: 'Add to Cart',
-                    textStyle: AppStyles.font12SemiBoldWhiteColor(context).copyWith(
-                      fontSize: isLandscape ? 12.sp : 16.sp,
+          child: isLandscape
+              ? Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Expanded(
+                      flex: 2,
+                      child: ImageBannerSection(),
                     ),
-                    onPressed: () {
-                      GoRouter.of(
-                        context,
-                      ).push(AppRoute.buttonNavigatorBar, extra: 2);
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(height: 25.h),
-            ],
-          ),
+                    SizedBox(width: 20.w),
+                    Expanded(
+                      flex: 3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const ProductHeaderSection(),
+                          SizedBox(height: 8.h),
+                          Text(
+                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                            style: AppStyles.font16RegularDarkGreyColor(context).copyWith(
+                              fontSize: isLandscape ? 10.sp : 16.sp,
+                            ),
+                          ),
+                          SizedBox(height: 14.h),
+                          Text(
+                            'Sell Per : Kartoon',
+                            style: AppStyles.font16RegularDarkGreyColor(context),
+                          ),
+                          SizedBox(height: 22.h),
+                          CustomExpandableSelection(
+                            title: 'Select weight',
+                            list: weight,
+                            selectedItem: selectedWeight,
+                            onSelect: (value) => setState(() => selectedWeight = value),
+                          ),
+                          SizedBox(height: 15.h),
+                          CustomExpandableSelection(
+                            title: 'Select Addons',
+                            list: addons,
+                            selectedItem: selectedAddons,
+                            onSelect: (value) => setState(() => selectedAddons = value),
+                          ),
+                          SizedBox(height: 25.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              CustomButtonWidget(
+                                width: isLandscape ? 140.w : 164.w,
+                                height: isLandscape ? (isTablet ? 70.h : 55.h) : 45.h,
+                                icon: FontAwesomeIcons.basketShopping,
+                                title: 'Add to Cart',
+                                textStyle: AppStyles.font12SemiBoldWhiteColor(context).copyWith(
+                                  fontSize: isLandscape ? 12.sp : 16.sp,
+                                ),
+                                onPressed: () {
+                                  GoRouter.of(context).push(AppRoute.buttonNavigatorBar, extra: 2);
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const ImageBannerSection(),
+                    SizedBox(height: 10.h),
+                    const ProductHeaderSection(),
+                    SizedBox(height: 8.h),
+                    Text(
+                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                      style: AppStyles.font16RegularDarkGreyColor(context),
+                    ),
+                    SizedBox(height: 14.h),
+                    Text(
+                      'Sell Per : Kartoon',
+                      style: AppStyles.font16RegularDarkGreyColor(context),
+                    ),
+                    SizedBox(height: 22.h),
+                    CustomExpandableSelection(
+                      title: 'Select weight',
+                      list: weight,
+                      selectedItem: selectedWeight,
+                      onSelect: (value) => setState(() => selectedWeight = value),
+                    ),
+                    SizedBox(height: 15.h),
+                    CustomExpandableSelection(
+                      title: 'Select Addons',
+                      list: addons,
+                      selectedItem: selectedAddons,
+                      onSelect: (value) => setState(() => selectedAddons = value),
+                    ),
+                    SizedBox(height: 25.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        CustomButtonWidget(
+                          width: 164.w,
+                          height: 45.h,
+                          icon: FontAwesomeIcons.basketShopping,
+                          title: 'Add to Cart',
+                          textStyle: AppStyles.font12SemiBoldWhiteColor(context),
+                          onPressed: () {
+                            GoRouter.of(context).push(AppRoute.buttonNavigatorBar, extra: 2);
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
         ),
       ),
     );

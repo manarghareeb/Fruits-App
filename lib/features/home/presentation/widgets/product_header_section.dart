@@ -18,12 +18,14 @@ class ProductHeaderSection extends StatelessWidget {
           children: [
             Text(
               'Category Name',
-              style: AppStyles.font16BoldPrimaryColor(context),
+              style: AppStyles.font16BoldPrimaryColor(context).copyWith(
+                fontSize: isLandspace ? 10.sp : 16.sp
+              ),
             ),
             Text(
               'Product Name',
               style: AppStyles.font24RegularBlackColor(context).copyWith(
-                fontSize: isLandspace ? 18.sp : 24.sp,
+                fontSize: isLandspace ? 14.sp : 24.sp,
               ),
             ),
           ],

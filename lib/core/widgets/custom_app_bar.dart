@@ -27,7 +27,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       surfaceTintColor: Colors.white,
       title: Text(
         title ?? 'Fruit Market',
-        style: AppStyles.font24BoldPrimaryColor(context),
+        style: AppStyles.font24BoldPrimaryColor(context).copyWith(
+          fontSize: isLandscape ? 16.sp : 24.sp
+        ),
       ),
       centerTitle: centerTitle ?? true,
       actions: actions,
@@ -36,7 +38,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               icon: Icon(
                 Icons.arrow_back_ios,
                 color: Colors.black,
-                size: isLandscape ? 15.sp : 20.sp,
+                size: isLandscape ? 14.sp : 20.sp,
               ),
               onPressed: () => Navigator.pop(context),
             )
