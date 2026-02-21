@@ -35,8 +35,8 @@ class CustomSelectionRow extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              width: isLandscape ? 18.w : 24.w,
-              height: isLandscape ? 18.w : 24.w,
+              width: isLandscape ? 16.w : 24.w,
+              height: isLandscape ? 16.w : 24.w,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
@@ -49,7 +49,7 @@ class CustomSelectionRow extends StatelessWidget {
               child: isSelected
                   ? Icon(
                       Icons.check,
-                      size: 16.sp,
+                      size: isLandscape ? 14.sp : 16.sp,
                       color: AppColors.primaryColor,
                     )
                   : null,
@@ -65,7 +65,9 @@ class CustomSelectionRow extends StatelessWidget {
               ),
             ],
             SizedBox(width: 12.w),
-            Text(title, style: AppStyles.font16RegularDarkGreyColor(context)),
+            Text(title, style: AppStyles.font16RegularDarkGreyColor(context).copyWith(
+              fontSize: isLandscape ? 10.sp : 16.sp
+            )),
           ],
         ),
       ),

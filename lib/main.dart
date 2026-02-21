@@ -9,10 +9,10 @@ import 'package:fruits_app/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  NotificationServices().initLocalNotification();
-  NotificationServices().firebaseInit();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  NotificationServices().initLocalNotification();
+  NotificationServices().firebaseInit();
   await OneSignalService.init();
   //await LocalNotificationsService.init();
   //await PushNotificationsService.init();

@@ -22,7 +22,7 @@ class PriceAfterAndBeforeDiscount extends StatelessWidget {
         text: '$priceBeforeDiscount    ',
         style: details
             ? AppStyles.font18BoldBlackColor(context).copyWith(
-              fontSize: isLandscape ? 12.sp : 18.sp,
+              fontSize: isLandscape ? 10.sp : 18.sp,
             )
             : AppStyles.font14RegularDarkGreyColor(context).copyWith(
               fontSize: isLandscape ? 8.sp : 14.sp,
@@ -32,7 +32,7 @@ class PriceAfterAndBeforeDiscount extends StatelessWidget {
             text: priceAfterDiscount,
             style: details
                 ? AppStyles.font18RegularLightRedColorLineThrough(context).copyWith(
-              fontSize: isLandscape ? 12.sp : 18.sp,
+              fontSize: isLandscape ? 10.sp : 18.sp,
             )
                 : AppStyles.font14RegularGreyColorLineThrough(context).copyWith(
               fontSize: isLandscape ? 8.sp : 14.sp,
