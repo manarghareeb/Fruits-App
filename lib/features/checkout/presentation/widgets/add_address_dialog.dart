@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/core/widgets/custom_text_form_field.dart';
-import 'package:fruits_app/features/authentication/presentation/widgets/custom_phone_field.dart';
+import 'package:fruits_app/features/user/presentation/widgets/custom_phone_field.dart';
 
 class AddAddressDialog extends StatefulWidget {
   const AddAddressDialog({super.key, required this.onTapAdd});
@@ -44,7 +44,11 @@ class _AddAddressDialogState extends State<AddAddressDialog> {
               },
             ),
             SizedBox(height: 15.h),
-            const CustomPhoneField(),
+            CustomPhoneField(
+              controller: phoneController,
+                  onChanged: (phone) {
+                  },
+            ),
             SizedBox(height: 15.h),
             CustomTextFormField(
               maxline: 5,

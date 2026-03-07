@@ -5,9 +5,16 @@ import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/phone_number.dart';
 
 class CustomPhoneField extends StatelessWidget {
-  const CustomPhoneField({super.key});
+  const CustomPhoneField({
+    super.key,
+    required this.controller,
+    required this.onChanged,
+  });
+  final TextEditingController controller;
+  final Function(PhoneNumber) onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +48,11 @@ class CustomPhoneField extends StatelessWidget {
             ],
           ),
           child: IntlPhoneField(
+            controller: controller,
             decoration: InputDecoration(
               hintText: 'Mobile Number',
+              counterText: '',
+              errorStyle: TextStyle(fontSize: 12.sp),
               hintStyle: AppStyles.font14RegularBlackColor(context),
               contentPadding: EdgeInsets.symmetric(
                 vertical: 14.h,
@@ -64,6 +74,8 @@ class CustomPhoneField extends StatelessWidget {
             initialCountryCode: 'EG',
             dropdownIconPosition: IconPosition.leading,
             dropdownTextStyle: AppStyles.font14RegularBlackColor(context),
+            keyboardType: TextInputType.phone,
+            style: AppStyles.font14RegularBlackColor(context),
             pickerDialogStyle: PickerDialogStyle(
               backgroundColor: Colors.white,
               countryCodeStyle: AppStyles.font14RegularBlackColor(context),
@@ -75,8 +87,26 @@ class CustomPhoneField extends StatelessWidget {
               size: isLandscape ? 20.sp : 30.sp,
             ),
             flagsButtonPadding: EdgeInsets.only(left: 8.w),
-            disableLengthCheck: true,
-            onChanged: (phone) {},
+            disableLengthCheck: false,
+            onChanged: onChanged,
+            /*validator: (phone) {
+              if (controller.text.trim().isEmpty) {
+                return 'Please enter your phone number';
+              }
+              try {
+                if (phone == null) {
+                  return 'Please enter a valid phone number';
+                }
+                final isValid = phone.isValidNumber();
+                if (!isValid) {
+                  return 'Please enter a valid phone number';
+                }
+              } catch (_) {
+                return 'Please enter a valid phone number';
+              }
+              return null;
+            },*/
+            autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
         ),
       ],

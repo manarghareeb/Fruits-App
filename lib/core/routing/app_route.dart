@@ -1,8 +1,5 @@
-import 'package:fruits_app/features/authentication/presentation/views/forget_password_screen.dart';
-import 'package:fruits_app/features/authentication/presentation/views/login_screen.dart';
-import 'package:fruits_app/features/authentication/presentation/views/signup_screen.dart';
-import 'package:fruits_app/features/authentication/presentation/views/verification_screen.dart';
-import 'package:fruits_app/features/authentication/presentation/views/welcome_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_app/core/di/service_locator.dart';
 import 'package:fruits_app/features/checkout/presentation/views/checkout_screen.dart';
 import 'package:fruits_app/features/checkout/presentation/views/order_case_screen.dart';
 import 'package:fruits_app/features/home/presentation/views/button_navigator_bar.dart';
@@ -10,11 +7,18 @@ import 'package:fruits_app/features/home/presentation/views/product_details_scre
 import 'package:fruits_app/features/home/presentation/views/seller_details_screen.dart';
 import 'package:fruits_app/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:fruits_app/features/order/presentation/views/order_tracking_screen.dart';
+import 'package:fruits_app/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:fruits_app/features/settings/presentation/views/about_us_screen.dart';
-import 'package:fruits_app/features/settings/presentation/views/profile_screen.dart';
 import 'package:fruits_app/features/settings/presentation/views/support_screen.dart';
 import 'package:fruits_app/features/settings/presentation/views/terms_and_conditions_screen.dart';
 import 'package:fruits_app/features/splash/presentation/views/splash_screen.dart';
+import 'package:fruits_app/features/user/presentation/views/contact_us_screen.dart';
+import 'package:fruits_app/features/user/presentation/views/forget_password_screen.dart';
+import 'package:fruits_app/features/user/presentation/views/login_screen.dart';
+import 'package:fruits_app/features/user/presentation/views/profile_screen.dart';
+import 'package:fruits_app/features/user/presentation/views/signup_screen.dart';
+import 'package:fruits_app/features/user/presentation/views/verification_screen.dart';
+import 'package:fruits_app/features/user/presentation/views/welcome_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRoute {
@@ -36,17 +40,15 @@ class AppRoute {
   static const String productDetailsScreen = '/productDetailsScreen';
   static const String supportScreen = '/supportScreen';
   static const String termsAndConditionsScreen = '/termsAndConditionsScreen';
-  static const String aboutUsScreen = '/aboutUsScreen';
+  static const String contactUsScreen = '/contactUsScreen';
   static const String orderTrackingScreen = '/orderTrackingScreen';
   static const String checkoutScreen = '/checkoutScreen';
   static const String orderCaseScreen = '/orderCaseScreen';
+  static const String aboutUsScreen = '/aboutUsScreen';
 
   static final GoRouter router = GoRouter(
     routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const SplashScreen(),
-      ),
+      GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
       GoRoute(
         path: splashScreen,
         builder: (context, state) => const SplashScreen(),
@@ -100,11 +102,21 @@ class AppRoute {
       ),
       GoRoute(
         path: termsAndConditionsScreen,
-        builder: (context, state) => const TermsAndConditionsScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => sl<SettingsCubit>()..getConditions(),
+          child: const TermsAndConditionsScreen(),
+        ),
+      ),
+      GoRoute(
+        path: contactUsScreen,
+        builder: (context, state) => const ContactUsScreen(),
       ),
       GoRoute(
         path: aboutUsScreen,
-        builder: (context, state) => const AboutUsScreen(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => sl<SettingsCubit>()..getAboutUs(),
+          child: const AboutUsScreen(),
+        ),
       ),
       GoRoute(
         path: orderTrackingScreen,
