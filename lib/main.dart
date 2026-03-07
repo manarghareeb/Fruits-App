@@ -1,10 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruits_app/core/cache/cache_helper.dart';
+import 'package:fruits_app/core/di/service_locator.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/services/notification_services.dart';
 import 'package:fruits_app/core/services/one_signal_service.dart';
+import 'package:fruits_app/features/user/presentation/cubit/user_cubit/user_cubit.dart';
 import 'package:fruits_app/firebase_options.dart';
 
 void main() async {
@@ -14,9 +18,13 @@ void main() async {
   NotificationServices().initLocalNotification();
   NotificationServices().firebaseInit();
   await OneSignalService.init();
+  await CacheHelper.init();
+  initServiceLocator();
   //await LocalNotificationsService.init();
   //await PushNotificationsService.init();
-  runApp(const MyApp());
+  runApp(
+    BlocProvider(create: (context) => sl<UserCubit>(), child: const MyApp()),
+  );
 }
 
 @pragma('vm:entry-point')

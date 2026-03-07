@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
+import 'package:fruits_app/core/services/secure_storage_service.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/features/splash/presentation/widgets/splash_screen_landscape.dart';
 import 'package:fruits_app/features/splash/presentation/widgets/splash_screen_portrait.dart';
@@ -43,11 +44,23 @@ class _SplashScreenState extends State<SplashScreen>
       if (status == AnimationStatus.completed) {
         Future.delayed(const Duration(seconds: 1), () {
           if (mounted) {
-            GoRouter.of(context).go(AppRoute.onBoardingScreen);
+            checkLogin();
           }
         });
       }
     });
+  }
+
+  Future<void> checkLogin() async {
+    final token = await SecureStorageService.getToken();
+
+    if (!mounted) return;
+
+    if (token != null && token.isNotEmpty) {
+      GoRouter.of(context).go(AppRoute.welcomeScreen);
+    } else {
+      GoRouter.of(context).go(AppRoute.onBoardingScreen);
+    }
   }
 
   @override
@@ -68,14 +81,14 @@ class _SplashScreenState extends State<SplashScreen>
             animation: controller,
             builder: (context, child) {
               return isLandscape
-              ? SplashScreenLandscape(
-                  fadeAnimation: fadeAnimation,
-                  slideAnimation: slideAnimation,
-                )
-              : SplashScreenPortrait(
-                  fadeAnimation: fadeAnimation,
-                  slideAnimation: slideAnimation,
-                );
+                  ? SplashScreenLandscape(
+                      fadeAnimation: fadeAnimation,
+                      slideAnimation: slideAnimation,
+                    )
+                  : SplashScreenPortrait(
+                      fadeAnimation: fadeAnimation,
+                      slideAnimation: slideAnimation,
+                    );
             },
           ),
         ),

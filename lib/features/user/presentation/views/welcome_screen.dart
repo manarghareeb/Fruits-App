@@ -6,7 +6,7 @@ import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
-import 'package:fruits_app/features/authentication/presentation/widgets/auth_navigator_text.dart';
+import 'package:fruits_app/features/user/presentation/widgets/auth_navigator_text.dart';
 import 'package:go_router/go_router.dart';
 
 class WelcomeScreen extends StatelessWidget {
