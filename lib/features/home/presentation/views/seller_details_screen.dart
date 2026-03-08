@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
-import 'package:fruits_app/features/home/presentation/widgets/category_list.dart';
 import 'package:fruits_app/features/home/presentation/widgets/product_card_item.dart';
 import 'package:fruits_app/features/home/presentation/widgets/seller_card_item.dart';
-import 'package:go_router/go_router.dart';
 
 class SellerDetailsScreen extends StatefulWidget {
   const SellerDetailsScreen({super.key});
@@ -19,11 +16,11 @@ class SellerDetailsScreen extends StatefulWidget {
 }
 
 class _SellerDetailsScreenState extends State<SellerDetailsScreen> {
-  final List<String> categoryImages = [
-    AppImages.restaurant,
-    AppImages.farm,
-    AppImages.coffee,
-    AppImages.pharmacy,
+  final List<Map<String, String>> categories = [
+    {"image": AppImages.restaurant, "name": "Restaurant"},
+    {"image": AppImages.farm, "name": "Farm"},
+    {"image": AppImages.coffee, "name": "Coffee"},
+    {"image": AppImages.pharmacy, "name": "Pharmacy"},
   ];
 
   @override
@@ -61,7 +58,7 @@ class _SellerDetailsScreenState extends State<SellerDetailsScreen> {
                 style: AppStyles.font18BoldBlackColor(context),
               ),
               SizedBox(height: 7.5.h),
-              CategoryList(categoryImages: categoryImages),
+              //CategoryList(categories: categories),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -82,9 +79,7 @@ class _SellerDetailsScreenState extends State<SellerDetailsScreen> {
                 separatorBuilder: (context, index) => SizedBox(height: 7.h),
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push(AppRoute.productDetailsScreen);
-                    },
+                    //onTap: () => GoRouter.of(context).push(AppRoute.productDetailsScreen),
                     child: const ProductCardItem(
                       imagePath: AppImages.fruitsImage,
                     ),

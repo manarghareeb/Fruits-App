@@ -7,4 +7,5 @@ class EndPoint {
   static const String contactUs = 'contact_us';
   static const String aboutUs = 'about-us';
   static const String conditions = 'conditions';
+  static const String categoriesGetWithSub = 'categories/get_with_sub';
 }

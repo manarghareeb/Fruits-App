@@ -56,8 +56,16 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   cursorColor: AppColors.greyColor,
                   pinTheme: PinTheme(
                     shape: PinCodeFieldShape.circle,
-                    fieldHeight: isLandscape ? isTablet ? 30.w : 65.h : 48.h,
-                    fieldWidth: isLandscape ? isTablet ? 30.w : 65.h : 48.w,
+                    fieldHeight: isLandscape
+                        ? isTablet
+                              ? 30.w
+                              : 65.h
+                        : 48.h,
+                    fieldWidth: isLandscape
+                        ? isTablet
+                              ? 30.w
+                              : 65.h
+                        : 48.w,
                     inactiveFillColor: AppColors.greyColor.withOpacity(0.1),
                     activeFillColor: AppColors.greyColor.withOpacity(0.1),
                     selectedFillColor: AppColors.greyColor.withOpacity(0.1),
@@ -71,9 +79,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   onChanged: (value) => setState(() => currentCode = value),
                   onCompleted: (value) => currentCode = value,
                   hintCharacter: '·',
-                  hintStyle: AppStyles.font28BoldBlackColor(context).copyWith(
-                    color: AppColors.greyColor,
-                  ),
+                  hintStyle: AppStyles.font28BoldBlackColor(
+                    context,
+                  ).copyWith(color: AppColors.greyColor),
                 ),
                 SizedBox(height: 52.h),
                 CustomButtonWidget(
@@ -83,10 +91,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   },
                 ),
                 SizedBox(height: 40.h),
-                Text(
-                  '60',
-                  style: AppStyles.font28BoldBlackColor(context),
-                ),
+                Text('60', style: AppStyles.font28BoldBlackColor(context)),
                 SizedBox(height: 34.h),
                 AuthNavigatorText(
                   text: 'Not received? ',

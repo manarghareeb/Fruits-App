@@ -1,6 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:fruits_app/core/api/api_consumer.dart';
 import 'package:fruits_app/core/api/dio_consumer.dart';
+import 'package:fruits_app/features/categories/data/data_sources/categories_remote_data_source.dart';
+import 'package:fruits_app/features/categories/data/repositories/categories_repository_impl.dart';
+import 'package:fruits_app/features/categories/domain/repositories/categories_repository.dart';
+import 'package:fruits_app/features/categories/domain/usecases/get_categories_usecase.dart';
+import 'package:fruits_app/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:fruits_app/features/settings/data/data_sources/settings_remote_data_source.dart';
 import 'package:fruits_app/features/settings/data/repositories/settings_repository_impl.dart';
 import 'package:fruits_app/features/settings/domain/repositories/settings_repository.dart';
@@ -32,6 +37,9 @@ void initServiceLocator() {
   sl.registerLazySingleton<SettingsRemoteDataSource>(
     () => SettingsRemoteDataSourceImpl(apiConsumer: sl()),
   );
+  sl.registerLazySingleton<CategoriesRemoteDataSource>(
+    () => CategoriesRemoteDataSourceImpl(apiConsumer: sl()),
+  );
 
   /// Repositories
   sl.registerLazySingleton<UserRepository>(
@@ -39,6 +47,9 @@ void initServiceLocator() {
   );
   sl.registerLazySingleton<SettingsRepository>(
     () => SettingsRepositoryImpl(remoteDataSource: sl()),
+  );
+  sl.registerLazySingleton<CategoriesRepository>(
+    () => CategoriesRepositoryImpl(remoteDataSource: sl()),
   );
 
   /// UseCases
@@ -49,6 +60,7 @@ void initServiceLocator() {
   sl.registerLazySingleton(() => ContactUsUsecase(repository: sl()));
   sl.registerLazySingleton(() => GetAboutUsUseCase(repository: sl()));
   sl.registerLazySingleton(() => GetConditionsUseCase(repository: sl()));
+  sl.registerLazySingleton(() => GetCategoriesUseCase(repository: sl()));
 
   /// Cubits
   sl.registerFactory(
@@ -57,13 +69,11 @@ void initServiceLocator() {
       registerUseCase: sl(),
       forgetPasswordUseCase: sl(),
       updateProfileUseCase: sl(),
-      contactUsUsecase: sl()
+      contactUsUsecase: sl(),
     ),
   );
   sl.registerFactory(
-    () => SettingsCubit(
-      getAboutUsUseCase: sl(),
-      getConditionsUseCase: sl(),
-    ),
+    () => SettingsCubit(getAboutUsUseCase: sl(), getConditionsUseCase: sl()),
   );
+  sl.registerFactory(() => CategoriesCubit(getCategoriesUseCase: sl()));
 }

@@ -11,7 +11,7 @@ class UserEntity {
   final int? newPassword;
 
   UserEntity({
-    this.status, 
+    this.status,
     this.message,
     this.id,
     required this.name,
@@ -19,7 +19,7 @@ class UserEntity {
     required this.email,
     this.profilePhotoPath,
     this.profilePhotoUrl,
-    required this.token, 
-    this.newPassword, 
+    required this.token,
+    this.newPassword,
   });
 }

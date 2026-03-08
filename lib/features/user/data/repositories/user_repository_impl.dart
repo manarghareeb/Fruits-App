@@ -83,18 +83,18 @@ class UserRepositoryImpl implements UserRepository {
       return Left(ServerFailure(e.errModel.errorMessage));
     }
   }
-  
+
   @override
   Future<Either<Failure, UserEntity>> contactUs({
-    required String name, 
-    required String mobile, 
-    required String message
+    required String name,
+    required String mobile,
+    required String message,
   }) async {
     try {
       final userModel = await remoteDataSource.contactUs(
         name: name,
         mobile: mobile,
-        message: message
+        message: message,
       );
       return Right(userModel);
     } on ServerException catch (e) {

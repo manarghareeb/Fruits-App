@@ -31,22 +31,22 @@ class OrderDetails extends StatelessWidget {
                     Text(
                       item['title'] ?? '',
                       style: isBagTotal
-                          ? AppStyles.font16BoldPrimaryColor(context).copyWith(
-                            fontSize: isLandscape ? 10.sp : 16.sp
-                          )
-                          : AppStyles.font16RegularDarkGreyColor(context).copyWith(
-                            fontSize: isLandscape ? 10.sp : 16.sp
-                          ),
+                          ? AppStyles.font16BoldPrimaryColor(
+                              context,
+                            ).copyWith(fontSize: isLandscape ? 10.sp : 16.sp)
+                          : AppStyles.font16RegularDarkGreyColor(
+                              context,
+                            ).copyWith(fontSize: isLandscape ? 10.sp : 16.sp),
                     ),
                     Text(
                       item['value'] ?? '',
                       style: isBagTotal
-                          ? AppStyles.font16BoldPrimaryColor(context).copyWith(
-                            fontSize: isLandscape ? 10.sp : 16.sp
-                          )
-                          : AppStyles.font16RegularDarkGreyColor(context).copyWith(
-                            fontSize: isLandscape ? 10.sp : 16.sp
-                          ),
+                          ? AppStyles.font16BoldPrimaryColor(
+                              context,
+                            ).copyWith(fontSize: isLandscape ? 10.sp : 16.sp)
+                          : AppStyles.font16RegularDarkGreyColor(
+                              context,
+                            ).copyWith(fontSize: isLandscape ? 10.sp : 16.sp),
                     ),
                   ],
                 ),

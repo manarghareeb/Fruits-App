@@ -11,7 +11,7 @@ class UserModel extends UserEntity {
     super.profilePhotoPath,
     super.profilePhotoUrl,
     required super.token,
-    super.newPassword
+    super.newPassword,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -23,7 +23,11 @@ class UserModel extends UserEntity {
       //status: json['status'],
       status: json['result'] ?? json['status'] ?? false,
       //message: json['message'],
-      message: json['error_message_en'] ?? json['message'] ?? json['error_message'] ?? "",
+      message:
+          json['error_message_en'] ??
+          json['message'] ??
+          json['error_message'] ??
+          "",
       //id: userData['id'],
       id: userData['id'] != null ? int.parse(userData['id'].toString()) : null,
       name: userData['name'] ?? "",

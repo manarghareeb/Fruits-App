@@ -75,7 +75,7 @@ class ImagePhoto extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(color: AppColors.lightBlackColor.withOpacity(0.2)),
-        color: Colors.grey[100], 
+        color: Colors.grey[100],
       ),
       child: ClipOval(child: _buildImageChild(isLandscape, hasValidUrl)),
     );

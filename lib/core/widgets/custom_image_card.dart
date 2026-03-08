@@ -13,8 +13,8 @@ class CustomImageCard extends StatelessWidget {
     super.key,
     required this.imagePath,
     this.radius,
-    this.isCircle = false, 
-    this.width, 
+    this.isCircle = false,
+    this.width,
     this.height,
   });
 

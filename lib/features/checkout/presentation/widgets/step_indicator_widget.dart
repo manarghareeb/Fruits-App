@@ -21,8 +21,7 @@ class StepIndicatorWidget extends StatelessWidget {
     return isLandscape
         ? Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment
-                .start, 
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: List.generate(steps.length * 2 - 1, (index) {
               final isCircle = index.isEven;
               final stepIndex = index ~/ 2;
@@ -34,7 +33,7 @@ class StepIndicatorWidget extends StatelessWidget {
                     // الدائرة
                     BuildStep(
                       stepIndex: stepIndex,
-                      title: '', 
+                      title: '',
                       currentStep: currentStep,
                     ),
                     SizedBox(height: 10.h),
@@ -54,10 +53,8 @@ class StepIndicatorWidget extends StatelessWidget {
                 );
               } else {
                 return Container(
-                  height: 40.h, 
-                  margin: EdgeInsets.only(
-                    left: 14.w,
-                  ), 
+                  height: 40.h,
+                  margin: EdgeInsets.only(left: 14.w),
                   child: VerticalDivider(
                     color: currentStep > stepIndex
                         ? AppColors.primaryColor

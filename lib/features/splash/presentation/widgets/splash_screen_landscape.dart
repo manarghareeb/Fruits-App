@@ -23,10 +23,7 @@ class SplashScreenLandscape extends StatelessWidget {
             opacity: fadeAnimation,
             child: SlideTransition(
               position: slideAnimation,
-              child: Image.asset(
-                AppImages.name,
-                width: 250.w,
-              ),
+              child: Image.asset(AppImages.name, width: 250.w),
             ),
           ),
         ),

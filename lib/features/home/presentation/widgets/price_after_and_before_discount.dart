@@ -21,22 +21,22 @@ class PriceAfterAndBeforeDiscount extends StatelessWidget {
       text: TextSpan(
         text: '$priceBeforeDiscount    ',
         style: details
-            ? AppStyles.font18BoldBlackColor(context).copyWith(
-              fontSize: isLandscape ? 10.sp : 18.sp,
-            )
-            : AppStyles.font14RegularDarkGreyColor(context).copyWith(
-              fontSize: isLandscape ? 8.sp : 14.sp,
-            ),
+            ? AppStyles.font18BoldBlackColor(
+                context,
+              ).copyWith(fontSize: isLandscape ? 10.sp : 18.sp)
+            : AppStyles.font14RegularDarkGreyColor(
+                context,
+              ).copyWith(fontSize: isLandscape ? 8.sp : 14.sp),
         children: [
           TextSpan(
             text: priceAfterDiscount,
             style: details
-                ? AppStyles.font18RegularLightRedColorLineThrough(context).copyWith(
-              fontSize: isLandscape ? 10.sp : 18.sp,
-            )
-                : AppStyles.font14RegularGreyColorLineThrough(context).copyWith(
-              fontSize: isLandscape ? 8.sp : 14.sp,
-            ),
+                ? AppStyles.font18RegularLightRedColorLineThrough(
+                    context,
+                  ).copyWith(fontSize: isLandscape ? 10.sp : 18.sp)
+                : AppStyles.font14RegularGreyColorLineThrough(
+                    context,
+                  ).copyWith(fontSize: isLandscape ? 8.sp : 14.sp),
           ),
         ],
       ),

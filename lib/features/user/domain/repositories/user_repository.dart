@@ -32,6 +32,6 @@ abstract class UserRepository {
   Future<Either<Failure, UserEntity>> contactUs({
     required String name,
     required String mobile,
-    required String message
+    required String message,
   });
 }

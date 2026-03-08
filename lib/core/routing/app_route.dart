@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_app/core/di/service_locator.dart';
+import 'package:fruits_app/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:fruits_app/features/checkout/presentation/views/checkout_screen.dart';
 import 'package:fruits_app/features/checkout/presentation/views/order_case_screen.dart';
 import 'package:fruits_app/features/home/presentation/views/button_navigator_bar.dart';
-import 'package:fruits_app/features/home/presentation/views/product_details_screen.dart';
 import 'package:fruits_app/features/home/presentation/views/seller_details_screen.dart';
 import 'package:fruits_app/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:fruits_app/features/order/presentation/views/order_tracking_screen.dart';
@@ -30,7 +30,6 @@ class AppRoute {
   static final String forgetPasswordScreen = '/forgetPasswordScreen';
   static final String welcomeScreen = '/welcomeScreen';
   static final String buttonNavigatorBar = '/buttonNavigatorBar';
-  static const String homeScreen = '/homeScreen';
   static const String orderScreen = '/orderScreen';
   static const String settingsScreen = '/settingsScreen';
   static const String profileScreen = '/profileScreen';
@@ -45,6 +44,8 @@ class AppRoute {
   static const String checkoutScreen = '/checkoutScreen';
   static const String orderCaseScreen = '/orderCaseScreen';
   static const String aboutUsScreen = '/aboutUsScreen';
+  //static const String subCategoryScreen = '/subCategoryScreen';
+  //static const String productsScreen = '/productsScreen';
 
   static final GoRouter router = GoRouter(
     routes: [
@@ -57,7 +58,10 @@ class AppRoute {
         path: buttonNavigatorBar,
         builder: (context, state) {
           final int index = state.extra as int? ?? 0;
-          return ButtonNavigatorBar(initialIndex: index);
+          return BlocProvider(
+            create: (context) => sl<CategoriesCubit>()..getCategories(),
+            child: ButtonNavigatorBar(initialIndex: index),
+          );
         },
       ),
       GoRoute(
@@ -88,10 +92,12 @@ class AppRoute {
         path: sellerDetailsScreen,
         builder: (context, state) => const SellerDetailsScreen(),
       ),
-      GoRoute(
+      /*GoRoute(
         path: productDetailsScreen,
-        builder: (context, state) => const ProductDetailsScreen(),
-      ),
+        builder: (context, state) {
+          return const ProductDetailsScreen();
+        },
+      ),*/
       GoRoute(
         path: profileScreen,
         builder: (context, state) => const ProfileScreen(),
@@ -133,6 +139,20 @@ class AppRoute {
           return OrderCaseScreen(isError: isError);
         },
       ),
+      /*GoRoute(
+        path: subCategoryScreen,
+        builder: (context, state) {
+          final category = state.extra as CategoryEntity;
+          return SubCategoryScreen(category: category);
+        },
+      ),
+      GoRoute(
+        path: productsScreen,
+        builder: (context, state) {
+          final subCategory = state.extra as SubCategoryEntity;
+          return ProductsScreen(subCategory: subCategory);
+        },
+      ),*/
     ],
   );
 }

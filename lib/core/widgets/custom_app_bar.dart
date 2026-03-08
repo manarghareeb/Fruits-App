@@ -27,9 +27,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       surfaceTintColor: Colors.white,
       title: Text(
         title ?? 'Fruit Market',
-        style: AppStyles.font24BoldPrimaryColor(context).copyWith(
-          fontSize: isLandscape ? 16.sp : 24.sp
-        ),
+        style: AppStyles.font24BoldPrimaryColor(
+          context,
+        ).copyWith(fontSize: isLandscape ? 16.sp : 24.sp),
       ),
       centerTitle: centerTitle ?? true,
       actions: actions,

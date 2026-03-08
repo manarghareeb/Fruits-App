@@ -31,7 +31,7 @@ class OrderScreen extends StatelessWidget {
                 crossAxisCount: 2,
                 //crossAxisSpacing: 2.w,
                 //mainAxisSpacing: 8.h,
-                childAspectRatio: 4.3.h, 
+                childAspectRatio: 4.3.h,
               ),
               itemBuilder: (context, index) {
                 return Padding(

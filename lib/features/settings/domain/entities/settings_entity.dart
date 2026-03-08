@@ -3,5 +3,9 @@ class SettingsEntity {
   final String details;
   final String image;
 
-  SettingsEntity({required this.name, required this.details, required this.image});
+  SettingsEntity({
+    required this.name,
+    required this.details,
+    required this.image,
+  });
 }

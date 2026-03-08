@@ -46,8 +46,7 @@ class _AddAddressDialogState extends State<AddAddressDialog> {
             SizedBox(height: 15.h),
             CustomPhoneField(
               controller: phoneController,
-                  onChanged: (phone) {
-                  },
+              onChanged: (phone) {},
             ),
             SizedBox(height: 15.h),
             CustomTextFormField(

@@ -26,7 +26,9 @@ class AboutUsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 30.h),
-                    Center(child: Image.asset(AppImages.fruitsImage, height: 120.h)),
+                    Center(
+                      child: Image.asset(AppImages.fruitsImage, height: 120.h),
+                    ),
                     /*Center(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(12.r),

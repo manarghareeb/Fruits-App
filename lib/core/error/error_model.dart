@@ -9,10 +9,11 @@ class ErrorModel {
     return ErrorModel(
       status: jsonData[ApiKeys.status] ?? jsonData['status'] ?? 0,
       //errorMessage: jsonData[ApiKeys.errorMessage] ?? "something went wrong",
-      errorMessage: jsonData[ApiKeys.errorMessage] ??
+      errorMessage:
+          jsonData[ApiKeys.errorMessage] ??
           jsonData['errorMessage'] ??
-          jsonData['message'] ?? 
-          jsonData['error'] ?? 
+          jsonData['message'] ??
+          jsonData['error'] ??
           "Something went wrong",
     );
   }

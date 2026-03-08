@@ -37,9 +37,9 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
                 children: [
                   TextSpan(
                     text: '#882610',
-                    style: AppStyles.font18RegularDarkGreyColor(context).copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: AppStyles.font18RegularDarkGreyColor(
+                      context,
+                    ).copyWith(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -85,12 +85,22 @@ class _OrderTrackingScreenState extends State<OrderTrackingScreen> {
             ),
             SizedBox(height: 50.h),
             CustomButtonWidget(
-              title: 'Confirm', onPressed: () {}, 
-              height: isLandscape ? isTablet ? 85.h : 60.h : 51.h,),
+              title: 'Confirm',
+              onPressed: () {},
+              height: isLandscape
+                  ? isTablet
+                        ? 85.h
+                        : 60.h
+                  : 51.h,
+            ),
             SizedBox(height: 15.h),
             CustomButtonWidget(
               title: 'Cancel Order',
-              height: isLandscape ? isTablet ? 80.h : 60.h : 51.h,
+              height: isLandscape
+                  ? isTablet
+                        ? 80.h
+                        : 60.h
+                  : 51.h,
               onPressed: () => showDialog(
                 context: context,
                 builder: (context) => CancelOrderDialog(),

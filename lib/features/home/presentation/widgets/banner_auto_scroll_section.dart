@@ -10,7 +10,8 @@ class BannerAutoScrollSection extends StatefulWidget {
   const BannerAutoScrollSection({super.key, this.height = 200});
 
   @override
-  State<BannerAutoScrollSection> createState() => _BannerAutoScrollSectionState();
+  State<BannerAutoScrollSection> createState() =>
+      _BannerAutoScrollSectionState();
 }
 
 class _BannerAutoScrollSectionState extends State<BannerAutoScrollSection> {
@@ -81,11 +82,11 @@ class _BannerAutoScrollSectionState extends State<BannerAutoScrollSection> {
               } else {
                 displayIndex = i - 1;
               }
-        
+
               int difference = (i - (index + 1)).abs();
               double scale = (1 - difference * 0.15).clamp(0.8, 1.0);
               double opacity = (1 - difference * 0.3).clamp(0.6, 1.0);
-        
+
               return AnimatedContainer(
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.easeInOut,
