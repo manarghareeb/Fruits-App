@@ -31,7 +31,7 @@ class LocalNotificationsService {
     AndroidNotificationDetails android = AndroidNotificationDetails(
       //'channel_id',
       //'channel_name',
-      'high_importance_channel',  
+      'high_importance_channel',
       'High Importance Notifications',
       importance: Importance.max,
       priority: Priority.high,

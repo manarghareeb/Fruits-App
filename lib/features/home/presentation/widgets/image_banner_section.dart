@@ -31,9 +31,9 @@ class ImageBannerSection extends StatelessWidget {
             ),
             child: Text(
               '10% Off Discount',
-              style: AppStyles.font16RegularDarkGreyColor(context).copyWith(
-                fontSize: isLandscape ? 6.sp : 16.sp
-              ),
+              style: AppStyles.font16RegularDarkGreyColor(
+                context,
+              ).copyWith(fontSize: isLandscape ? 6.sp : 16.sp),
             ),
           ),
         ),

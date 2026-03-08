@@ -6,14 +6,16 @@ class NotificationServices {
       FlutterLocalNotificationsPlugin();
 
   static const AndroidNotificationChannel channel = AndroidNotificationChannel(
-    'high_importance_channel', 
-    'High Importance Notifications', 
-    description: 'This channel is used for important notifications.', 
+    'high_importance_channel',
+    'High Importance Notifications',
+    description: 'This channel is used for important notifications.',
     importance: Importance.high,
   );
 
   Future<void> initLocalNotification() async {
-    var androidInitialization = const AndroidInitializationSettings("@mipmap/ic_launcher");
+    var androidInitialization = const AndroidInitializationSettings(
+      "@mipmap/ic_launcher",
+    );
     var iosInitialization = const DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
@@ -26,7 +28,8 @@ class NotificationServices {
 
     _flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
+          AndroidFlutterLocalNotificationsPlugin
+        >()
         ?.requestNotificationsPermission();
 
     await _flutterLocalNotificationsPlugin.initialize(
@@ -36,7 +39,8 @@ class NotificationServices {
 
     await _flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
+          AndroidFlutterLocalNotificationsPlugin
+        >()
         ?.createNotificationChannel(channel);
   }
 
@@ -68,4 +72,3 @@ class NotificationServices {
     );
   }
 }
-

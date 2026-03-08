@@ -19,14 +19,18 @@ class AuthNavigatorText extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(text, style: AppStyles.font16RegularGreyColor(context).copyWith(color: AppColors.blackColor)
+        Text(
+          text,
+          style: AppStyles.font16RegularGreyColor(
+            context,
+          ).copyWith(color: AppColors.blackColor),
         ),
         GestureDetector(
           onTap: onTap,
           child: Text(
             textButton,
             style: AppStyles.font16RegularBlueColorUnderline(context),
-        ),
+          ),
         ),
       ],
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
@@ -7,6 +8,9 @@ import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
+import 'package:fruits_app/features/categories/presentation/cubit/categories_cubit.dart';
+import 'package:fruits_app/features/categories/presentation/cubit/categories_state.dart';
+import 'package:fruits_app/features/categories/presentation/views/sub_category_screen.dart';
 import 'package:fruits_app/features/home/presentation/widgets/banner_auto_scroll_section.dart';
 import 'package:fruits_app/features/home/presentation/widgets/category_list.dart';
 import 'package:fruits_app/features/home/presentation/widgets/filter_widget.dart';
@@ -21,13 +25,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<String> categoryImages = [
-    AppImages.restaurant,
-    AppImages.farm,
-    AppImages.coffee,
-    AppImages.pharmacy,
-  ];
-
   @override
   Widget build(BuildContext context) {
     final isLandscape = AppResponsive.isLandscape(context);
@@ -66,7 +63,29 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               BannerAutoScrollSection(height: isTablet ? 320 : 200),
               SizedBox(height: 16.h),
-              CategoryList(categoryImages: categoryImages),
+              BlocBuilder<CategoriesCubit, CategoriesState>(
+                builder: (context, state) {
+                  if (state is CategoriesLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is CategoriesSuccess) {
+                    return CategoryList(
+                      categories: state.categories,
+                      onCategoryTap: (category) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                SubCategoryScreen(category: category),
+                          ),
+                        );
+                      },
+                    );
+                  } else if (state is CategoriesError) {
+                    return Center(child: Text(state.message));
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
               SizedBox(height: 12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,9 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 separatorBuilder: (context, index) => SizedBox(height: 7.h),
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push(AppRoute.sellerDetailsScreen);
-                    },
+                    onTap: () => GoRouter.of(context).push(AppRoute.sellerDetailsScreen),
                     child: const SellerCardItem(
                       imagePath: AppImages.companyLogo,
                       name: 'Seller name',

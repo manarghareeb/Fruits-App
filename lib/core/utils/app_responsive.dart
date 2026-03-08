@@ -41,6 +41,8 @@ class AppResponsive {
   }
 
   // Example: safe padding for notch / status bar
-  static double safeTop(BuildContext context) => MediaQuery.of(context).padding.top;
-  static double safeBottom(BuildContext context) => MediaQuery.of(context).padding.bottom;
+  static double safeTop(BuildContext context) =>
+      MediaQuery.of(context).padding.top;
+  static double safeBottom(BuildContext context) =>
+      MediaQuery.of(context).padding.bottom;
 }

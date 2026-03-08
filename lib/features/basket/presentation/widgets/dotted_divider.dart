@@ -23,15 +23,10 @@ class DottedDivider extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(dashCount, (_) {
-            return Container(
-              width: dashWidth,
-              height: height,
-              color: color,
-            );
+            return Container(width: dashWidth, height: height, color: color);
           }),
         );
       },
     );
   }
 }
-

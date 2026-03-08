@@ -22,10 +22,7 @@ class SplashScreenPortrait extends StatelessWidget {
           opacity: fadeAnimation,
           child: SlideTransition(
             position: slideAnimation,
-            child: Image.asset(
-              AppImages.name,
-              width: 300.w,
-            ),
+            child: Image.asset(AppImages.name, width: 300.w),
           ),
         ),
         Align(

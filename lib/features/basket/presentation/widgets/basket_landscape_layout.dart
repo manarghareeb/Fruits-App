@@ -16,7 +16,7 @@ class BasketLandscapeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLandscape = AppResponsive.isLandscape(context);
-    
+
     return Row(
       children: [
         Expanded(
@@ -54,10 +54,10 @@ class BasketLandscapeLayout extends StatelessWidget {
                 ),
                 Text(
                   '37.50 KD',
-                  style: AppStyles.font16RegularDarkGreyColor(
-                    context,
-                  ).copyWith(fontWeight: FontWeight.w500, 
-                  fontSize: isLandscape ? 10.sp : 16.sp),
+                  style: AppStyles.font16RegularDarkGreyColor(context).copyWith(
+                    fontWeight: FontWeight.w500,
+                    fontSize: isLandscape ? 10.sp : 16.sp,
+                  ),
                 ),
                 const Spacer(),
                 CustomButtonWidget(

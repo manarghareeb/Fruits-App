@@ -2,44 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
-import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
-import 'package:fruits_app/core/widgets/custom_button_widget.dart';
-import 'package:fruits_app/features/home/presentation/widgets/custom_expandable_selection.dart';
+import 'package:fruits_app/features/categories/domain/entities/product_entity.dart';
 import 'package:fruits_app/features/home/presentation/widgets/image_banner_section.dart';
+import 'package:fruits_app/features/home/presentation/widgets/product_details_body.dart';
 import 'package:fruits_app/features/home/presentation/widgets/product_header_section.dart';
 import 'package:go_router/go_router.dart';
 
-class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({super.key});
-
-  @override
-  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
-}
-
-class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  String? selectedWeight;
-  String? selectedAddons;
-
-  final List<String> weight = [
-    '50 Gram - 4.00 KD',
-    '1 Kg - 6.25 KD',
-    '2 Kg - 12.00 KD',
-  ];
-
-  final List<String> addons = ['50 Gram - 4.00 KD', '1 Kg - 6.25 KD'];
+class ProductDetailsScreen extends StatelessWidget {
+  const ProductDetailsScreen({super.key, required this.productEntity});
+  final ProductEntity productEntity;
 
   @override
   Widget build(BuildContext context) {
     final isLandscape = AppResponsive.isLandscape(context);
-    final isTablet = AppResponsive.isTablet(context);
+    //final isTablet = AppResponsive.isTablet(context);
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
         isLeading: true,
-        title: 'Product Name',
+        title: productEntity.nameEn,
         actions: [
           IconButton(
             icon: Icon(
@@ -71,61 +55,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               ? Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Expanded(
-                      flex: 2,
-                      child: ImageBannerSection(),
-                    ),
+                    const Expanded(flex: 2, child: ImageBannerSection()),
                     SizedBox(width: 20.w),
                     Expanded(
                       flex: 3,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const ProductHeaderSection(),
+                          ProductHeaderSection(productName: '', categoryName: '', priceAfterDiscount: '', priceBeforeDiscount: '',),
                           SizedBox(height: 8.h),
-                          Text(
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                            style: AppStyles.font16RegularDarkGreyColor(context).copyWith(
-                              fontSize: isLandscape ? 10.sp : 16.sp,
-                            ),
-                          ),
-                          SizedBox(height: 14.h),
-                          Text(
-                            'Sell Per : Kartoon',
-                            style: AppStyles.font16RegularDarkGreyColor(context),
-                          ),
-                          SizedBox(height: 22.h),
-                          CustomExpandableSelection(
-                            title: 'Select weight',
-                            list: weight,
-                            selectedItem: selectedWeight,
-                            onSelect: (value) => setState(() => selectedWeight = value),
-                          ),
-                          SizedBox(height: 15.h),
-                          CustomExpandableSelection(
-                            title: 'Select Addons',
-                            list: addons,
-                            selectedItem: selectedAddons,
-                            onSelect: (value) => setState(() => selectedAddons = value),
-                          ),
-                          SizedBox(height: 25.h),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              CustomButtonWidget(
-                                width: isLandscape ? 140.w : 164.w,
-                                height: isLandscape ? (isTablet ? 70.h : 55.h) : 45.h,
-                                icon: FontAwesomeIcons.basketShopping,
-                                title: 'Add to Cart',
-                                textStyle: AppStyles.font12SemiBoldWhiteColor(context).copyWith(
-                                  fontSize: isLandscape ? 12.sp : 16.sp,
-                                ),
-                                onPressed: () {
-                                  GoRouter.of(context).push(AppRoute.buttonNavigatorBar, extra: 2);
-                                },
-                              ),
-                            ],
-                          ),
+                          ProductDetailsBody(productEntity: productEntity,),
                         ],
                       ),
                     ),
@@ -136,47 +75,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   children: [
                     const ImageBannerSection(),
                     SizedBox(height: 10.h),
-                    const ProductHeaderSection(),
-                    SizedBox(height: 8.h),
-                    Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                      style: AppStyles.font16RegularDarkGreyColor(context),
-                    ),
-                    SizedBox(height: 14.h),
-                    Text(
-                      'Sell Per : Kartoon',
-                      style: AppStyles.font16RegularDarkGreyColor(context),
-                    ),
-                    SizedBox(height: 22.h),
-                    CustomExpandableSelection(
-                      title: 'Select weight',
-                      list: weight,
-                      selectedItem: selectedWeight,
-                      onSelect: (value) => setState(() => selectedWeight = value),
-                    ),
-                    SizedBox(height: 15.h),
-                    CustomExpandableSelection(
-                      title: 'Select Addons',
-                      list: addons,
-                      selectedItem: selectedAddons,
-                      onSelect: (value) => setState(() => selectedAddons = value),
-                    ),
-                    SizedBox(height: 25.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        CustomButtonWidget(
-                          width: 164.w,
-                          height: 45.h,
-                          icon: FontAwesomeIcons.basketShopping,
-                          title: 'Add to Cart',
-                          textStyle: AppStyles.font12SemiBoldWhiteColor(context),
-                          onPressed: () {
-                            GoRouter.of(context).push(AppRoute.buttonNavigatorBar, extra: 2);
-                          },
-                        ),
-                      ],
-                    ),
+                    ProductDetailsBody(productEntity: productEntity,),
                   ],
                 ),
         ),

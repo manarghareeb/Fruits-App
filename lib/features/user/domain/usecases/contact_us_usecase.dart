@@ -9,10 +9,14 @@ class ContactUsUsecase {
   ContactUsUsecase({required this.repository});
 
   Future<Either<Failure, UserEntity>> call({
-    required String name, 
+    required String name,
     required String mobile,
-    required String message
+    required String message,
   }) async {
-    return await repository.contactUs(name: name, mobile: mobile, message: message);
+    return await repository.contactUs(
+      name: name,
+      mobile: mobile,
+      message: message,
+    );
   }
 }

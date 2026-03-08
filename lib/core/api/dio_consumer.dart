@@ -95,11 +95,11 @@ class DioConsumer extends ApiConsumer {
 
   @override
   Future patch(
-      String path, {
-        dynamic data,
-        Map<String, dynamic>? queryParameters,
-        bool isFromData = false,
-      }) async {
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    bool isFromData = false,
+  }) async {
     try {
       final response = await dio.put(
         path,
@@ -107,7 +107,9 @@ class DioConsumer extends ApiConsumer {
         queryParameters: queryParameters,
         options: Options(
           headers: {
-            "Content-Type": isFromData ? "multipart/form-data" : "application/json",
+            "Content-Type": isFromData
+                ? "multipart/form-data"
+                : "application/json",
           },
         ),
       );
@@ -116,7 +118,6 @@ class DioConsumer extends ApiConsumer {
       handleDioExceptions(e);
     }
   }
-
 
   @override
   Future post(

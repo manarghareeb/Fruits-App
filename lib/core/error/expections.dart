@@ -12,35 +12,55 @@ class ServerException implements Exception {
 void handleDioExceptions(DioException e) {
   if (e.response != null) {
     throw ServerException(
-      errModel: ErrorModel.fromJson(e.response!.data is Map 
-        ? e.response!.data 
-        : {'errorMessage': "Server Error", 'status': e.response!.statusCode}),
+      errModel: ErrorModel.fromJson(
+        e.response!.data is Map
+            ? e.response!.data
+            : {
+                'errorMessage': "Server Error",
+                'status': e.response!.statusCode,
+              },
+      ),
     );
   }
 
   String message;
   switch (e.type) {
     case DioExceptionType.connectionTimeout:
-      throw ServerException(errModel: ErrorModel(errorMessage: "Connection timeout"));
+      throw ServerException(
+        errModel: ErrorModel(errorMessage: "Connection timeout"),
+      );
     case DioExceptionType.sendTimeout:
       throw ServerException(errModel: ErrorModel(errorMessage: "Send timeout"));
     case DioExceptionType.receiveTimeout:
-      throw ServerException(errModel: ErrorModel(errorMessage: "Receive timeout"));
+      throw ServerException(
+        errModel: ErrorModel(errorMessage: "Receive timeout"),
+      );
     case DioExceptionType.badCertificate:
-      throw ServerException(errModel: ErrorModel(errorMessage: "Invalid SSL certificate"));
+      throw ServerException(
+        errModel: ErrorModel(errorMessage: "Invalid SSL certificate"),
+      );
     case DioExceptionType.cancel:
-      throw ServerException(errModel: ErrorModel(errorMessage: "Request cancelled"));
+      throw ServerException(
+        errModel: ErrorModel(errorMessage: "Request cancelled"),
+      );
     case DioExceptionType.connectionError:
-      throw ServerException(errModel: ErrorModel(errorMessage: "No internet connection"));
+      throw ServerException(
+        errModel: ErrorModel(errorMessage: "No internet connection"),
+      );
     case DioExceptionType.unknown:
-      throw ServerException(errModel: ErrorModel(errorMessage: "Unexpected error occurred"));
+      throw ServerException(
+        errModel: ErrorModel(errorMessage: "Unexpected error occurred"),
+      );
     //case DioExceptionType.badResponse:
-      //throw ServerException(errModel: ErrorModel(errorMessage: message, status: 500));
-    default: message = "Unexpected error occurred";
+    //throw ServerException(errModel: ErrorModel(errorMessage: message, status: 500));
+    default:
+      message = "Unexpected error occurred";
   }
-  throw ServerException(errModel: ErrorModel(errorMessage: message, status: 500));
-  
+  throw ServerException(
+    errModel: ErrorModel(errorMessage: message, status: 500),
+  );
 }
+
 /*void handleDioExceptions(DioException e) {
   final res = e.response;
   final statusCode = res?.statusCode ?? 0;

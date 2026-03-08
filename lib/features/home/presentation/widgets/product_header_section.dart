@@ -5,39 +5,44 @@ import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/features/home/presentation/widgets/price_after_and_before_discount.dart';
 
 class ProductHeaderSection extends StatelessWidget {
-  const ProductHeaderSection({super.key});
+  const ProductHeaderSection({super.key, required this.productName, required this.categoryName, required this.priceAfterDiscount, required this.priceBeforeDiscount});
+  final String productName;
+  final String categoryName;
+  final String priceAfterDiscount;
+  final String priceBeforeDiscount;
 
   @override
   Widget build(BuildContext context) {
     final isLandspace = AppResponsive.isLandscape(context);
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Category Name',
-              style: AppStyles.font16BoldPrimaryColor(context).copyWith(
-                fontSize: isLandspace ? 10.sp : 16.sp
-              ),
+              categoryName,
+              style: AppStyles.font16BoldPrimaryColor(
+                context,
+              ).copyWith(fontSize: isLandspace ? 10.sp : 16.sp),
             ),
             Text(
-              'Product Name',
-              style: AppStyles.font24RegularBlackColor(context).copyWith(
-                fontSize: isLandspace ? 14.sp : 24.sp,
-              ),
+              productName,
+              style: AppStyles.font24RegularBlackColor(
+                context,
+              ).copyWith(fontSize: isLandspace ? 14.sp : 24.sp),
             ),
           ],
         ),
         Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Price', style: AppStyles.font14RegularDarkGreyColor(context)),
-            const PriceAfterAndBeforeDiscount(
+            PriceAfterAndBeforeDiscount(
               details: true,
-              priceAfterDiscount: 'KD12.00',
-              priceBeforeDiscount: 'KD14.00',
+              priceAfterDiscount: priceAfterDiscount,
+              priceBeforeDiscount: priceBeforeDiscount,
             ),
           ],
         ),

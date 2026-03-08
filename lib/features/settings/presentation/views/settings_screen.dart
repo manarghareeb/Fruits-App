@@ -76,7 +76,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       {
         'icon': FontAwesomeIcons.handshake,
         'title': 'Terms & Conditions',
-        'onTap': () => GoRouter.of(context).push(AppRoute.termsAndConditionsScreen),
+        'onTap': () =>
+            GoRouter.of(context).push(AppRoute.termsAndConditionsScreen),
       },
       {
         'icon': FontAwesomeIcons.circleQuestion,
