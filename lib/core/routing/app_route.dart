@@ -3,6 +3,7 @@ import 'package:fruits_app/core/di/service_locator.dart';
 import 'package:fruits_app/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:fruits_app/features/checkout/presentation/views/checkout_screen.dart';
 import 'package:fruits_app/features/checkout/presentation/views/order_case_screen.dart';
+import 'package:fruits_app/features/favorite/presentation/cubit/get_favorites_cubit/get_favorites_cubit.dart';
 import 'package:fruits_app/features/home/presentation/views/button_navigator_bar.dart';
 import 'package:fruits_app/features/home/presentation/views/seller_details_screen.dart';
 import 'package:fruits_app/features/onboarding/presentation/views/onboarding_screen.dart';
@@ -58,8 +59,13 @@ class AppRoute {
         path: buttonNavigatorBar,
         builder: (context, state) {
           final int index = state.extra as int? ?? 0;
-          return BlocProvider(
-            create: (context) => sl<CategoriesCubit>()..getCategories(),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => sl<CategoriesCubit>()..getCategories(),
+              ),
+              BlocProvider(create: (context) => sl<GetFavoritesCubit>()..getFavorites()),
+            ],
             child: ButtonNavigatorBar(initialIndex: index),
           );
         },

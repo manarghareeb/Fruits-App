@@ -30,6 +30,8 @@ class BasketLandscapeLayout extends StatelessWidget {
                 onTap: () =>
                     GoRouter.of(context).push(AppRoute.productDetailsScreen),
                 child: const ProductCardItem(
+                  price: 'KD14.00',
+                  productName: 'Product Name',
                   imagePath: AppImages.fruitsImage,
                   isCart: true,
                 ),

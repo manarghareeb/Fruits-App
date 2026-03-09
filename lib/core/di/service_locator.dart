@@ -6,6 +6,13 @@ import 'package:fruits_app/features/categories/data/repositories/categories_repo
 import 'package:fruits_app/features/categories/domain/repositories/categories_repository.dart';
 import 'package:fruits_app/features/categories/domain/usecases/get_categories_usecase.dart';
 import 'package:fruits_app/features/categories/presentation/cubit/categories_cubit.dart';
+import 'package:fruits_app/features/favorite/data/data_sources/favorites_remote_data_source.dart';
+import 'package:fruits_app/features/favorite/data/repositories/favorites_repository_impl.dart';
+import 'package:fruits_app/features/favorite/domain/repositories/favorite_repository.dart';
+import 'package:fruits_app/features/favorite/domain/usecases/add_favorite_usecase.dart';
+import 'package:fruits_app/features/favorite/domain/usecases/get_favorite_usecase.dart';
+import 'package:fruits_app/features/favorite/presentation/cubit/add_or_remove_favorite_cubit/add_or_remove_favorite_cubit.dart';
+import 'package:fruits_app/features/favorite/presentation/cubit/get_favorites_cubit/get_favorites_cubit.dart';
 import 'package:fruits_app/features/settings/data/data_sources/settings_remote_data_source.dart';
 import 'package:fruits_app/features/settings/data/repositories/settings_repository_impl.dart';
 import 'package:fruits_app/features/settings/domain/repositories/settings_repository.dart';
@@ -40,6 +47,9 @@ void initServiceLocator() {
   sl.registerLazySingleton<CategoriesRemoteDataSource>(
     () => CategoriesRemoteDataSourceImpl(apiConsumer: sl()),
   );
+  sl.registerLazySingleton<FavoritesRemoteDataSource>(
+    () => FavoritesRemoteDataSourceImpl(apiConsumer: sl()),
+  );
 
   /// Repositories
   sl.registerLazySingleton<UserRepository>(
@@ -51,6 +61,9 @@ void initServiceLocator() {
   sl.registerLazySingleton<CategoriesRepository>(
     () => CategoriesRepositoryImpl(remoteDataSource: sl()),
   );
+  sl.registerLazySingleton<FavoritesRepository>(
+    () => FavoritesRepositoryImpl(favoritesRemoteDataSource: sl()),
+  );
 
   /// UseCases
   sl.registerLazySingleton(() => LoginUseCase(repository: sl()));
@@ -61,6 +74,8 @@ void initServiceLocator() {
   sl.registerLazySingleton(() => GetAboutUsUseCase(repository: sl()));
   sl.registerLazySingleton(() => GetConditionsUseCase(repository: sl()));
   sl.registerLazySingleton(() => GetCategoriesUseCase(repository: sl()));
+  sl.registerLazySingleton(() => GetFavoritesUseCase(repository: sl()));
+  sl.registerLazySingleton(() => AddFavoriteUseCase(repository: sl()));
 
   /// Cubits
   sl.registerFactory(
@@ -76,4 +91,6 @@ void initServiceLocator() {
     () => SettingsCubit(getAboutUsUseCase: sl(), getConditionsUseCase: sl()),
   );
   sl.registerFactory(() => CategoriesCubit(getCategoriesUseCase: sl()));
+  sl.registerFactory(() => AddOrRemoveFavoriteCubit(addFavoriteUseCase: sl()));
+  sl.registerFactory(() => GetFavoritesCubit(getFavoritesUseCase: sl()));
 }

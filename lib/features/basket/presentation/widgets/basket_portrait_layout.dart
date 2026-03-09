@@ -30,6 +30,8 @@ class BasketPortraitLayout extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: const ProductCardItem(
+                  price: 'KD14.00',
+                  productName: 'Product Name',
                   imagePath: AppImages.fruitsImage,
                   isCart: true,
                 ),
