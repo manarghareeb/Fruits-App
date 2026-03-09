@@ -81,6 +81,8 @@ class _SellerDetailsScreenState extends State<SellerDetailsScreen> {
                   return GestureDetector(
                     //onTap: () => GoRouter.of(context).push(AppRoute.productDetailsScreen),
                     child: const ProductCardItem(
+                      price: 'KD14.00',
+                      productName: 'Product name',
                       imagePath: AppImages.fruitsImage,
                     ),
                   );

@@ -13,11 +13,14 @@ class ProductCardItem extends StatelessWidget {
     required this.imagePath,
     this.isCart = false,
     this.isFavorite = false,
+    required this.productName, required this.price,
   });
 
   final String imagePath;
   final bool isCart;
   final bool isFavorite;
+  final String productName;
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -60,15 +63,20 @@ class ProductCardItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Product name',
+                            productName,
                             style: AppStyles.font16BoldBlackColor(
                               context,
                             ).copyWith(fontSize: isLandscape ? 10.sp : 16.sp),
                           ),
                           SizedBox(height: 5.h),
-                          const PriceAfterAndBeforeDiscount(
-                            priceAfterDiscount: 'KD12.00',
-                            priceBeforeDiscount: 'KD14.00',
+                          Row(
+                            children: [
+                              Text('Price: '),
+                              PriceAfterAndBeforeDiscount(
+                                priceAfterDiscount: '', //'KD12.00',
+                                priceBeforeDiscount: price,
+                              ),
+                            ],
                           ),
                           SizedBox(height: 9.h),
                           if (!isFavorite) ...[
@@ -91,9 +99,10 @@ class ProductCardItem extends StatelessWidget {
                                     ),
                               ),
                             ),
-                          ] else
+                          ] /*else
                             Text(
-                              'Store Name : Store 1',
+                              //'Store Name : Store 1',
+                              '',
                               style:
                                   AppStyles.font16RegularDarkGreyColor(
                                     context,
@@ -101,7 +110,7 @@ class ProductCardItem extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                     fontSize: isLandscape ? 10.sp : 16.sp,
                                   ),
-                            ),
+                            ),*/
                         ],
                       ),
                     ),

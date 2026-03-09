@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruits_app/core/di/service_locator.dart';
 import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/features/categories/domain/entities/sub_category_entity.dart';
+import 'package:fruits_app/features/favorite/presentation/cubit/add_or_remove_favorite_cubit/add_or_remove_favorite_cubit.dart';
 import 'package:fruits_app/features/home/presentation/views/product_details_screen.dart';
 
 class ProductsScreen extends StatelessWidget {
@@ -32,7 +35,10 @@ class ProductsScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ProductDetailsScreen(productEntity: product,),
+                        builder: (context) => BlocProvider(
+                          create: (context) => sl<AddOrRemoveFavoriteCubit>(),
+                          child: ProductDetailsScreen(productEntity: product),
+                        ),
                       ),
                     );
                   },
