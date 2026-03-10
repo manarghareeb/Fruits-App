@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fruits_app/core/routing/app_route.dart';
+import 'package:fruits_app/core/di/service_locator.dart';
 import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
@@ -11,11 +11,14 @@ import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:fruits_app/features/categories/presentation/cubit/categories_state.dart';
 import 'package:fruits_app/features/categories/presentation/views/sub_category_screen.dart';
+import 'package:fruits_app/features/home/presentation/views/seller_details_screen.dart';
 import 'package:fruits_app/features/home/presentation/widgets/banner_auto_scroll_section.dart';
 import 'package:fruits_app/features/home/presentation/widgets/category_list.dart';
 import 'package:fruits_app/features/home/presentation/widgets/filter_widget.dart';
 import 'package:fruits_app/features/home/presentation/widgets/seller_card_item.dart';
-import 'package:go_router/go_router.dart';
+import 'package:fruits_app/features/vendors/presentation/vendor_products_cubit/vendor_products_cubit.dart';
+import 'package:fruits_app/features/vendors/presentation/vendors_cubit/vendor_cubit.dart';
+import 'package:fruits_app/features/vendors/presentation/vendors_cubit/vendor_state.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -105,22 +108,51 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 3,
-                separatorBuilder: (context, index) => SizedBox(height: 7.h),
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () => GoRouter.of(context).push(AppRoute.sellerDetailsScreen),
-                    child: const SellerCardItem(
-                      imagePath: AppImages.companyLogo,
-                      name: 'Seller name',
-                      deliveryInfo: 'Delivery Charges : 0.5 KD',
-                      distance: '2.5 KM',
-                      category: 'Beverages',
-                    ),
-                  );
+              BlocBuilder<VendorCubit, VendorState>(
+                builder: (context, state) {
+                  if (state is VendorLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is VendorSuccess) {
+                    return ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: state.vendors.length,
+                      separatorBuilder: (context, index) =>
+                          SizedBox(height: 7.h),
+                      itemBuilder: (context, index) {
+                        final vendor = state.vendors[index];
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BlocProvider(
+                                  create: (context) =>
+                                      sl<VendorProductsCubit>()
+                                        ..getVendorProducts(vendor.id),
+                                  child: SellerDetailsScreen(vendor: vendor),
+                                ),
+                              ),
+                            );
+                            /*context.push(
+                              AppRoute.sellerDetailsScreen,
+                              extra: vendor,
+                            );*/
+                          },
+                          child: SellerCardItem(
+                            imagePath: AppImages.companyLogo,
+                            name: vendor.nameEn,
+                            deliveryInfo: 'Delivery Charges : 0.5 KD',
+                            distance: '2.5 KM',
+                            category: 'Beverages',
+                          ),
+                        );
+                      },
+                    );
+                  } else if (state is VendorError) {
+                    return Center(child: Text(state.message));
+                  }
+                  return const SizedBox.shrink();
                 },
               ),
             ],
