@@ -9,4 +9,6 @@ class EndPoint {
   static const String conditions = 'conditions';
   static const String categoriesGetWithSub = 'categories/get_with_sub';
   static const String favorite = 'user_favorite';
+  static const String vendors = 'getvendors';
+  static const String getVendorProducts = 'get_vendor_products';
 }

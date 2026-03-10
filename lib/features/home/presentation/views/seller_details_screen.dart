@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fruits_app/core/theme/images.dart';
@@ -7,21 +9,13 @@ import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/features/home/presentation/widgets/product_card_item.dart';
 import 'package:fruits_app/features/home/presentation/widgets/seller_card_item.dart';
+import 'package:fruits_app/features/vendors/domain/entities/vendor_entity/vendor_entity.dart';
+import 'package:fruits_app/features/vendors/presentation/vendor_products_cubit/vendor_products_cubit.dart';
+import 'package:fruits_app/features/vendors/presentation/vendor_products_cubit/vendor_products_state.dart';
 
-class SellerDetailsScreen extends StatefulWidget {
-  const SellerDetailsScreen({super.key});
-
-  @override
-  State<SellerDetailsScreen> createState() => _SellerDetailsScreenState();
-}
-
-class _SellerDetailsScreenState extends State<SellerDetailsScreen> {
-  final List<Map<String, String>> categories = [
-    {"image": AppImages.restaurant, "name": "Restaurant"},
-    {"image": AppImages.farm, "name": "Farm"},
-    {"image": AppImages.coffee, "name": "Coffee"},
-    {"image": AppImages.pharmacy, "name": "Pharmacy"},
-  ];
+class SellerDetailsScreen extends StatelessWidget {
+  const SellerDetailsScreen({super.key, required this.vendor});
+  final VendorEntity vendor;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +23,7 @@ class _SellerDetailsScreenState extends State<SellerDetailsScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
-        title: 'Fruit Market',
+        title: vendor.nameEn,
         isLeading: true,
         actions: [
           IconButton(
@@ -48,17 +42,11 @@ class _SellerDetailsScreenState extends State<SellerDetailsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SellerCardItem(
+              SellerCardItem(
                 imagePath: AppImages.companyLogo,
-                name: 'Seller name',
+                name: vendor.nameEn,
                 deliveryInfo: 'Delivery : 40 to 60 Min',
               ),
-              Text(
-                'Categories',
-                style: AppStyles.font18BoldBlackColor(context),
-              ),
-              SizedBox(height: 7.5.h),
-              //CategoryList(categories: categories),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -72,20 +60,31 @@ class _SellerDetailsScreenState extends State<SellerDetailsScreen> {
                   ),
                 ],
               ),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 3,
-                separatorBuilder: (context, index) => SizedBox(height: 7.h),
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    //onTap: () => GoRouter.of(context).push(AppRoute.productDetailsScreen),
-                    child: const ProductCardItem(
-                      price: 'KD14.00',
-                      productName: 'Product name',
-                      imagePath: AppImages.fruitsImage,
-                    ),
-                  );
+              BlocBuilder<VendorProductsCubit, VendorProductsState>(
+                builder: (context, state) {
+                  if (state is VendorProductsLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is VendorProductsSuccess) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: state.vendorProducts.length,
+                      itemBuilder: (context, index) {
+                        final product = state.vendorProducts[index];
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: 8.h),
+                          child: ProductCardItem(
+                            productName: product.nameEn,
+                            price: '${product.price} KD',
+                            imagePath: AppImages.farm,
+                          ),
+                        );
+                      },
+                    );
+                  } else if (state is VendorProductsError) {
+                    return Center(child: Text(state.message));
+                  }
+                  return const SizedBox.shrink();
                 },
               ),
             ],

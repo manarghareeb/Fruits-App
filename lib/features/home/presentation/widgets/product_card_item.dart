@@ -71,7 +71,7 @@ class ProductCardItem extends StatelessWidget {
                           SizedBox(height: 5.h),
                           Row(
                             children: [
-                              Text('Price: '),
+                              //Text('Price: '),
                               PriceAfterAndBeforeDiscount(
                                 priceAfterDiscount: '', //'KD12.00',
                                 priceBeforeDiscount: price,

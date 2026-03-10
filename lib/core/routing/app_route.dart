@@ -5,7 +5,6 @@ import 'package:fruits_app/features/checkout/presentation/views/checkout_screen.
 import 'package:fruits_app/features/checkout/presentation/views/order_case_screen.dart';
 import 'package:fruits_app/features/favorite/presentation/cubit/get_favorites_cubit/get_favorites_cubit.dart';
 import 'package:fruits_app/features/home/presentation/views/button_navigator_bar.dart';
-import 'package:fruits_app/features/home/presentation/views/seller_details_screen.dart';
 import 'package:fruits_app/features/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:fruits_app/features/order/presentation/views/order_tracking_screen.dart';
 import 'package:fruits_app/features/settings/presentation/cubit/settings_cubit.dart';
@@ -20,6 +19,7 @@ import 'package:fruits_app/features/user/presentation/views/profile_screen.dart'
 import 'package:fruits_app/features/user/presentation/views/signup_screen.dart';
 import 'package:fruits_app/features/user/presentation/views/verification_screen.dart';
 import 'package:fruits_app/features/user/presentation/views/welcome_screen.dart';
+import 'package:fruits_app/features/vendors/presentation/vendors_cubit/vendor_cubit.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRoute {
@@ -64,7 +64,12 @@ class AppRoute {
               BlocProvider(
                 create: (context) => sl<CategoriesCubit>()..getCategories(),
               ),
-              BlocProvider(create: (context) => sl<GetFavoritesCubit>()..getFavorites()),
+              BlocProvider(
+                create: (context) => sl<GetFavoritesCubit>()..getFavorites(),
+              ),
+              BlocProvider(
+                create: (context) => sl<VendorCubit>()..getAllVendors(),
+              ),
             ],
             child: ButtonNavigatorBar(initialIndex: index),
           );
@@ -94,10 +99,16 @@ class AppRoute {
         path: forgetPasswordScreen,
         builder: (context, state) => const ForgetPasswordScreen(),
       ),
-      GoRoute(
+      /*GoRoute(
         path: sellerDetailsScreen,
-        builder: (context, state) => const SellerDetailsScreen(),
-      ),
+        builder: (context, state) {
+          final vendor = state.extra as VendorEntity;
+          return BlocProvider(
+            create: (context) => sl<VendorProductsCubit>()..getVendorProducts(vendor.id),
+            child: SellerDetailsScreen(vendor: vendor),
+          );
+        },
+      ),*/
       /*GoRoute(
         path: productDetailsScreen,
         builder: (context, state) {
