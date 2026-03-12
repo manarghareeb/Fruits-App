@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_app/core/di/service_locator.dart';
+import 'package:fruits_app/features/basket/presentation/cubit/cart_cubit.dart';
 import 'package:fruits_app/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:fruits_app/features/checkout/presentation/views/checkout_screen.dart';
 import 'package:fruits_app/features/checkout/presentation/views/order_case_screen.dart';
@@ -69,6 +70,9 @@ class AppRoute {
               ),
               BlocProvider(
                 create: (context) => sl<VendorCubit>()..getAllVendors(),
+              ),
+              BlocProvider(
+                create: (context) => sl<CartCubit>()..fetchCart(),
               ),
             ],
             child: ButtonNavigatorBar(initialIndex: index),

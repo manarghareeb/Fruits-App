@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/di/service_locator.dart';
-import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
 import 'package:fruits_app/features/favorite/presentation/cubit/add_or_remove_favorite_cubit/add_or_remove_favorite_cubit.dart';
@@ -65,9 +64,7 @@ class FavoriteScreen extends StatelessWidget {
                               );
                             },
                             child: ProductCardItem(
-                              price: '${item.price}',
-                              productName: item.nameEn,
-                              imagePath: AppImages.fruitsImage,
+                              productEntity: item,
                               isCart: true,
                               isFavorite: true,
                             ),
@@ -101,9 +98,7 @@ class FavoriteScreen extends StatelessWidget {
                             );
                           },
                           child: ProductCardItem(
-                            price: '${item.price}',
-                            productName: item.nameEn,
-                            imagePath: AppImages.fruitsImage,
+                            productEntity: item,
                             isCart: true,
                             isFavorite: true,
                           ),

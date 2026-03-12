@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
+import 'package:fruits_app/features/basket/presentation/cubit/cart_cubit.dart';
 import 'package:fruits_app/features/categories/domain/entities/product_entity.dart';
 import 'package:fruits_app/features/home/presentation/widgets/product_header_section.dart';
 import 'package:go_router/go_router.dart';
@@ -74,6 +76,7 @@ class _ProductDetailsBodyState extends State<ProductDetailsBody> {
               title: 'Add to Cart',
               textStyle: AppStyles.font12SemiBoldWhiteColor(context),
               onPressed: () {
+                context.read<CartCubit>().addProduct(widget.productEntity);
                 GoRouter.of(
                   context,
                 ).push(AppRoute.buttonNavigatorBar, extra: 2);

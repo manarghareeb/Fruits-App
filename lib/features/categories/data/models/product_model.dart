@@ -18,6 +18,7 @@ class ProductModel extends ProductEntity {
     required super.nameCategory,
     required super.nameCategoryEn,
     required super.isFavorite,
+    super.cartQuantity
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -38,6 +39,51 @@ class ProductModel extends ProductEntity {
       nameCategory: json['name_category'] ?? '',
       nameCategoryEn: json['name_category_en'] ?? '',
       isFavorite: json['is_favorite'] ?? 0,
+      cartQuantity: json['cart_quantity'] ?? 1,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'name_en': nameEn,
+      'img': image,
+      'price': price,
+      'discount': discount,
+      'quantity': quantity,
+      'unit': unit,
+      'unit_en': unitEn,
+      'details': details,
+      'details_en': detailsEn,
+      'vendor_id': vendorId,
+      'category_id': categoryId,
+      'name_category': nameCategory,
+      'name_category_en': nameCategoryEn,
+      'is_favorite': isFavorite,
+      'cart_quantity': cartQuantity,
+    };
+  }
+
+  factory ProductModel.fromEntity(ProductEntity entity) {
+  return ProductModel(
+    id: entity.id,
+    name: entity.name,
+    nameEn: entity.nameEn,
+    image: entity.image,
+    price: entity.price,
+    discount: entity.discount,
+    quantity: entity.quantity,
+    unit: entity.unit,
+    unitEn: entity.unitEn,
+    details: entity.details,
+    detailsEn: entity.detailsEn,
+    vendorId: entity.vendorId,
+    categoryId: entity.categoryId,
+    nameCategory: entity.nameCategory,
+    nameCategoryEn: entity.nameCategoryEn,
+    isFavorite: entity.isFavorite,
+    cartQuantity: entity.cartQuantity,
+  );
+}
 }

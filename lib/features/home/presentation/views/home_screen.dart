@@ -8,6 +8,7 @@ import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
+import 'package:fruits_app/features/basket/presentation/cubit/cart_cubit.dart';
 import 'package:fruits_app/features/categories/presentation/cubit/categories_cubit.dart';
 import 'package:fruits_app/features/categories/presentation/cubit/categories_state.dart';
 import 'package:fruits_app/features/categories/presentation/views/sub_category_screen.dart';
@@ -126,18 +127,21 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => BlocProvider(
-                                  create: (context) =>
-                                      sl<VendorProductsCubit>()
-                                        ..getVendorProducts(vendor.id),
+                                builder: (context) => MultiBlocProvider(
+                                  providers: [
+                                    BlocProvider(
+                                      create: (context) =>
+                                          sl<VendorProductsCubit>()
+                                            ..getVendorProducts(vendor.id),
+                                    ),
+                                    BlocProvider(
+                                      create: (context) => sl<CartCubit>(),
+                                    ),
+                                  ],
                                   child: SellerDetailsScreen(vendor: vendor),
                                 ),
                               ),
                             );
-                            /*context.push(
-                              AppRoute.sellerDetailsScreen,
-                              extra: vendor,
-                            );*/
                           },
                           child: SellerCardItem(
                             imagePath: AppImages.companyLogo,
