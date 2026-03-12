@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruits_app/core/routing/app_route.dart';
 import 'package:fruits_app/core/theme/colors.dart';
+import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_image_card.dart';
+import 'package:fruits_app/features/basket/presentation/cubit/cart_cubit.dart';
 import 'package:fruits_app/features/basket/presentation/widgets/count_container.dart';
+import 'package:fruits_app/features/categories/domain/entities/product_entity.dart';
 import 'package:fruits_app/features/home/presentation/widgets/price_after_and_before_discount.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductCardItem extends StatelessWidget {
   const ProductCardItem({
     super.key,
-    required this.imagePath,
     this.isCart = false,
     this.isFavorite = false,
-    required this.productName, required this.price,
+    required this.productEntity,
   });
 
-  final String imagePath;
   final bool isCart;
   final bool isFavorite;
-  final String productName;
-  final String price;
+  final ProductEntity productEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,7 @@ class ProductCardItem extends StatelessWidget {
                         vertical: 5.h,
                       ),
                       child: CustomImageCard(
-                        imagePath: imagePath,
+                        imagePath: AppImages.farm,
                         isCircle: true,
                       ),
                     ),
@@ -63,7 +66,7 @@ class ProductCardItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            productName,
+                            productEntity.nameEn,
                             style: AppStyles.font16BoldBlackColor(
                               context,
                             ).copyWith(fontSize: isLandscape ? 10.sp : 16.sp),
@@ -74,7 +77,8 @@ class ProductCardItem extends StatelessWidget {
                               //Text('Price: '),
                               PriceAfterAndBeforeDiscount(
                                 priceAfterDiscount: '', //'KD12.00',
-                                priceBeforeDiscount: price,
+                                priceBeforeDiscount:
+                                    '${productEntity.price} KD',
                               ),
                             ],
                           ),
@@ -110,7 +114,7 @@ class ProductCardItem extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                     fontSize: isLandscape ? 10.sp : 16.sp,
                                   ),
-                            ),*/
+                            ),*/,
                         ],
                       ),
                     ),
@@ -122,13 +126,62 @@ class ProductCardItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
-                      Icons.delete_forever,
-                      color: AppColors.primaryColor,
-                      size: isLandscape ? 15.sp : 28.sp,
+                    IconButton(
+                      onPressed: () {
+                        final cartCubit = context.read<CartCubit>();
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            backgroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.r),
+                            ),
+                            title: const Text('Confirm Delete'),
+                            content: const Text(
+                              'Are you sure you want to remove this item from the cart?',
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, false),
+                                child: const Text(
+                                  'Cancel',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context, true);
+                                  cartCubit.deleteItem(productEntity.id);
+                                },
+                                child: const Text(
+                                  'Delete',
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      icon: Icon(
+                        Icons.delete_forever,
+                        color: AppColors.primaryColor,
+                        size: isLandscape ? 15.sp : 28.sp,
+                      ),
                     ),
                     SizedBox(height: 25.h),
-                    const CountContainer(),
+                    CountContainer(
+                      quantity: productEntity.cartQuantity,
+                      onIncrement: () {
+                        context.read<CartCubit>().incrementQuantity(
+                          productEntity,
+                        );
+                      },
+                      onDecrement: () {
+                        context.read<CartCubit>().decrementQuantity(
+                          productEntity,
+                        );
+                      },
+                    ),
                   ],
                 )
               else if (!isCart)
@@ -139,10 +192,18 @@ class ProductCardItem extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: AppColors.primaryColor,
                   ),
-                  child: Icon(
-                    Icons.add_shopping_cart,
-                    color: Colors.white,
-                    size: isLandscape ? 18.sp : 23.sp,
+                  child: IconButton(
+                    onPressed: () {
+                      context.read<CartCubit>().addProduct(productEntity);
+                      GoRouter.of(
+                        context,
+                      ).push(AppRoute.buttonNavigatorBar, extra: 2);
+                    },
+                    icon: Icon(
+                      Icons.add_shopping_cart,
+                      color: Colors.white,
+                      size: isLandscape ? 18.sp : 23.sp,
+                    ),
                   ),
                 ),
             ],

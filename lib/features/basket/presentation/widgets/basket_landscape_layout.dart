@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/routing/app_route.dart';
-import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
+import 'package:fruits_app/features/categories/domain/entities/product_entity.dart';
 import 'package:fruits_app/features/checkout/presentation/widgets/order_details.dart';
 import 'package:fruits_app/features/home/presentation/widgets/product_card_item.dart';
 import 'package:go_router/go_router.dart';
 
 class BasketLandscapeLayout extends StatelessWidget {
-  const BasketLandscapeLayout({super.key, required this.orderDetails});
+  const BasketLandscapeLayout({
+    super.key,
+    required this.orderDetails,
+    required this.products, 
+    required this.countItem, 
+    required this.priceCart,
+  });
   final List<Map<String, String>> orderDetails;
+  final List<ProductEntity> products;
+  final int countItem;
+  final String priceCart;
 
   @override
   Widget build(BuildContext context) {
@@ -23,16 +32,14 @@ class BasketLandscapeLayout extends StatelessWidget {
           flex: 2,
           child: ListView.separated(
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-            itemCount: 5,
+            itemCount: products.length,
             separatorBuilder: (context, index) => SizedBox(height: 7.h),
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () =>
                     GoRouter.of(context).push(AppRoute.productDetailsScreen),
-                child: const ProductCardItem(
-                  price: 'KD14.00',
-                  productName: 'Product Name',
-                  imagePath: AppImages.fruitsImage,
+                child: ProductCardItem(
+                  productEntity: products[index],
                   isCart: true,
                 ),
               );
@@ -49,13 +56,13 @@ class BasketLandscapeLayout extends StatelessWidget {
                 OrderDetails(orderDetails: orderDetails),
                 SizedBox(height: 16.h),
                 Text(
-                  '4 items in cart',
+                  '$countItem items in cart',
                   style: AppStyles.font16RegularDarkGreyColor(
                     context,
                   ).copyWith(fontSize: isLandscape ? 10.sp : 16.sp),
                 ),
                 Text(
-                  '37.50 KD',
+                  '$priceCart KD',
                   style: AppStyles.font16RegularDarkGreyColor(context).copyWith(
                     fontWeight: FontWeight.w500,
                     fontSize: isLandscape ? 10.sp : 16.sp,

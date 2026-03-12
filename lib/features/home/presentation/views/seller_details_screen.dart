@@ -74,9 +74,7 @@ class SellerDetailsScreen extends StatelessWidget {
                         return Padding(
                           padding: EdgeInsets.only(bottom: 8.h),
                           child: ProductCardItem(
-                            productName: product.nameEn,
-                            price: '${product.price} KD',
-                            imagePath: AppImages.farm,
+                            productEntity: product,
                           ),
                         );
                       },

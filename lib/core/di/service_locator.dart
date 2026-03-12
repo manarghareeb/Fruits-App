@@ -1,6 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:fruits_app/core/api/api_consumer.dart';
 import 'package:fruits_app/core/api/dio_consumer.dart';
+import 'package:fruits_app/core/helper/database_helper.dart';
+import 'package:fruits_app/features/basket/data/data_sources/cart_local_data_source.dart';
+import 'package:fruits_app/features/basket/data/repositories/cart_repository_impl.dart';
+import 'package:fruits_app/features/basket/domain/repositories/cart_repository.dart';
+import 'package:fruits_app/features/basket/domain/usecases/add_to_cart_use_case.dart';
+import 'package:fruits_app/features/basket/domain/usecases/delete_cart_item_use_case.dart';
+import 'package:fruits_app/features/basket/domain/usecases/get_cart_items_use_case.dart';
+import 'package:fruits_app/features/basket/domain/usecases/update_cart_item_use_case.dart';
+import 'package:fruits_app/features/basket/presentation/cubit/cart_cubit.dart';
 import 'package:fruits_app/features/categories/data/data_sources/categories_remote_data_source.dart';
 import 'package:fruits_app/features/categories/data/repositories/categories_repository_impl.dart';
 import 'package:fruits_app/features/categories/domain/repositories/categories_repository.dart';
@@ -43,6 +52,7 @@ void initServiceLocator() {
   /// External
   sl.registerLazySingleton<Dio>(() => Dio());
   sl.registerLazySingleton<ApiConsumer>(() => DioConsumer(dio: sl()));
+  sl.registerLazySingleton<SqliteService>(() => SqliteService());
 
   /// DataSources
   sl.registerLazySingleton<UserRemoteDataSource>(
@@ -59,6 +69,9 @@ void initServiceLocator() {
   );
   sl.registerLazySingleton<VendorsRemoteDataSource>(
     () => VendorsRemoteDataSourceImpl(apiConsumer: sl()),
+  );
+  sl.registerLazySingleton<CartLocalDataSource>(
+    () => CartLocalDataSourceImpl(sqliteService: sl()),
   );
 
   /// Repositories
@@ -77,6 +90,9 @@ void initServiceLocator() {
   sl.registerLazySingleton<VendorRepository>(
     () => VendorRepositoryImpl(remoteDataSource: sl()),
   );
+  sl.registerLazySingleton<CartRepository>(
+    () => CartRepositoryImpl(localDataSource: sl()),
+  );
 
   /// UseCases
   sl.registerLazySingleton(() => LoginUseCase(repository: sl()));
@@ -91,6 +107,10 @@ void initServiceLocator() {
   sl.registerLazySingleton(() => AddFavoriteUseCase(repository: sl()));
   sl.registerLazySingleton(() => GetVendorProductsUsecase(vendorRepository: sl()));
   sl.registerLazySingleton(() => GetVendorsUsecase(vendorRepository: sl()));
+  sl.registerLazySingleton(() => GetCartItemsUseCase(repository: sl()));
+  sl.registerLazySingleton(() => AddToCartUseCase(repository: sl()));
+  sl.registerLazySingleton(() => UpdateCartItemUseCase(repository: sl()));
+  sl.registerLazySingleton(() => RemoveFromCartUseCase(repository: sl()));
 
   /// Cubits
   sl.registerFactory(
@@ -110,4 +130,10 @@ void initServiceLocator() {
   sl.registerFactory(() => GetFavoritesCubit(getFavoritesUseCase: sl()));
   sl.registerFactory(() => VendorCubit(getVendorsUseCase: sl()));
   sl.registerFactory(() => VendorProductsCubit(getVendorProductsUsecase: sl()));
+  sl.registerFactory(() => CartCubit(
+    addToCartUseCase: sl(), 
+    getCartItemsUseCase: sl(), 
+    removeFromCartUseCase: sl(), 
+    updateCartQuantityUseCase: sl()
+  ));
 }
