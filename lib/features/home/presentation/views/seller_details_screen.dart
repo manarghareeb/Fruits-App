@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +6,7 @@ import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
+import 'package:fruits_app/features/home/presentation/views/product_details_screen.dart';
 import 'package:fruits_app/features/home/presentation/widgets/product_card_item.dart';
 import 'package:fruits_app/features/home/presentation/widgets/seller_card_item.dart';
 import 'package:fruits_app/features/vendors/domain/entities/vendor_entity/vendor_entity.dart';
@@ -73,8 +73,18 @@ class SellerDetailsScreen extends StatelessWidget {
                         final product = state.vendorProducts[index];
                         return Padding(
                           padding: EdgeInsets.only(bottom: 8.h),
-                          child: ProductCardItem(
-                            productEntity: product,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ProductDetailsScreen(
+                                    productEntity: product,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: ProductCardItem(productEntity: product),
                           ),
                         );
                       },

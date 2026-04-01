@@ -141,30 +141,4 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       ),
     );
   }
-
-  /*Widget _buildPasswordResultCard(String password) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.all(16.r),
-      decoration: BoxDecoration(
-        color: Colors.green.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: Colors.green),
-      ),
-      child: Column(
-        children: [
-          Text(
-            'Process Successful',
-            style: AppStyles.font18BoldBlackColor(context),
-          ),
-          SizedBox(height: 8.h),
-          Text(
-            password,
-            style: AppStyles.font24BoldPrimaryColor(context),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-    );
-  }*/
 }

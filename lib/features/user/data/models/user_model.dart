@@ -20,15 +20,12 @@ class UserModel extends UserEntity {
     final String userToken = userData['token'] ?? json['token'] ?? "";
 
     return UserModel(
-      //status: json['status'],
       status: json['result'] ?? json['status'] ?? false,
-      //message: json['message'],
       message:
           json['error_message_en'] ??
           json['message'] ??
           json['error_message'] ??
           "",
-      //id: userData['id'],
       id: userData['id'] != null ? int.parse(userData['id'].toString()) : null,
       name: userData['name'] ?? "",
       mobile: userData['mobile'] ?? "",
