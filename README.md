@@ -328,7 +328,7 @@ flutter build apk --release
 
 | Checkout | Order Tracking | Favorites |
 |:--------:|:--------------:|:---------:|
-| <img width="430" height="932" alt="checkout" src="https://github.com/user-attachments/assets/7f4b2ad5-b723-407d-9ef3-16f2d91096cb" /> | <img width="430" height="932" alt="orders" src="https://github.com/user-attachments/assets/ec31b59e-4425-4182-b64d-15e08ff43dc1" /> <img width="430" height="932" alt="order tracking" src="https://github.com/user-attachments/assets/ec61f86e-e4c9-412a-be6e-5c7558aebb6b" /> | ![favorite](https://github.com/user-attachments/assets/1d3c138e-943c-41ce-b901-8b33e3149aed) |
+| ![checkout](https://github.com/user-attachments/assets/7a7a381f-9e3e-40f9-a2c8-15fddc459617) | <img width="430" height="932" alt="orders" src="https://github.com/user-attachments/assets/ec31b59e-4425-4182-b64d-15e08ff43dc1" /> <img width="430" height="932" alt="order tracking" src="https://github.com/user-attachments/assets/ec61f86e-e4c9-412a-be6e-5c7558aebb6b" /> | ![favorite](https://github.com/user-attachments/assets/1d3c138e-943c-41ce-b901-8b33e3149aed) |
 
 ---
 
