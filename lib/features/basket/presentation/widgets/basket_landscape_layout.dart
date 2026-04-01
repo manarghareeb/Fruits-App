@@ -6,6 +6,7 @@ import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_button_widget.dart';
 import 'package:fruits_app/features/categories/domain/entities/product_entity.dart';
 import 'package:fruits_app/features/checkout/presentation/widgets/order_details.dart';
+import 'package:fruits_app/features/home/presentation/views/product_details_screen.dart';
 import 'package:fruits_app/features/home/presentation/widgets/product_card_item.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,8 +14,8 @@ class BasketLandscapeLayout extends StatelessWidget {
   const BasketLandscapeLayout({
     super.key,
     required this.orderDetails,
-    required this.products, 
-    required this.countItem, 
+    required this.products,
+    required this.countItem,
     required this.priceCart,
   });
   final List<Map<String, String>> orderDetails;
@@ -36,8 +37,16 @@ class BasketLandscapeLayout extends StatelessWidget {
             separatorBuilder: (context, index) => SizedBox(height: 7.h),
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: () =>
-                    GoRouter.of(context).push(AppRoute.productDetailsScreen),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductDetailsScreen(
+                        productEntity: products[index],
+                      ),
+                    ),
+                  );
+                },
                 child: ProductCardItem(
                   productEntity: products[index],
                   isCart: true,

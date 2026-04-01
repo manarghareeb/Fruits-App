@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:fruits_app/core/api/api_consumer.dart';
 import 'package:fruits_app/core/api/api_keys.dart';
@@ -78,6 +80,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     if (imagePath != null && imagePath.isNotEmpty) {
       data['profile_photo_path'] = await MultipartFile.fromFile(imagePath);
     }
+    log('$userId');
     final response = await apiConsumer.post(
       "${EndPoint.updateProfile}/$userId",
       data: FormData.fromMap(data),

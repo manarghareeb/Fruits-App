@@ -21,7 +21,7 @@ class SqliteService {
       path, 
       onCreate: _onCreate, 
       onUpgrade: _onUpgrade, 
-      version: 3
+      version: 4
     );
     return mydb;
   }
@@ -36,7 +36,7 @@ class SqliteService {
         "details_en" TEXT, "vendor_id" INTEGER,
         "category_id" INTEGER, "name_category" TEXT,
         "name_category_en" TEXT, "is_favorite" INTEGER,
-        "cart_quantity" INTEGER,
+        "cart_quantity" INTEGER
       )
     ''');
   }

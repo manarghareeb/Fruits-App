@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fruits_app/core/di/service_locator.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
-import 'package:fruits_app/features/favorite/presentation/cubit/add_or_remove_favorite_cubit/add_or_remove_favorite_cubit.dart';
 import 'package:fruits_app/features/favorite/presentation/cubit/get_favorites_cubit/get_favorites_cubit.dart';
 import 'package:fruits_app/features/favorite/presentation/cubit/get_favorites_cubit/get_favorites_state.dart';
 import 'package:fruits_app/features/home/presentation/views/product_details_screen.dart';
@@ -53,12 +51,8 @@ class FavoriteScreen extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => BlocProvider(
-                                    create: (context) =>
-                                        sl<AddOrRemoveFavoriteCubit>(),
-                                    child: ProductDetailsScreen(
-                                      productEntity: item,
-                                    ),
+                                  builder: (context) => ProductDetailsScreen(
+                                    productEntity: item,
                                   ),
                                 ),
                               );
@@ -87,12 +81,8 @@ class FavoriteScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => BlocProvider(
-                                  create: (context) =>
-                                      sl<AddOrRemoveFavoriteCubit>(),
-                                  child: ProductDetailsScreen(
-                                    productEntity: item,
-                                  ),
+                                builder: (context) => ProductDetailsScreen(
+                                  productEntity: item,
                                 ),
                               ),
                             );
