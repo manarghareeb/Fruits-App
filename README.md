@@ -320,15 +320,15 @@ flutter build apk --release
 
 | Splash | Onboarding | Login |
 |:------:|:----------:|:-----:|
-| <img width="430" height="932" alt="splash" src="https://github.com/user-attachments/assets/befc3022-51f0-46e4-bbec-abd29bbef108" /> | <img width="430" height="932" alt="onboarding1" src="https://github.com/user-attachments/assets/b574b36d-61a0-4edf-b947-03fe16a1d94a" /> | <img width="430" height="932" alt="login" src="https://github.com/user-attachments/assets/c8de331b-9f8f-4f14-b1f4-0a98c525fb17" /> |
+| <img width="430" height="932" alt="splash" src="https://github.com/user-attachments/assets/befc3022-51f0-46e4-bbec-abd29bbef108" /> | ![onboarding](https://github.com/user-attachments/assets/7f9b388d-4be5-40f6-a9f7-65f76d753d8f) | ![login](https://github.com/user-attachments/assets/aeb83cc8-2e51-40cf-9224-54601023cc5c) |
 
 | Home | Product Details | Basket |
 |:----:|:---------------:|:------:|
-| <img width="430" height="932" alt="home" src="https://github.com/user-attachments/assets/8197b1d8-1204-4c87-8f3f-da5edb190744" /> | <img width="430" height="932" alt="product details" src="https://github.com/user-attachments/assets/8f1732a7-7697-45c2-ab19-2080f801da89" /> | <img width="430" height="932" alt="basket" src="https://github.com/user-attachments/assets/86c5c158-bc2e-4b68-bc31-6404b2db5d36" /> |
+| ![home](https://github.com/user-attachments/assets/c8719e50-5a77-4a1b-af6f-338884e7e740) | ![product details](https://github.com/user-attachments/assets/1e33bfe2-34c3-4f55-938f-fc15799a260a) | ![basket](https://github.com/user-attachments/assets/00b62f73-257a-435d-bbb6-9ef5571f20c8) |
 
 | Checkout | Order Tracking | Favorites |
 |:--------:|:--------------:|:---------:|
-| <img width="430" height="932" alt="checkout" src="https://github.com/user-attachments/assets/7f4b2ad5-b723-407d-9ef3-16f2d91096cb" /> | <img width="430" height="932" alt="orders" src="https://github.com/user-attachments/assets/ec31b59e-4425-4182-b64d-15e08ff43dc1" /> <img width="430" height="932" alt="order tracking" src="https://github.com/user-attachments/assets/ec61f86e-e4c9-412a-be6e-5c7558aebb6b" /> | <img width="430" height="932" alt="favorite" src="https://github.com/user-attachments/assets/e43e5e32-7309-4aa4-b19a-818711944d91" /> |
+| <img width="430" height="932" alt="checkout" src="https://github.com/user-attachments/assets/7f4b2ad5-b723-407d-9ef3-16f2d91096cb" /> | <img width="430" height="932" alt="orders" src="https://github.com/user-attachments/assets/ec31b59e-4425-4182-b64d-15e08ff43dc1" /> <img width="430" height="932" alt="order tracking" src="https://github.com/user-attachments/assets/ec61f86e-e4c9-412a-be6e-5c7558aebb6b" /> | ![favorite](https://github.com/user-attachments/assets/1d3c138e-943c-41ce-b901-8b33e3149aed) |
 
 ---
 
