@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fruits_app/core/di/service_locator.dart';
 import 'package:fruits_app/core/theme/colors.dart';
-import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
@@ -20,6 +19,7 @@ import 'package:fruits_app/features/home/presentation/widgets/seller_card_item.d
 import 'package:fruits_app/features/vendors/presentation/vendor_products_cubit/vendor_products_cubit.dart';
 import 'package:fruits_app/features/vendors/presentation/vendors_cubit/vendor_cubit.dart';
 import 'package:fruits_app/features/vendors/presentation/vendors_cubit/vendor_state.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -70,7 +70,10 @@ class _HomeScreenState extends State<HomeScreen> {
               BlocBuilder<CategoriesCubit, CategoriesState>(
                 builder: (context, state) {
                   if (state is CategoriesLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                    return Skeletonizer(
+                      enabled: true,
+                      child: CategoryList(categories: []),
+                    );
                   } else if (state is CategoriesSuccess) {
                     return CategoryList(
                       categories: state.categories,
@@ -112,7 +115,21 @@ class _HomeScreenState extends State<HomeScreen> {
               BlocBuilder<VendorCubit, VendorState>(
                 builder: (context, state) {
                   if (state is VendorLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                    return Skeletonizer(
+                      enabled: true,
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: 4,
+                        itemBuilder: (context, index) => SellerCardItem(
+                          imagePath: '',
+                          name: '',
+                          deliveryInfo: '',
+                          distance: '',
+                          category: '',
+                        ), separatorBuilder: (BuildContext context, int index) => SizedBox(height: 7.h),
+                      ),
+                    );
                   } else if (state is VendorSuccess) {
                     return ListView.separated(
                       shrinkWrap: true,
@@ -144,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             );
                           },
                           child: SellerCardItem(
-                            imagePath: AppImages.companyLogo,
+                            imagePath: vendor.image,
                             name: vendor.nameEn,
                             deliveryInfo: 'Delivery Charges : 0.5 KD',
                             distance: '2.5 KM',
