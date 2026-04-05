@@ -9,6 +9,7 @@ import 'package:fruits_app/features/user/presentation/cubit/user_cubit/user_cubi
 import 'package:fruits_app/features/user/presentation/cubit/user_cubit/user_state.dart';
 import 'package:fruits_app/features/user/presentation/widgets/custom_phone_field.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});
@@ -74,7 +75,16 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       return Column(
                         children: [
                           if (state is UserLoading)
-                            const CircularProgressIndicator()
+                            Skeletonizer(
+                              enabled: true,
+                              child: CustomButtonWidget(
+                                  title: 'Login',
+                                  onPressed: () {},
+                                  backgroundColor: Colors.grey.shade300,
+                                  textColor: Colors.transparent,
+                                  bordercolor: Colors.transparent,
+                                ),
+                            )
                           else
                             CustomButtonWidget(
                               title: 'Submit',

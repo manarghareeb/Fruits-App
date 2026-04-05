@@ -6,12 +6,14 @@ import 'package:fruits_app/core/theme/images.dart';
 import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
+import 'package:fruits_app/features/categories/domain/entities/product_entity.dart';
 import 'package:fruits_app/features/home/presentation/views/product_details_screen.dart';
 import 'package:fruits_app/features/home/presentation/widgets/product_card_item.dart';
 import 'package:fruits_app/features/home/presentation/widgets/seller_card_item.dart';
 import 'package:fruits_app/features/vendors/domain/entities/vendor_entity/vendor_entity.dart';
 import 'package:fruits_app/features/vendors/presentation/vendor_products_cubit/vendor_products_cubit.dart';
 import 'package:fruits_app/features/vendors/presentation/vendor_products_cubit/vendor_products_state.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class SellerDetailsScreen extends StatelessWidget {
   const SellerDetailsScreen({super.key, required this.vendor});
@@ -63,7 +65,39 @@ class SellerDetailsScreen extends StatelessWidget {
               BlocBuilder<VendorProductsCubit, VendorProductsState>(
                 builder: (context, state) {
                   if (state is VendorProductsLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 5, // عدد العناصر الوهمية
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: 8.h),
+                          child: Skeletonizer(
+                            enabled: true,
+                            child: ProductCardItem(
+                              productEntity: ProductEntity(
+                                id: 0,
+                                nameEn: 'Loading',
+                                name: 'Loading',
+                                price: 0.0,
+                                discount: 0.0,
+                                image: '',
+                                quantity: 0,
+                                unit: '',
+                                unitEn: '',
+                                details: '',
+                                detailsEn: '',
+                                vendorId: 0,
+                                categoryId: 0,
+                                nameCategory: '',
+                                nameCategoryEn: '',
+                                isFavorite: 0,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
                   } else if (state is VendorProductsSuccess) {
                     return ListView.builder(
                       shrinkWrap: true,

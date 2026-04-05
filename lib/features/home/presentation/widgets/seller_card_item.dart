@@ -4,6 +4,7 @@ import 'package:fruits_app/core/theme/colors.dart';
 import 'package:fruits_app/core/theme/styles.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_image_card.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class SellerCardItem extends StatelessWidget {
   const SellerCardItem({
@@ -97,12 +98,14 @@ class SellerCardItem extends StatelessWidget {
                       backgroundColor: Colors.green,
                     ),
                     SizedBox(width: 5.w),
-                    Text(
-                      isOpen ? "Open" : "Closed",
-                      style: TextStyle(
-                        color: Colors.green,
-                        fontSize: isLandscape ? 9.sp : 13.sp,
-                        fontWeight: FontWeight.w500,
+                    Skeleton.replace(
+                      child: Text(
+                        isOpen ? "Open" : "Closed",
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontSize: isLandscape ? 9.sp : 13.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                     SizedBox(width: 10.w),

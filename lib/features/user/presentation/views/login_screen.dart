@@ -11,6 +11,7 @@ import 'package:fruits_app/features/user/presentation/cubit/user_cubit/user_stat
 import 'package:fruits_app/features/user/presentation/widgets/auth_navigator_text.dart';
 import 'package:fruits_app/features/user/presentation/widgets/custom_phone_field.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -37,9 +38,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) {
         if (state is UserSuccess) {
-          /*ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(const SnackBar(content: Text('Login successfully!')));*/
           GoRouter.of(context).go(AppRoute.buttonNavigatorBar);
         } else if (state is UserFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -113,7 +111,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: 21.h),
                       state is UserLoading
-                          ? const CircularProgressIndicator()
+                          ? Skeletonizer(
+                              enabled: true,
+                              child: CustomButtonWidget(
+                                  title: 'Login',
+                                  onPressed: () {},
+                                  backgroundColor: Colors.grey.shade300,
+                                  textColor: Colors.transparent,
+                                  bordercolor: Colors.transparent,
+                                ),
+                            )
                           : CustomButtonWidget(
                               title: 'Login',
                               onPressed: () {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
+import 'package:fruits_app/core/widgets/custom_cached_network_image.dart';
 
 class CustomImageCard extends StatelessWidget {
   final String imagePath;
@@ -33,6 +34,12 @@ class CustomImageCard extends StatelessWidget {
               : 35.w
         : 80.h;
 
+    if (imagePath.isEmpty) {
+    return Container(
+      color: Colors.grey[300], // skeleton placeholder
+    );
+  }
+
     return Container(
       width: width ?? isWidth,
       height: height ?? isHeight,
@@ -49,7 +56,8 @@ class CustomImageCard extends StatelessWidget {
         ],
       ),
       padding: EdgeInsets.all(8.w),
-      child: Image.asset(imagePath, fit: BoxFit.contain),
+      //child: Image.asset(imagePath, fit: BoxFit.contain),
+      child: CustomCachedNetworkImage(imagePath: imagePath, fit: BoxFit.contain),
     );
   }
 }

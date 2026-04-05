@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruits_app/core/utils/app_responsive.dart';
 import 'package:fruits_app/core/widgets/custom_app_bar.dart';
+import 'package:fruits_app/features/categories/domain/entities/product_entity.dart';
 import 'package:fruits_app/features/favorite/presentation/cubit/get_favorites_cubit/get_favorites_cubit.dart';
 import 'package:fruits_app/features/favorite/presentation/cubit/get_favorites_cubit/get_favorites_state.dart';
 import 'package:fruits_app/features/home/presentation/views/product_details_screen.dart';
 import 'package:fruits_app/features/home/presentation/widgets/product_card_item.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
@@ -21,7 +23,38 @@ class FavoriteScreen extends StatelessWidget {
       body: BlocBuilder<GetFavoritesCubit, GetFavoritesState>(
         builder: (context, state) {
           if (state is GetFavoritesLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return Skeletonizer(
+              enabled: true,
+              child: ListView.separated(
+                padding: EdgeInsets.symmetric(vertical: 13.h, horizontal: 15.w),
+                itemCount: 5,
+                separatorBuilder: (_, __) => SizedBox(height: 7.h),
+                itemBuilder: (context, index) {
+                  return ProductCardItem(
+                    productEntity: ProductEntity(
+                      id: 0,
+                      nameEn: 'Loading',
+                      name: 'Loading',
+                      price: 0.0,
+                      discount: 0.0,
+                      image: 'loading_image_url',
+                      quantity: 0,
+                      unit: '',
+                      unitEn: '',
+                      details: '',
+                      detailsEn: '',
+                      vendorId: 0,
+                      categoryId: 0,
+                      nameCategory: '',
+                      nameCategoryEn: '',
+                      isFavorite: 0,
+                    ),
+                    isCart: true,
+                    isFavorite: true,
+                  );
+                },
+              ),
+            );
           } else if (state is GetFavoritesSuccess) {
             final favorites = state.favorites
                 .where((e) => e.product != null)
@@ -51,9 +84,8 @@ class FavoriteScreen extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ProductDetailsScreen(
-                                    productEntity: item,
-                                  ),
+                                  builder: (context) =>
+                                      ProductDetailsScreen(productEntity: item),
                                 ),
                               );
                             },
@@ -81,9 +113,8 @@ class FavoriteScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ProductDetailsScreen(
-                                  productEntity: item,
-                                ),
+                                builder: (context) =>
+                                    ProductDetailsScreen(productEntity: item),
                               ),
                             );
                           },

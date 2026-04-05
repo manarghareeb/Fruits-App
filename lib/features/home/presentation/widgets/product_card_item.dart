@@ -12,6 +12,7 @@ import 'package:fruits_app/features/basket/presentation/widgets/count_container.
 import 'package:fruits_app/features/categories/domain/entities/product_entity.dart';
 import 'package:fruits_app/features/home/presentation/widgets/price_after_and_before_discount.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ProductCardItem extends StatelessWidget {
   const ProductCardItem({
@@ -84,23 +85,25 @@ class ProductCardItem extends StatelessWidget {
                           ),
                           SizedBox(height: 9.h),
                           if (!isFavorite) ...[
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 12.w,
-                                vertical: 3.h,
-                              ),
-                              decoration: BoxDecoration(
-                                color: AppColors.lightRedColor,
-                                borderRadius: BorderRadius.circular(15.r),
-                              ),
-                              child: Text(
-                                'Up to 10% Off',
-                                style:
-                                    AppStyles.font12SemiBoldWhiteColor(
-                                      context,
-                                    ).copyWith(
-                                      fontSize: isLandscape ? 6.sp : 12.sp,
-                                    ),
+                            Skeleton.replace(
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 12.w,
+                                  vertical: 3.h,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: AppColors.lightRedColor,
+                                  borderRadius: BorderRadius.circular(15.r),
+                                ),
+                                child: Text(
+                                  'Up to 10% Off',
+                                  style:
+                                      AppStyles.font12SemiBoldWhiteColor(
+                                        context,
+                                      ).copyWith(
+                                        fontSize: isLandscape ? 6.sp : 12.sp,
+                                      ),
+                                ),
                               ),
                             ),
                           ] /*else
@@ -185,24 +188,26 @@ class ProductCardItem extends StatelessWidget {
                   ],
                 )
               else if (!isCart)
-                Container(
-                  width: isLandscape ? 30.w : 55.w,
-                  height: isLandscape ? 30.w : 50.h,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.primaryColor,
-                  ),
-                  child: IconButton(
-                    onPressed: () {
-                      context.read<CartCubit>().addProduct(productEntity);
-                      GoRouter.of(
-                        context,
-                      ).push(AppRoute.buttonNavigatorBar, extra: 2);
-                    },
-                    icon: Icon(
-                      Icons.add_shopping_cart,
-                      color: Colors.white,
-                      size: isLandscape ? 18.sp : 23.sp,
+                Skeleton.replace(
+                  child: Container(
+                    width: isLandscape ? 30.w : 55.w,
+                    height: isLandscape ? 30.w : 50.h,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.primaryColor,
+                    ),
+                    child: IconButton(
+                      onPressed: () {
+                        context.read<CartCubit>().addProduct(productEntity);
+                        GoRouter.of(
+                          context,
+                        ).push(AppRoute.buttonNavigatorBar, extra: 2);
+                      },
+                      icon: Icon(
+                        Icons.add_shopping_cart,
+                        color: Colors.white,
+                        size: isLandscape ? 18.sp : 23.sp,
+                      ),
                     ),
                   ),
                 ),

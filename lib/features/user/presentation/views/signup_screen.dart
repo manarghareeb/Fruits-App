@@ -11,6 +11,7 @@ import 'package:fruits_app/features/user/presentation/cubit/user_cubit/user_stat
 import 'package:fruits_app/features/user/presentation/widgets/auth_navigator_text.dart';
 import 'package:fruits_app/features/user/presentation/widgets/custom_phone_field.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -143,7 +144,16 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       SizedBox(height: 40.h),
                       state is UserLoading
-                          ? const CircularProgressIndicator()
+                          ? Skeletonizer(
+                              enabled: true,
+                              child: CustomButtonWidget(
+                                  title: 'Sign Up',
+                                  onPressed: () {},
+                                  backgroundColor: Colors.grey.shade300,
+                                  textColor: Colors.transparent,
+                                  bordercolor: Colors.transparent,
+                                ),
+                            )
                           : CustomButtonWidget(
                               title: 'Sign Up',
                               onPressed: () {
